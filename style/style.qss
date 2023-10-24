@@ -1,0 +1,35 @@
+#leftPanel {
+    background-color: #2e3440;
+}
+
+#rightPanel > QWidget > QWidget {
+    background-color: #eceff4;
+}
+
+#rightPanel QLabel {
+    color: #2e3440;
+}
+
+QToolButton {
+    background-color: #2e3440;
+    font-family: Lato;
+    font-size: 18px;
+    color: #eceff4;
+    padding-left: 12px;
+    border: none;
+}
+
+QToolButton:hover {
+    background-color: #3b4252;
+}
+
+QToolButton:checked {
+    background-color: #4c566a;
+}
+
+#appLabel {
+    font-family: Lato;
+    font-size: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
