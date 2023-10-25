@@ -23,6 +23,7 @@ class Ui_homeWindow(object):
     def setupUi(self, homeWindow):
         if not homeWindow.objectName():
             homeWindow.setObjectName(u"homeWindow")
+        homeWindow.setWindowModality(Qt.NonModal)
         homeWindow.resize(1280, 720)
         self.horizontalLayout = QHBoxLayout(homeWindow)
         self.horizontalLayout.setSpacing(0)
@@ -156,7 +157,7 @@ class Ui_homeWindow(object):
     # setupUi
 
     def retranslateUi(self, homeWindow):
-        homeWindow.setWindowTitle(QCoreApplication.translate("homeWindow", u"Form", None))
+        homeWindow.setWindowTitle("")
         self.appLabel.setText(QCoreApplication.translate("homeWindow", u"Preon Suite\\n\"A suite of small things that make life better\"", None))
         self.homeButton.setText(QCoreApplication.translate("homeWindow", u"Home", None))
         self.passwordButton.setText(QCoreApplication.translate("homeWindow", u"Password", None))

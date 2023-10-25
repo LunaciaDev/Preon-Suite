@@ -15,22 +15,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QSizePolicy,
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QSizePolicy, QStackedWidget,
     QWidget)
 
 class Ui_passwordBaseWindow(object):
     def setupUi(self, passwordBaseWindow):
         if not passwordBaseWindow.objectName():
             passwordBaseWindow.setObjectName(u"passwordBaseWindow")
-        passwordBaseWindow.resize(1280, 720)
+        passwordBaseWindow.resize(1080, 720)
         self.horizontalLayout = QHBoxLayout(passwordBaseWindow)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.label = QLabel(passwordBaseWindow)
-        self.label.setObjectName(u"label")
+        self.passwordWindowStack = QStackedWidget(passwordBaseWindow)
+        self.passwordWindowStack.setObjectName(u"passwordWindowStack")
 
-        self.horizontalLayout.addWidget(self.label)
+        self.horizontalLayout.addWidget(self.passwordWindowStack)
 
 
         self.retranslateUi(passwordBaseWindow)
@@ -40,6 +40,5 @@ class Ui_passwordBaseWindow(object):
 
     def retranslateUi(self, passwordBaseWindow):
         passwordBaseWindow.setWindowTitle(QCoreApplication.translate("passwordBaseWindow", u"Form", None))
-        self.label.setText(QCoreApplication.translate("passwordBaseWindow", u"This is da password Window", None))
     # retranslateUi
 

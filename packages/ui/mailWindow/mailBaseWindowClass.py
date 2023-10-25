@@ -22,7 +22,7 @@ class Ui_mailBaseWindow(object):
     def setupUi(self, mailBaseWindow):
         if not mailBaseWindow.objectName():
             mailBaseWindow.setObjectName(u"mailBaseWindow")
-        mailBaseWindow.resize(1280, 720)
+        mailBaseWindow.resize(1080, 720)
         self.horizontalLayout = QHBoxLayout(mailBaseWindow)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")

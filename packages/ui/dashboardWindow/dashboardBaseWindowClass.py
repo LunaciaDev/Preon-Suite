@@ -22,7 +22,7 @@ class Ui_dashboardBaseWindow(object):
     def setupUi(self, dashboardBaseWindow):
         if not dashboardBaseWindow.objectName():
             dashboardBaseWindow.setObjectName(u"dashboardBaseWindow")
-        dashboardBaseWindow.resize(1280, 720)
+        dashboardBaseWindow.resize(1080, 720)
         self.verticalLayout = QVBoxLayout(dashboardBaseWindow)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
