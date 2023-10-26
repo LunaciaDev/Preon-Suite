@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Slot
 from packages.ui.passwordWindow.passwordBaseWindowClass import Ui_passwordBaseWindow
 from packages.passwordLoginWindow import PasswordLoginWindow
-from packages.passwordMainWindow import PasswordMainWindow
 
 class PasswordWindow(QWidget):
     def __init__(self):
@@ -11,10 +10,8 @@ class PasswordWindow(QWidget):
         self.ui.setupUi(self)
 
         self.passwordLoginWindow = PasswordLoginWindow()
-        self.passwordMainWindow = PasswordMainWindow()
 
         self.ui.passwordWindowStack.addWidget(self.passwordLoginWindow)
-        self.ui.passwordWindowStack.addWidget(self.passwordMainWindow)
         self.ui.passwordWindowStack.setCurrentIndex(0)
 
         self.passwordLoginWindow.loggedIn.connect(self.onLoggedIn)

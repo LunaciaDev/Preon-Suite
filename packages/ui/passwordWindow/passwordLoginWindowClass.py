@@ -23,13 +23,13 @@ class Ui_passwordLoginWindow(object):
     def setupUi(self, passwordLoginWindow):
         if not passwordLoginWindow.objectName():
             passwordLoginWindow.setObjectName(u"passwordLoginWindow")
-        passwordLoginWindow.resize(1080, 720)
+        passwordLoginWindow.resize(1280, 720)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(passwordLoginWindow.sizePolicy().hasHeightForWidth())
         passwordLoginWindow.setSizePolicy(sizePolicy)
-        passwordLoginWindow.setMaximumSize(QSize(1080, 720))
+        passwordLoginWindow.setMaximumSize(QSize(1280, 720))
         passwordLoginWindow.setStyleSheet(u"")
         self.horizontalLayout_2 = QHBoxLayout(passwordLoginWindow)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -362,7 +362,7 @@ class Ui_passwordLoginWindow(object):
 
         self.retranslateUi(passwordLoginWindow)
 
-        self.loginStack.setCurrentIndex(1)
+        self.loginStack.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(passwordLoginWindow)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'passwordBaseWindow.ui'
+## Form generated from reading UI file 'applicationController.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.3
 ##
@@ -18,27 +18,30 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QSizePolicy, QStackedWidget,
     QWidget)
 
-class Ui_passwordBaseWindow(object):
-    def setupUi(self, passwordBaseWindow):
-        if not passwordBaseWindow.objectName():
-            passwordBaseWindow.setObjectName(u"passwordBaseWindow")
-        passwordBaseWindow.resize(1280, 720)
-        self.horizontalLayout = QHBoxLayout(passwordBaseWindow)
+class Ui_applicationController(object):
+    def setupUi(self, applicationController):
+        if not applicationController.objectName():
+            applicationController.setObjectName(u"applicationController")
+        applicationController.resize(1280, 720)
+        self.horizontalLayout = QHBoxLayout(applicationController)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.passwordWindowStack = QStackedWidget(passwordBaseWindow)
-        self.passwordWindowStack.setObjectName(u"passwordWindowStack")
+        self.applicationStack = QStackedWidget(applicationController)
+        self.applicationStack.setObjectName(u"applicationStack")
 
-        self.horizontalLayout.addWidget(self.passwordWindowStack)
+        self.horizontalLayout.addWidget(self.applicationStack)
 
 
-        self.retranslateUi(passwordBaseWindow)
+        self.retranslateUi(applicationController)
 
-        QMetaObject.connectSlotsByName(passwordBaseWindow)
+        self.applicationStack.setCurrentIndex(-1)
+
+
+        QMetaObject.connectSlotsByName(applicationController)
     # setupUi
 
-    def retranslateUi(self, passwordBaseWindow):
-        passwordBaseWindow.setWindowTitle(QCoreApplication.translate("passwordBaseWindow", u"Form", None))
+    def retranslateUi(self, applicationController):
+        applicationController.setWindowTitle(QCoreApplication.translate("applicationController", u"Form", None))
     # retranslateUi
 

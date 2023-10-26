@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QApplication
-from packages.homeWindow import HomeWindow
+from packages.applicationController import ApplicationController
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -11,7 +11,7 @@ if __name__ == '__main__':
         _style = f.read()
         app.setStyleSheet(_style)
 
-    mainWindow = HomeWindow()
+    mainWindow = ApplicationController()
     mainWindow.show()
 
     sys.exit(app.exec())
