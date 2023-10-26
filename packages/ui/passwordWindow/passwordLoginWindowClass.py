@@ -24,11 +24,20 @@ class Ui_passwordLoginWindow(object):
         if not passwordLoginWindow.objectName():
             passwordLoginWindow.setObjectName(u"passwordLoginWindow")
         passwordLoginWindow.resize(1080, 720)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(passwordLoginWindow.sizePolicy().hasHeightForWidth())
+        passwordLoginWindow.setSizePolicy(sizePolicy)
+        passwordLoginWindow.setMaximumSize(QSize(1080, 720))
         passwordLoginWindow.setStyleSheet(u"")
         self.horizontalLayout_2 = QHBoxLayout(passwordLoginWindow)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.loginStack = QStackedWidget(passwordLoginWindow)
         self.loginStack.setObjectName(u"loginStack")
+        self.loginStack.setEnabled(True)
+        self.loginStack.setMinimumSize(QSize(0, 0))
+        self.loginStack.setMaximumSize(QSize(123132, 123132))
         self.faceIDLogin = QWidget()
         self.faceIDLogin.setObjectName(u"faceIDLogin")
         self.gridLayout_2 = QGridLayout(self.faceIDLogin)
@@ -51,9 +60,6 @@ class Ui_passwordLoginWindow(object):
 
         self.faceIDCameraFeed = QLabel(self.faceIDLogin)
         self.faceIDCameraFeed.setObjectName(u"faceIDCameraFeed")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.faceIDCameraFeed.sizePolicy().hasHeightForWidth())
         self.faceIDCameraFeed.setSizePolicy(sizePolicy)
         self.faceIDCameraFeed.setMinimumSize(QSize(300, 300))
@@ -187,13 +193,6 @@ class Ui_passwordLoginWindow(object):
 
         self.horizontalLayout.addWidget(self.label_2)
 
-        self.forgotPasswordLabel = QLabel(self.credentalLogin)
-        self.forgotPasswordLabel.setObjectName(u"forgotPasswordLabel")
-        self.forgotPasswordLabel.setEnabled(True)
-        self.forgotPasswordLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.horizontalLayout.addWidget(self.forgotPasswordLabel)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
@@ -240,6 +239,123 @@ class Ui_passwordLoginWindow(object):
         self.gridLayout.addLayout(self.verticalLayout, 1, 1, 1, 1)
 
         self.loginStack.addWidget(self.credentalLogin)
+        self.createCredential = QWidget()
+        self.createCredential.setObjectName(u"createCredential")
+        self.gridLayout_3 = QGridLayout(self.createCredential)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.verticalSpacer_16 = QSpacerItem(20, 231, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_16, 0, 1, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(345, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_13, 1, 0, 1, 1)
+
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.label_6 = QLabel(self.createCredential)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.label_6)
+
+        self.verticalSpacer_11 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_11)
+
+        self.notMatchingPasswordLabel = QLabel(self.createCredential)
+        self.notMatchingPasswordLabel.setObjectName(u"notMatchingPasswordLabel")
+        self.notMatchingPasswordLabel.setFrameShape(QFrame.Box)
+        self.notMatchingPasswordLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.notMatchingPasswordLabel)
+
+        self.verticalSpacer_12 = QSpacerItem(10, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_12)
+
+        self.label_7 = QLabel(self.createCredential)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setEnabled(True)
+        self.label_7.setOpenExternalLinks(False)
+
+        self.verticalLayout_3.addWidget(self.label_7)
+
+        self.createUsernameInput = QLineEdit(self.createCredential)
+        self.createUsernameInput.setObjectName(u"createUsernameInput")
+        self.createUsernameInput.setEnabled(True)
+
+        self.verticalLayout_3.addWidget(self.createUsernameInput)
+
+        self.verticalSpacer_13 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_13)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_8 = QLabel(self.createCredential)
+        self.label_8.setObjectName(u"label_8")
+
+        self.horizontalLayout_6.addWidget(self.label_8)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_6)
+
+        self.createPasswordInput = QLineEdit(self.createCredential)
+        self.createPasswordInput.setObjectName(u"createPasswordInput")
+        self.createPasswordInput.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_3.addWidget(self.createPasswordInput)
+
+        self.verticalSpacer_17 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_17)
+
+        self.label_9 = QLabel(self.createCredential)
+        self.label_9.setObjectName(u"label_9")
+
+        self.verticalLayout_3.addWidget(self.label_9)
+
+        self.confirmPasswordInput = QLineEdit(self.createCredential)
+        self.confirmPasswordInput.setObjectName(u"confirmPasswordInput")
+        self.confirmPasswordInput.setEchoMode(QLineEdit.Password)
+
+        self.verticalLayout_3.addWidget(self.confirmPasswordInput)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer_14)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_12)
+
+        self.createAccountButton = QToolButton(self.createCredential)
+        self.createAccountButton.setObjectName(u"createAccountButton")
+
+        self.horizontalLayout_7.addWidget(self.createAccountButton)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_14)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_7)
+
+
+        self.gridLayout_3.addLayout(self.verticalLayout_3, 1, 1, 1, 1)
+
+        self.horizontalSpacer_15 = QSpacerItem(345, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_15, 1, 2, 1, 1)
+
+        self.verticalSpacer_15 = QSpacerItem(20, 230, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_15, 2, 1, 1, 1)
+
+        self.loginStack.addWidget(self.createCredential)
 
         self.horizontalLayout_2.addWidget(self.loginStack)
 
@@ -262,9 +378,16 @@ class Ui_passwordLoginWindow(object):
         self.wrongCredentialLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"Incorrect username or password.", None))
         self.label_3.setText(QCoreApplication.translate("passwordLoginWindow", u"Username", None))
         self.label_2.setText(QCoreApplication.translate("passwordLoginWindow", u"Password", None))
-        self.forgotPasswordLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"<a href=\"a\">Forgot Password?<a>", None))
         self.passwordInput.setText("")
         self.loginButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Login", None))
         self.registerButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
+        self.label_6.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
+        self.notMatchingPasswordLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"Password does not match.", None))
+        self.label_7.setText(QCoreApplication.translate("passwordLoginWindow", u"Username", None))
+        self.label_8.setText(QCoreApplication.translate("passwordLoginWindow", u"Password", None))
+        self.createPasswordInput.setText("")
+        self.label_9.setText(QCoreApplication.translate("passwordLoginWindow", u"Re-enter your password", None))
+        self.confirmPasswordInput.setText("")
+        self.createAccountButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
     # retranslateUi
 

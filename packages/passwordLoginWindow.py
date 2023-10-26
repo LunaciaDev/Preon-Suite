@@ -12,7 +12,6 @@ class PasswordLoginWindow(QWidget):
         self.ui = Ui_passwordLoginWindow();
         self.ui.setupUi(self)
         
-        self.ui.forgotPasswordLabel.linkActivated.connect(self.onForgetPasswordClicked)
         self.ui.registerButton.clicked.connect(self.onRegisterButtonClicked)
         self.ui.loginButton.clicked.connect(self.onLoginButtonClicked)
         self.ui.passwordLoginButton.clicked.connect(self.onSwitchToCredentalLoginClicked)
@@ -20,35 +19,52 @@ class PasswordLoginWindow(QWidget):
         self.ui.loginStack.setCurrentIndex(0)
 
         self.ui.wrongCredentialLabel.hide()
+        self.ui.notMatchingPasswordLabel.hide()
         self.ui.instructionLabel.hide()
 
+    # Registration Control #
+    @Slot()
+    def onCreateAccountButtonClicked(self):
+        if (self.ui.createPasswordInput.text() == self.ui.confirmPasswordInput.text()):
+            self.ui.createUsernameInput.setText("")
+            self.ui.createPasswordInput.setText("")
+            self.ui.confirmPasswordInput.setText("")
+            self.ui.notMatchingPasswordLabel.hide()
+            self.createCredential.emit(self.ui.createUsernameInput.text(), self.ui.createPasswordInput.text())
+            return
+
+        self.ui.notMatchingPasswordLabel.show()
+
+    @Slot()
+    def onAccountRegistrationSuccessful(self):
+        self.loggedIn.emit()
+    ######
+
+    # User Interface Control #
     @Slot()
     def onSwitchToCredentalLoginClicked(self):
         self.ui.loginStack.setCurrentIndex(1)
-    
-    @Slot()
-    def onForgetPasswordClicked(self):
-        print("Forget Password Button Clicked")
-    
-    @Slot()
-    def onRegisterButtonClicked(self):
-        print("Register User button clicked")
 
     @Slot()
+    def onRegisterButtonClicked(self):
+        self.ui.loginStack.setCurrentIndex(2)
+    ######
+
+    # Login Control #
+    @Slot()
     def onLoginButtonClicked(self):
-        print("Login button clicked")
         self.validateCredential.emit(self.ui.usernameInput, self.ui.passwordInput)
 
     @Slot(bool, str)
     def onValidationCompleted(self, success, labelValue):
         if (success):
-            print("Login suceeded")
-            self.ui.usernameInput.clear()
-            self.ui.passwordInput.clear()
+            self.ui.usernameInput.setText("")
+            self.ui.passwordInput.setText("")
+            self.ui.wrongCredentialLabel.hide()
             self.loggedIn.emit()
             return
         
         #Just in case if they wanted it
         self.ui.wrongCredentialLabel.setText(labelValue)
         self.ui.wrongCredentialLabel.show()
-        
+    ######
