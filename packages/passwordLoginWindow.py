@@ -16,7 +16,11 @@ class PasswordLoginWindow(QWidget):
         self.ui.loginButton.clicked.connect(self.onLoginButtonClicked)
         self.ui.passwordLoginButton.clicked.connect(self.onSwitchToCredentalLoginClicked)
 
-        self.ui.loginStack.setCurrentIndex(0)
+        #TODO: Check if user have Face ID
+        #if (have FaceID):
+        #   self.ui.loginStack.setCurrentIndex(0)
+        #else:
+        self.ui.loginStack.setCurrentIndex(1)
 
         self.ui.wrongCredentialLabel.hide()
         self.ui.notMatchingPasswordLabel.hide()

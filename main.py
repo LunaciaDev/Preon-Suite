@@ -1,4 +1,5 @@
 import sys
+import sass
 from PySide6.QtWidgets import QApplication
 from packages.applicationController import ApplicationController
 
@@ -9,6 +10,7 @@ if __name__ == '__main__':
 
     with open("style/style.qss") as f:
         _style = f.read()
+        _style = sass.compile(string=_style)
         app.setStyleSheet(_style)
 
     mainWindow = ApplicationController()

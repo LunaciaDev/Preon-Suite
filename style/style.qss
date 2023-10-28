@@ -1,103 +1,100 @@
-/*
-#2e3440
-#3b4252
-#434c5e
-#4c566a
+$text: rgb(236, 239, 244);
+$background: rgb(46, 52, 64);
+$primary: rgb(155, 231, 234);
+$secondary: rgb(26, 29, 35);
+$accent: rgb(104, 126, 172);
 
-#d8dee9
-#e5e9f0
-#eceff4
+$backgroundLight: rgb(56, 62, 74);
 
-#8fbcbb
-#88c0d0
-#81a1c1
-#5e81ac
+$textFaint: rgba(236, 239, 244, 0.6);
+$accentFaint: rgba(104, 126, 172, 0.6);
 
-#bf616a
-#d08770
-#ebcb8b
-#a3be8c
-#b48ead
-*/
+$textInverted: rgb(46, 52, 64);
+
+$extra-error: rgb(191, 97, 106);
+$extra-warning: rgb(235, 203, 139);
+$extra-success: rgb(163, 190, 140);
 
 QToolButton {
-    color: #eceff4;
+    color: $text;
     font-family: Lato;
     font-size: 15px;
-    border: 2px solid #2e3440;
-    border-radius: 4px;
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3b4252, stop:1 #2e3440);
-    padding: 5px;
+    border-radius: 6px;
+    background-color: $secondary;
+    padding: 8px;
 }
 
-QToolButton:hover {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #434c5e, stop:1 #3b4252);
+#loginButton, #createAccountButton {
+    background-color: $primary;
+    color: $textInverted;
 }
 
-QToolButton:pressed {
-    background-color: #2e3440;
+#applicationController {
+    background-color: $background;
 }
 
 QLabel {
-    color: #eceff4;
+    color: $text;
     font-family: Lato;
     font-size: 18px;
     padding: 5px;
 }
 
 QLineEdit {
-    color: #eceff4;
-    selection-background-color: #4c566a;
-    background-color: #2e3440;
+    color: $text;
+    padding: 4px;
+    selection-background-color: $secondary;
+    background-color: $secondary;
     font-family: Lato;
     font-size: 16px;
 }
 
 QLineEdit:focus {
-    border: 2px solid #5e81ac;
-    border-radius: 4px;
+    border: 2px solid $accent;
+    border-radius: 6px;
 }
 
 #faceIDCameraFeed {
-	background-color: #2e3440;
+	background-color: $secondary;
 	border: 4px;
 	border-radius: 150px;
 }
 
 #wrongCredentialLabel {
-    background-color: #bf616a;
+    background-color: $extra-error;
     border-radius: 6px;
 }
 
 #appLabel {
-    color: #eceff4;
+    color: $text;
     font: Lato;
     font-size: 17px;
     padding-left: 8px;
 }
 
 #leftPanel > QToolButton {
-    background-color: #2e3440;
+    background-color: $backgroundLight;
     font-family: Lato;
     font-size: 17px;
-    color: #eceff4;
+    color: $textFaint;
     padding-left: 12px;
     border: none;
-    border-radius: none;
+    border-radius: 20px;
 }
 
 #leftPanel > QToolButton:hover {
-    background-color: #4c566a;
+    color: $text;
 }
 
 #leftPanel > QToolButton:checked {
-    background-color: #3b4252;
+    background-color: $secondary;
+    color: $text;
 }
 
 #leftPanel {
-    background-color: #2e3440;
+    background-color: $backgroundLight;
 }
 
 #rightPanel {
-    background-color: #3b4252;
+    background-color: $background;
 }

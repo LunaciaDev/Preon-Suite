@@ -30,7 +30,6 @@ class Ui_passwordLoginWindow(object):
         sizePolicy.setHeightForWidth(passwordLoginWindow.sizePolicy().hasHeightForWidth())
         passwordLoginWindow.setSizePolicy(sizePolicy)
         passwordLoginWindow.setMaximumSize(QSize(1280, 720))
-        passwordLoginWindow.setStyleSheet(u"")
         self.horizontalLayout_2 = QHBoxLayout(passwordLoginWindow)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.loginStack = QStackedWidget(passwordLoginWindow)
@@ -104,6 +103,7 @@ class Ui_passwordLoginWindow(object):
 
         self.passwordLoginButton = QToolButton(self.faceIDLogin)
         self.passwordLoginButton.setObjectName(u"passwordLoginButton")
+        self.passwordLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_4.addWidget(self.passwordLoginButton)
 
@@ -215,6 +215,7 @@ class Ui_passwordLoginWindow(object):
         self.loginButton = QToolButton(self.credentalLogin)
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setMinimumSize(QSize(60, 0))
+        self.loginButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.loginButton.setToolButtonStyle(Qt.ToolButtonTextOnly)
 
         self.horizontalLayout_3.addWidget(self.loginButton)
@@ -225,6 +226,7 @@ class Ui_passwordLoginWindow(object):
 
         self.registerButton = QToolButton(self.credentalLogin)
         self.registerButton.setObjectName(u"registerButton")
+        self.registerButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_3.addWidget(self.registerButton)
 
@@ -259,7 +261,7 @@ class Ui_passwordLoginWindow(object):
 
         self.verticalLayout_3.addWidget(self.label_6)
 
-        self.verticalSpacer_11 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        self.verticalSpacer_11 = QSpacerItem(20, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_11)
 
@@ -270,7 +272,7 @@ class Ui_passwordLoginWindow(object):
 
         self.verticalLayout_3.addWidget(self.notMatchingPasswordLabel)
 
-        self.verticalSpacer_12 = QSpacerItem(10, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        self.verticalSpacer_12 = QSpacerItem(10, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_12)
 
@@ -287,7 +289,7 @@ class Ui_passwordLoginWindow(object):
 
         self.verticalLayout_3.addWidget(self.createUsernameInput)
 
-        self.verticalSpacer_13 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        self.verticalSpacer_13 = QSpacerItem(20, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_13)
 
@@ -307,7 +309,7 @@ class Ui_passwordLoginWindow(object):
 
         self.verticalLayout_3.addWidget(self.createPasswordInput)
 
-        self.verticalSpacer_17 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        self.verticalSpacer_17 = QSpacerItem(20, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_17)
 
@@ -322,7 +324,7 @@ class Ui_passwordLoginWindow(object):
 
         self.verticalLayout_3.addWidget(self.confirmPasswordInput)
 
-        self.verticalSpacer_14 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
+        self.verticalSpacer_14 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_14)
 
@@ -334,6 +336,7 @@ class Ui_passwordLoginWindow(object):
 
         self.createAccountButton = QToolButton(self.createCredential)
         self.createAccountButton.setObjectName(u"createAccountButton")
+        self.createAccountButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_7.addWidget(self.createAccountButton)
 
@@ -347,7 +350,7 @@ class Ui_passwordLoginWindow(object):
 
         self.gridLayout_3.addLayout(self.verticalLayout_3, 1, 1, 1, 1)
 
-        self.horizontalSpacer_15 = QSpacerItem(345, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_15 = QSpacerItem(345, 8, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.gridLayout_3.addItem(self.horizontalSpacer_15, 1, 2, 1, 1)
 
@@ -362,7 +365,7 @@ class Ui_passwordLoginWindow(object):
 
         self.retranslateUi(passwordLoginWindow)
 
-        self.loginStack.setCurrentIndex(2)
+        self.loginStack.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(passwordLoginWindow)
