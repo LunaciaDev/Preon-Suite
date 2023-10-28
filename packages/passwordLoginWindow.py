@@ -39,8 +39,8 @@ class PasswordLoginWindow(QWidget):
 
         self.ui.notMatchingPasswordLabel.show()
 
-    @Slot()
-    def onAccountRegistrationSuccessful(self):
+    @Slot(bool)
+    def onAccountRegistration(self, success):
         self.loggedIn.emit()
     ######
 
@@ -59,8 +59,8 @@ class PasswordLoginWindow(QWidget):
     def onLoginButtonClicked(self):
         self.validateCredential.emit(self.ui.usernameInput, self.ui.passwordInput)
 
-    @Slot(bool, str)
-    def onValidationCompleted(self, success, labelValue):
+    @Slot(bool,)
+    def onValidationCompleted(self, success):
         if (success):
             self.ui.usernameInput.setText("")
             self.ui.passwordInput.setText("")
@@ -68,7 +68,5 @@ class PasswordLoginWindow(QWidget):
             self.loggedIn.emit()
             return
         
-        #Just in case if they wanted it
-        self.ui.wrongCredentialLabel.setText(labelValue)
         self.ui.wrongCredentialLabel.show()
     ######
