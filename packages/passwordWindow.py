@@ -1,21 +1,72 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Slot
-from packages.ui.passwordWindow.passwordBaseWindowClass import Ui_passwordBaseWindow
-from packages.passwordLoginWindow import PasswordLoginWindow
+from PySide6.QtCore import Signal, Slot
+from packages.ui.passwordWindow.passwordWindowClass import Ui_passwordWindow
 
 class PasswordWindow(QWidget):
+    validateCredential = Signal(str, str)
+    createCredential = Signal(str, str)
+    loggedIn = Signal()
+
     def __init__(self):
         super(PasswordWindow, self).__init__()
-        self.ui = Ui_passwordBaseWindow()
+        self.ui = Ui_passwordWindow();
         self.ui.setupUi(self)
+        
+        self.ui.registerButton.clicked.connect(self.onRegisterButtonClicked)
+        self.ui.loginButton.clicked.connect(self.onLoginButtonClicked)
+        self.ui.passwordLoginButton.clicked.connect(self.onSwitchToCredentalLoginClicked)
 
-        self.passwordLoginWindow = PasswordLoginWindow()
+        #TODO: Check if user have Face ID
+        #if (have FaceID):
+        #   self.ui.loginStack.setCurrentIndex(0)
+        #else:
+        self.ui.loginStack.setCurrentIndex(1)
 
-        self.ui.passwordWindowStack.addWidget(self.passwordLoginWindow)
-        self.ui.passwordWindowStack.setCurrentIndex(0)
+        self.ui.wrongCredentialLabel.hide()
+        self.ui.notMatchingPasswordLabel.hide()
+        self.ui.instructionLabel.hide()
 
-        self.passwordLoginWindow.loggedIn.connect(self.onLoggedIn)
-    
+    # Registration Control #
     @Slot()
-    def onLoggedIn(self):
-        self.ui.passwordWindowStack.setCurrentIndex(1)
+    def onCreateAccountButtonClicked(self):
+        if (self.ui.createPasswordInput.text() == self.ui.confirmPasswordInput.text()):
+            self.ui.createUsernameInput.setText("")
+            self.ui.createPasswordInput.setText("")
+            self.ui.confirmPasswordInput.setText("")
+            self.ui.notMatchingPasswordLabel.hide()
+            self.createCredential.emit(self.ui.createUsernameInput.text(), self.ui.createPasswordInput.text())
+            return
+
+        self.ui.notMatchingPasswordLabel.show()
+
+    @Slot(bool)
+    def onAccountRegistration(self, success):
+        self.loggedIn.emit()
+    ######
+
+    # User Interface Control #
+    @Slot()
+    def onSwitchToCredentalLoginClicked(self):
+        self.ui.loginStack.setCurrentIndex(1)
+
+    @Slot()
+    def onRegisterButtonClicked(self):
+        self.ui.loginStack.setCurrentIndex(2)
+    ######
+
+    # Login Control #
+    @Slot()
+    def onLoginButtonClicked(self):
+        self.validateCredential.emit(self.ui.usernameInput, self.ui.passwordInput)
+
+    @Slot(bool,)
+    def onValidationCompleted(self, success):
+        if (success):
+            self.ui.usernameInput.setText("")
+            self.ui.passwordInput.setText("")
+            self.ui.wrongCredentialLabel.hide()
+            self.loggedIn.emit()
+            return
+        
+        self.ui.wrongCredentialLabel.show()
+    ######

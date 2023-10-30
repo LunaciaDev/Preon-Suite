@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'passwordLoginWindow.ui'
+## Form generated from reading UI file 'passwordWindow.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.3
 ##
@@ -19,20 +19,20 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QLabel, QLineEdit, QSizePolicy, QSpacerItem,
     QStackedWidget, QToolButton, QVBoxLayout, QWidget)
 
-class Ui_passwordLoginWindow(object):
-    def setupUi(self, passwordLoginWindow):
-        if not passwordLoginWindow.objectName():
-            passwordLoginWindow.setObjectName(u"passwordLoginWindow")
-        passwordLoginWindow.resize(1280, 720)
+class Ui_passwordWindow(object):
+    def setupUi(self, passwordWindow):
+        if not passwordWindow.objectName():
+            passwordWindow.setObjectName(u"passwordWindow")
+        passwordWindow.resize(1280, 720)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(passwordLoginWindow.sizePolicy().hasHeightForWidth())
-        passwordLoginWindow.setSizePolicy(sizePolicy)
-        passwordLoginWindow.setMaximumSize(QSize(1280, 720))
-        self.horizontalLayout_2 = QHBoxLayout(passwordLoginWindow)
+        sizePolicy.setHeightForWidth(passwordWindow.sizePolicy().hasHeightForWidth())
+        passwordWindow.setSizePolicy(sizePolicy)
+        passwordWindow.setMaximumSize(QSize(1280, 720))
+        self.horizontalLayout_2 = QHBoxLayout(passwordWindow)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.loginStack = QStackedWidget(passwordLoginWindow)
+        self.loginStack = QStackedWidget(passwordWindow)
         self.loginStack.setObjectName(u"loginStack")
         self.loginStack.setEnabled(True)
         self.loginStack.setMinimumSize(QSize(0, 0))
@@ -363,34 +363,34 @@ class Ui_passwordLoginWindow(object):
         self.horizontalLayout_2.addWidget(self.loginStack)
 
 
-        self.retranslateUi(passwordLoginWindow)
+        self.retranslateUi(passwordWindow)
 
         self.loginStack.setCurrentIndex(1)
 
 
-        QMetaObject.connectSlotsByName(passwordLoginWindow)
+        QMetaObject.connectSlotsByName(passwordWindow)
     # setupUi
 
-    def retranslateUi(self, passwordLoginWindow):
-        passwordLoginWindow.setWindowTitle(QCoreApplication.translate("passwordLoginWindow", u"Form", None))
+    def retranslateUi(self, passwordWindow):
+        passwordWindow.setWindowTitle(QCoreApplication.translate("passwordWindow", u"Form", None))
         self.faceIDCameraFeed.setText("")
-        self.label_5.setText(QCoreApplication.translate("passwordLoginWindow", u"Please keep your face in the camera's view", None))
-        self.instructionLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"smth", None))
-        self.passwordLoginButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Sign in using password instead", None))
-        self.label_4.setText(QCoreApplication.translate("passwordLoginWindow", u"Sign in to your Account", None))
-        self.wrongCredentialLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"Incorrect username or password.", None))
-        self.label_3.setText(QCoreApplication.translate("passwordLoginWindow", u"Username", None))
-        self.label_2.setText(QCoreApplication.translate("passwordLoginWindow", u"Password", None))
+        self.label_5.setText(QCoreApplication.translate("passwordWindow", u"Please keep your face in the camera's view", None))
+        self.instructionLabel.setText(QCoreApplication.translate("passwordWindow", u"smth", None))
+        self.passwordLoginButton.setText(QCoreApplication.translate("passwordWindow", u"Sign in using password instead", None))
+        self.label_4.setText(QCoreApplication.translate("passwordWindow", u"Sign in to your Account", None))
+        self.wrongCredentialLabel.setText(QCoreApplication.translate("passwordWindow", u"Incorrect username or password.", None))
+        self.label_3.setText(QCoreApplication.translate("passwordWindow", u"Username", None))
+        self.label_2.setText(QCoreApplication.translate("passwordWindow", u"Password", None))
         self.passwordInput.setText("")
-        self.loginButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Login", None))
-        self.registerButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
-        self.label_6.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
-        self.notMatchingPasswordLabel.setText(QCoreApplication.translate("passwordLoginWindow", u"Password does not match.", None))
-        self.label_7.setText(QCoreApplication.translate("passwordLoginWindow", u"Username", None))
-        self.label_8.setText(QCoreApplication.translate("passwordLoginWindow", u"Password", None))
+        self.loginButton.setText(QCoreApplication.translate("passwordWindow", u"Login", None))
+        self.registerButton.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
+        self.label_6.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
+        self.notMatchingPasswordLabel.setText(QCoreApplication.translate("passwordWindow", u"Password does not match.", None))
+        self.label_7.setText(QCoreApplication.translate("passwordWindow", u"Username", None))
+        self.label_8.setText(QCoreApplication.translate("passwordWindow", u"Password", None))
         self.createPasswordInput.setText("")
-        self.label_9.setText(QCoreApplication.translate("passwordLoginWindow", u"Re-enter your password", None))
+        self.label_9.setText(QCoreApplication.translate("passwordWindow", u"Re-enter your password", None))
         self.confirmPasswordInput.setText("")
-        self.createAccountButton.setText(QCoreApplication.translate("passwordLoginWindow", u"Create an Account", None))
+        self.createAccountButton.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
     # retranslateUi
 
