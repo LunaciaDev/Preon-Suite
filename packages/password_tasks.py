@@ -1,19 +1,21 @@
 import keyring as kr
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, Signal, QObject
 
-class password_tasks:
+class password_tasks(QObject):
+    loginStatus = Signal()
+
     def __init__(self):
-        pass
+        super(password_tasks, self).__init__()
     
     @Slot(str, str)
-    def login(username, password):
+    def login(self, username, password):
         stored_password = kr.get_password("system", username)
+        
         if stored_password is None or password != stored_password:
-            print("Incorrect Username or Password") 
-            return False
-        else:
-            print("Login completed") 
-            return True
+            self.loginStatus.emit(False, "Incorrect Username or Password")
+            return
+        
+        self.loginStatus.emit(True, "")
 
     @Slot(str, str)            
     def register(username, password):
@@ -21,4 +23,3 @@ class password_tasks:
         kr.set_password("system", username, password)
 
 
-    # def passreset():
