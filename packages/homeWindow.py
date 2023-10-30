@@ -2,7 +2,6 @@ from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Slot
 from packages.ui.homeWindowClass import Ui_homeWindow
 from packages.mailWindow import MailWindow
-from packages.passwordWindow import PasswordWindow
 from packages.dashboardWindow import DashboardWindow
 
 class HomeWindow(QWidget):
@@ -12,17 +11,14 @@ class HomeWindow(QWidget):
         self.ui.setupUi(self)
         
         self.mailWindow = MailWindow()
-        self.passwordWindow = PasswordWindow()
         self.dashboardWindow = DashboardWindow()
 
         self.ui.buttonGroup.setId(self.ui.homeButton, 0)
-        self.ui.buttonGroup.setId(self.ui.passwordButton, 1)
-        self.ui.buttonGroup.setId(self.ui.mailButton, 2)
+        self.ui.buttonGroup.setId(self.ui.mailButton, 1)
 
         self.ui.homeButton.setChecked(True)
 
         self.ui.rightPanel.addWidget(self.dashboardWindow)
-        self.ui.rightPanel.addWidget(self.passwordWindow)
         self.ui.rightPanel.addWidget(self.mailWindow)
         self.ui.rightPanel.setCurrentIndex(0)
 

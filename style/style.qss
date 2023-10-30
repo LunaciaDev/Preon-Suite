@@ -1,35 +1,100 @@
-#leftPanel {
-    background-color: #2e3440;
-}
+$text: rgb(236, 239, 244);
+$background: rgb(46, 52, 64);
+$primary: rgb(155, 231, 234);
+$secondary: rgb(26, 29, 35);
+$accent: rgb(104, 126, 172);
 
-#rightPanel > QWidget > QWidget {
-    background-color: #eceff4;
-}
+$backgroundLight: rgb(56, 62, 74);
 
-#rightPanel QLabel {
-    color: #2e3440;
-}
+$textFaint: rgba(236, 239, 244, 0.6);
+$accentFaint: rgba(104, 126, 172, 0.6);
+
+$textInverted: rgb(46, 52, 64);
+
+$extra-error: rgb(191, 97, 106);
+$extra-warning: rgb(235, 203, 139);
+$extra-success: rgb(163, 190, 140);
 
 QToolButton {
-    background-color: #2e3440;
+    color: $text;
+    font-family: Lato;
+    font-size: 15px;
+    border-radius: 6px;
+    background-color: $secondary;
+    padding: 8px;
+}
+
+#loginButton, #createAccountButton {
+    background-color: $primary;
+    color: $textInverted;
+}
+
+#applicationController {
+    background-color: $background;
+}
+
+QLabel {
+    color: $text;
     font-family: Lato;
     font-size: 18px;
-    color: #eceff4;
-    padding-left: 12px;
-    border: none;
+    padding: 5px;
 }
 
-QToolButton:hover {
-    background-color: #3b4252;
+QLineEdit {
+    color: $text;
+    padding: 4px;
+    selection-background-color: $secondary;
+    background-color: $secondary;
+    font-family: Lato;
+    font-size: 16px;
 }
 
-QToolButton:checked {
-    background-color: #4c566a;
+QLineEdit:focus {
+    border: 2px solid $accent;
+    border-radius: 6px;
+}
+
+#faceIDCameraFeed {
+	background-color: $secondary;
+	border: 4px;
+	border-radius: 150px;
+}
+
+#wrongCredentialLabel {
+    background-color: $extra-error;
+    border-radius: 6px;
 }
 
 #appLabel {
+    color: $text;
+    font: Lato;
+    font-size: 17px;
+    padding-left: 8px;
+}
+
+#leftPanel > QToolButton {
+    background-color: $backgroundLight;
     font-family: Lato;
-    font-size: 18px;
-    margin-left: 6px;
-    margin-right: 6px;
+    font-size: 17px;
+    color: $textFaint;
+    padding-left: 12px;
+    border: none;
+    border-radius: 20px;
+}
+
+#leftPanel > QToolButton:hover {
+    color: $text;
+}
+
+#leftPanel > QToolButton:checked {
+    background-color: $secondary;
+    color: $text;
+}
+
+#leftPanel {
+    background-color: $backgroundLight;
+}
+
+#rightPanel {
+    background-color: $background;
 }
