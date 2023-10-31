@@ -1,16 +1,16 @@
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Slot
-from packages.ui.applicationControllerClass import Ui_applicationController
+from packages.ui.applicationControllerClass import Ui_MainWindow
 
 from packages.passwordWindow import PasswordWindow
 from packages.homeWindow import HomeWindow
 
 from packages.password_tasks import password_tasks as PasswordTask
 
-class ApplicationController(QWidget):
+class ApplicationController(QMainWindow):
     def __init__(self):
         super(ApplicationController, self).__init__()
-        self.ui = Ui_applicationController();
+        self.ui = Ui_MainWindow();
         self.ui.setupUi(self)
 
         self.homeWindow = HomeWindow()
