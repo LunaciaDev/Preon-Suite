@@ -80,7 +80,6 @@ class PasswordWindow(QWidget):
             self.ui.passwordInput.setText("")
             self.ui.wrongCredentialLabel.hide()
             self.loggedIn.emit()
-
             return
         
         self.ui.wrongCredentialLabel.show()
