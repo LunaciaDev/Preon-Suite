@@ -107,7 +107,7 @@ class Ui_mailWindow(object):
         self.verticalLayout_4 = QVBoxLayout(self.widget)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 9, 0)
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.inboxAddress = QLabel(self.widget)
@@ -143,7 +143,7 @@ class Ui_mailWindow(object):
         self.previousPageButton.setObjectName(u"previousPageButton")
         self.previousPageButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
-        icon1.addFile(u"./icons/go-previous-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"icons/go-previous-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.previousPageButton.setIcon(icon1)
 
         self.horizontalLayout_5.addWidget(self.previousPageButton)
@@ -152,7 +152,7 @@ class Ui_mailWindow(object):
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon2 = QIcon()
-        icon2.addFile(u"./icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.refreshButton.setIcon(icon2)
 
         self.horizontalLayout_5.addWidget(self.refreshButton)
@@ -161,7 +161,7 @@ class Ui_mailWindow(object):
         self.nextPageButton.setObjectName(u"nextPageButton")
         self.nextPageButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
-        icon3.addFile(u"./icons/go-next-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"icons/go-next-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.nextPageButton.setIcon(icon3)
 
         self.horizontalLayout_5.addWidget(self.nextPageButton)
@@ -254,7 +254,7 @@ class Ui_mailWindow(object):
         self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setMinimumSize(QSize(128, 128))
         self.label_4.setTextFormat(Qt.PlainText)
-        self.label_4.setPixmap(QIcon(u"./icons/network-wireless-disconnected-symbolic.svg").pixmap(QSize(128, 128)))
+        self.label_4.setPixmap(QIcon(u"icons/network-wireless-disconnected-symbolic.svg").pixmap(QSize(128, 128)))
         self.label_4.setScaledContents(True)
 
         self.horizontalLayout_8.addWidget(self.label_4)
@@ -300,7 +300,7 @@ class Ui_mailWindow(object):
         self.label_6.setSizePolicy(sizePolicy)
         self.label_6.setMinimumSize(QSize(128, 128))
         self.label_6.setTextFormat(Qt.PlainText)
-        self.label_6.setPixmap(QIcon(u"./icons/checkbox-checked-symbolic.svg").pixmap(QSize(128, 128)))
+        self.label_6.setPixmap(QIcon(u"icons/checkbox-checked-symbolic.svg").pixmap(QSize(128, 128)))
         self.label_6.setScaledContents(True)
 
         self.horizontalLayout_9.addWidget(self.label_6)

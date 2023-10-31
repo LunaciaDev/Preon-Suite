@@ -13,7 +13,8 @@ class MailWindow(QWidget):
         self.ui.setupUi(self)
         self.ui.mailStack.setCurrentIndex(1)
         self.ui.actionStack.setCurrentIndex(1)
-        self.ui.informationStack.setCurrentIndex(0)
+        self.ui.informationStack.setCurrentIndex(1)
+        self.ui.actionStack.hide()
 
         self.emailRegex = re.compile(r".*@.*\..*")
 
@@ -30,14 +31,20 @@ class MailWindow(QWidget):
     ###### Ui Controller
     @Slot()
     def onComposeEmailButtonClicked(self):
+        self.ui.actionStack.show()
         self.ui.actionStack.setCurrentIndex(2)
     
     @Slot()
     def onDiscardEmailButtonClicked(self):
+        self.ui.addressField.clear()
+        self.ui.titleField.clear()
+        self.ui.contentField.clear()
+        self.ui.actionStack.hide()
         self.ui.actionStack.setCurrentIndex(1)
 
     @Slot()
     def onReceivedEmailClicked(self):
+        self.ui.actionStack.show()
         self.ui.actionStack.setCurrentIndex(0)
     ######
 
