@@ -27,4 +27,9 @@ class HomeWindow(QWidget):
 
     @Slot()
     def onPanelButtonClicked(self):
-        self.ui.rightPanel.setCurrentIndex(self.ui.buttonGroup.checkedId())
+        target = self.ui.buttonGroup.checkedId()
+
+        if target == 1: 
+            self.mailWindow.onMenuButtonClicked()
+
+        self.ui.rightPanel.setCurrentIndex(target)

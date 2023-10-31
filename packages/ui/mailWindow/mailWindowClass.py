@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QLineEdit, QListView, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTextEdit, QToolButton, QVBoxLayout,
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QToolButton, QVBoxLayout,
     QWidget)
 
 class Ui_mailWindow(object):
@@ -102,15 +103,15 @@ class Ui_mailWindow(object):
         self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.widget = QWidget(self.mainWindow)
-        self.widget.setObjectName(u"widget")
-        self.verticalLayout_4 = QVBoxLayout(self.widget)
+        self.inbox = QWidget(self.mainWindow)
+        self.inbox.setObjectName(u"inbox")
+        self.verticalLayout_4 = QVBoxLayout(self.inbox)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.inboxAddress = QLabel(self.widget)
+        self.inboxAddress = QLabel(self.inbox)
         self.inboxAddress.setObjectName(u"inboxAddress")
 
         self.horizontalLayout_4.addWidget(self.inboxAddress)
@@ -122,14 +123,14 @@ class Ui_mailWindow(object):
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer_6 = QSpacerItem(20, 12, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_4.addItem(self.verticalSpacer_6)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setSpacing(4)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.composeEmailButton = QToolButton(self.widget)
+        self.composeEmailButton = QToolButton(self.inbox)
         self.composeEmailButton.setObjectName(u"composeEmailButton")
         self.composeEmailButton.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -139,7 +140,7 @@ class Ui_mailWindow(object):
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
 
-        self.previousPageButton = QToolButton(self.widget)
+        self.previousPageButton = QToolButton(self.inbox)
         self.previousPageButton.setObjectName(u"previousPageButton")
         self.previousPageButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
@@ -148,7 +149,7 @@ class Ui_mailWindow(object):
 
         self.horizontalLayout_5.addWidget(self.previousPageButton)
 
-        self.refreshButton = QToolButton(self.widget)
+        self.refreshButton = QToolButton(self.inbox)
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon2 = QIcon()
@@ -157,7 +158,7 @@ class Ui_mailWindow(object):
 
         self.horizontalLayout_5.addWidget(self.refreshButton)
 
-        self.nextPageButton = QToolButton(self.widget)
+        self.nextPageButton = QToolButton(self.inbox)
         self.nextPageButton.setObjectName(u"nextPageButton")
         self.nextPageButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
@@ -169,18 +170,54 @@ class Ui_mailWindow(object):
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_5)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 8, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer_5 = QSpacerItem(20, 12, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_4.addItem(self.verticalSpacer_5)
 
-        self.inboxList = QListView(self.widget)
+        self.inboxList = QTableWidget(self.inbox)
+        if (self.inboxList.columnCount() < 2):
+            self.inboxList.setColumnCount(2)
+        if (self.inboxList.rowCount() < 10):
+            self.inboxList.setRowCount(10)
         self.inboxList.setObjectName(u"inboxList")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.inboxList.sizePolicy().hasHeightForWidth())
+        self.inboxList.setSizePolicy(sizePolicy)
+        self.inboxList.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.inboxList.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.inboxList.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.inboxList.setAutoScroll(False)
+        self.inboxList.setAutoScrollMargin(0)
+        self.inboxList.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.inboxList.setTabKeyNavigation(False)
+        self.inboxList.setProperty("showDropIndicator", False)
+        self.inboxList.setDragDropOverwriteMode(False)
+        self.inboxList.setAlternatingRowColors(False)
+        self.inboxList.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.inboxList.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.inboxList.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.inboxList.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.inboxList.setShowGrid(False)
+        self.inboxList.setWordWrap(False)
+        self.inboxList.setCornerButtonEnabled(False)
+        self.inboxList.setRowCount(10)
+        self.inboxList.setColumnCount(2)
+        self.inboxList.horizontalHeader().setVisible(False)
+        self.inboxList.horizontalHeader().setHighlightSections(False)
+        self.inboxList.horizontalHeader().setStretchLastSection(True)
+        self.inboxList.verticalHeader().setVisible(False)
+        self.inboxList.verticalHeader().setCascadingSectionResizes(False)
+        self.inboxList.verticalHeader().setDefaultSectionSize(58)
+        self.inboxList.verticalHeader().setHighlightSections(False)
+        self.inboxList.verticalHeader().setStretchLastSection(False)
 
         self.verticalLayout_4.addWidget(self.inboxList)
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.pageCount = QLabel(self.widget)
+        self.pageCount = QLabel(self.inbox)
         self.pageCount.setObjectName(u"pageCount")
         self.pageCount.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
@@ -194,7 +231,7 @@ class Ui_mailWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_6)
 
 
-        self.horizontalLayout_7.addWidget(self.widget)
+        self.horizontalLayout_7.addWidget(self.inbox)
 
         self.actionStack = QStackedWidget(self.mainWindow)
         self.actionStack.setObjectName(u"actionStack")
@@ -228,7 +265,9 @@ class Ui_mailWindow(object):
         self.blankPage = QWidget()
         self.blankPage.setObjectName(u"blankPage")
         self.verticalLayout_7 = QVBoxLayout(self.blankPage)
+        self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.informationStack = QStackedWidget(self.blankPage)
         self.informationStack.setObjectName(u"informationStack")
         self.noInternetConnection = QWidget()
@@ -247,14 +286,14 @@ class Ui_mailWindow(object):
 
         self.label_4 = QLabel(self.noInternetConnection)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy1)
         self.label_4.setMinimumSize(QSize(128, 128))
         self.label_4.setTextFormat(Qt.PlainText)
-        self.label_4.setPixmap(QIcon(u"icons/network-wireless-disconnected-symbolic.svg").pixmap(QSize(128, 128)))
+        self.label_4.setPixmap(QPixmap(u"icons/network-wireless-disconnected-symbolic.svg"))
         self.label_4.setScaledContents(True)
 
         self.horizontalLayout_8.addWidget(self.label_4)
@@ -296,11 +335,11 @@ class Ui_mailWindow(object):
 
         self.label_6 = QLabel(self.emailSent)
         self.label_6.setObjectName(u"label_6")
-        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy1)
         self.label_6.setMinimumSize(QSize(128, 128))
         self.label_6.setTextFormat(Qt.PlainText)
-        self.label_6.setPixmap(QIcon(u"icons/checkbox-checked-symbolic.svg").pixmap(QSize(128, 128)))
+        self.label_6.setPixmap(QPixmap(u"icons/checkbox-checked-symbolic.svg"))
         self.label_6.setScaledContents(True)
 
         self.horizontalLayout_9.addWidget(self.label_6)
@@ -327,30 +366,34 @@ class Ui_mailWindow(object):
         self.verticalLayout_7.addWidget(self.informationStack)
 
         self.actionStack.addWidget(self.blankPage)
+
+        self.horizontalLayout_7.addWidget(self.actionStack)
+
+        self.mailStack.addWidget(self.mainWindow)
         self.composeEmail = QWidget()
         self.composeEmail.setObjectName(u"composeEmail")
-        self.verticalLayout_2 = QVBoxLayout(self.composeEmail)
-        self.verticalLayout_2.setSpacing(4)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(9, 0, 0, 0)
+        self.verticalLayout_8 = QVBoxLayout(self.composeEmail)
+        self.verticalLayout_8.setSpacing(6)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.addressField = QLineEdit(self.composeEmail)
         self.addressField.setObjectName(u"addressField")
 
-        self.verticalLayout_2.addWidget(self.addressField)
+        self.verticalLayout_8.addWidget(self.addressField)
 
         self.titleField = QLineEdit(self.composeEmail)
         self.titleField.setObjectName(u"titleField")
 
-        self.verticalLayout_2.addWidget(self.titleField)
+        self.verticalLayout_8.addWidget(self.titleField)
 
         self.verticalSpacer_3 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
-        self.verticalLayout_2.addItem(self.verticalSpacer_3)
+        self.verticalLayout_8.addItem(self.verticalSpacer_3)
 
         self.contentField = QTextEdit(self.composeEmail)
         self.contentField.setObjectName(u"contentField")
 
-        self.verticalLayout_2.addWidget(self.contentField)
+        self.verticalLayout_8.addWidget(self.contentField)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -369,13 +412,9 @@ class Ui_mailWindow(object):
         self.horizontalLayout_3.addWidget(self.sendEmailButton)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_8.addLayout(self.horizontalLayout_3)
 
-        self.actionStack.addWidget(self.composeEmail)
-
-        self.horizontalLayout_7.addWidget(self.actionStack)
-
-        self.mailStack.addWidget(self.mainWindow)
+        self.mailStack.addWidget(self.composeEmail)
 
         self.horizontalLayout.addWidget(self.mailStack)
 

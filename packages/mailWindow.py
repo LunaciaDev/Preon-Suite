@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QWidget, QMessageBox, QListWidgetItem
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import Signal, Slot
 from packages.ui.mailWindow.mailWindowClass import Ui_mailWindow
@@ -12,8 +12,6 @@ class MailWindow(QWidget):
         self.ui = Ui_mailWindow();
         self.ui.setupUi(self)
         self.ui.mailStack.setCurrentIndex(1)
-        self.ui.actionStack.setCurrentIndex(1)
-        self.ui.informationStack.setCurrentIndex(1)
         self.ui.actionStack.hide()
 
         self.emailRegex = re.compile(r".*@.*\..*")
@@ -29,18 +27,21 @@ class MailWindow(QWidget):
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
 
     ###### Ui Controller
+    def onMenuButtonClicked(self):
+        self.ui.mailStack.setCurrentIndex(1)
+        self.ui.actionStack.hide()
+        self.ui.inboxList.setCurrentCell(-1, -1)
+
     @Slot()
     def onComposeEmailButtonClicked(self):
-        self.ui.actionStack.show()
-        self.ui.actionStack.setCurrentIndex(2)
+        self.ui.mailStack.setCurrentIndex(2)
     
     @Slot()
     def onDiscardEmailButtonClicked(self):
         self.ui.addressField.clear()
         self.ui.titleField.clear()
         self.ui.contentField.clear()
-        self.ui.actionStack.hide()
-        self.ui.actionStack.setCurrentIndex(1)
+        self.ui.mailStack.setCurrentIndex(1)
 
     @Slot()
     def onReceivedEmailClicked(self):
