@@ -29,7 +29,7 @@ QToolButton {
     color: $textInverted;
 }
 
-#applicationController {
+#applicationStack {
     background-color: $background;
 }
 
@@ -45,6 +45,8 @@ QLineEdit {
     padding: 4px;
     selection-background-color: $secondary;
     background-color: $secondary;
+    border: 2px solid $background;
+    border-radius: 6px;
     font-family: Lato;
     font-size: 16px;
 }
@@ -60,7 +62,7 @@ QLineEdit:focus {
 	border-radius: 150px;
 }
 
-#wrongCredentialLabel {
+#wrongCredentialLabel, #createAccountErrorLabel {
     background-color: $extra-error;
     border-radius: 6px;
 }
@@ -98,3 +100,4 @@ QLineEdit:focus {
 #rightPanel {
     background-color: $background;
 }
+
