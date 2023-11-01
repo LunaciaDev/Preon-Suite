@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem
 from PySide6.QtCore import Signal, Slot, QTimer
 from packages.ui.mailWindow.mailWindowClass import Ui_mailWindow
 import re
@@ -32,6 +32,8 @@ class MailWindow(QWidget):
         
         self.ui.addressField.returnPressed.connect(self.onSendEmailButtonClicked)
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
+
+        self.onRefreshButtonClicked()
 
     ###### Ui Controller
     @Slot()
@@ -90,16 +92,31 @@ class MailWindow(QWidget):
     @Slot()
     def onRefreshButtonClicked(self):
         print("Refresh button clicked")
-
-    @Slot()
-    def onEmailOpened(self):
-        print("Email opened")
+        self.setEmailList()
     ######
 
     ###### Receive data from backend controller
     @Slot()
     def setEmailList(self):
-        pass
+        randomMailData = [
+            {
+                "Title": "Lorem ipsum",
+                "Author": "Somebody"
+            },
+            {
+                "Title": "Hello!",
+                "Author": "Someone"
+            },
+            {
+                "Title": "Calling for volunteers!",
+                "Author": "John Doe"
+            }
+        ]
+
+        for i in range(len(randomMailData)):
+            mail = randomMailData[i]
+            self.ui.inboxList.setItem(i, 0, QTableWidgetItem(mail["Author"]))
+            self.ui.inboxList.setItem(i, 1, QTableWidgetItem(mail["Title"]))
 
     @Slot()
     def onSentEmail(self):
@@ -110,3 +127,4 @@ class MailWindow(QWidget):
     @Slot()
     def setEmailData(self):
         pass
+    ######

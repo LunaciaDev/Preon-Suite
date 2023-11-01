@@ -5,12 +5,13 @@ $secondary: rgb(26, 29, 35);
 $accent: rgb(104, 126, 172);
 
 $backgroundLight: rgb(56, 62, 74);
+$accentLight: rgb(142, 158, 193);
 
 $secondaryFaint: rgba(26, 29, 35, 0.6);
 $textFaint: rgba(236, 239, 244, 0.6);
 $accentFaint: rgba(104, 126, 172, 0.6);
 
-$textInverted: rgb(46, 52, 64);
+$textInverted: rgb(23, 26, 32);
 
 $extra-error: rgb(191, 97, 106);
 $extra-warning: rgb(235, 203, 139);
@@ -44,7 +45,8 @@ QLabel {
 QLineEdit, QTextEdit{
     color: $text;
     padding: 4px;
-    selection-background-color: $secondary;
+    selection-background-color: $accentLight;
+    selection-color: $textInverted;
     background-color: $secondary;
     border: 2px solid $background;
     border-radius: 6px;
@@ -54,7 +56,7 @@ QLineEdit, QTextEdit{
     font-size: 16px;
 }
 
-QLineEdit:focus {
+QLineEdit:focus, QTextEdit:focus {
     border: 2px solid $accent;
     border-radius: 6px;
 }
@@ -123,9 +125,11 @@ QTableView {
     background-color: $backgroundLight;
     border: 1px solid $secondaryFaint;
     selection-background-color: none;
+    font-size: 16px;
 }
 
 QTableView::item {
+    padding-left: 6px;
     border-top: 1px solid $secondaryFaint;
     border-bottom: 1px solid $secondaryFaint;
 }

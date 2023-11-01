@@ -196,6 +196,7 @@ class Ui_mailWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.inboxList.sizePolicy().hasHeightForWidth())
         self.inboxList.setSizePolicy(sizePolicy)
+        self.inboxList.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
         self.inboxList.setFocusPolicy(Qt.NoFocus)
         self.inboxList.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.inboxList.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -217,6 +218,7 @@ class Ui_mailWindow(object):
         self.inboxList.setRowCount(10)
         self.inboxList.setColumnCount(2)
         self.inboxList.horizontalHeader().setVisible(False)
+        self.inboxList.horizontalHeader().setDefaultSectionSize(200)
         self.inboxList.horizontalHeader().setHighlightSections(False)
         self.inboxList.horizontalHeader().setStretchLastSection(True)
         self.inboxList.verticalHeader().setVisible(False)
@@ -324,6 +326,7 @@ class Ui_mailWindow(object):
 
         self.receivedEmailContent = QTextEdit(self.viewEmail)
         self.receivedEmailContent.setObjectName(u"receivedEmailContent")
+        self.receivedEmailContent.setFocusPolicy(Qt.NoFocus)
         self.receivedEmailContent.setReadOnly(True)
 
         self.verticalLayout_2.addWidget(self.receivedEmailContent)
