@@ -65,6 +65,7 @@ class Ui_mailWindow(object):
         self.loginWithGoogleButton = QToolButton(self.permissionWindow)
         self.loginWithGoogleButton.setObjectName(u"loginWithGoogleButton")
         self.loginWithGoogleButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.loginWithGoogleButton.setFocusPolicy(Qt.ClickFocus)
         icon = QIcon()
         iconThemeName = u"mail-unread"
         if QIcon.hasThemeIcon(iconThemeName):
@@ -73,7 +74,7 @@ class Ui_mailWindow(object):
             icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
 
         self.loginWithGoogleButton.setIcon(icon)
-        self.loginWithGoogleButton.setIconSize(QSize(16, 16))
+        self.loginWithGoogleButton.setIconSize(QSize(24, 24))
         self.loginWithGoogleButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
         self.horizontalLayout_2.addWidget(self.loginWithGoogleButton)
@@ -133,6 +134,7 @@ class Ui_mailWindow(object):
         self.composeEmailButton = QToolButton(self.inbox)
         self.composeEmailButton.setObjectName(u"composeEmailButton")
         self.composeEmailButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.composeEmailButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_5.addWidget(self.composeEmailButton)
 
@@ -143,6 +145,7 @@ class Ui_mailWindow(object):
         self.previousPageButton = QToolButton(self.inbox)
         self.previousPageButton.setObjectName(u"previousPageButton")
         self.previousPageButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.previousPageButton.setFocusPolicy(Qt.ClickFocus)
         icon1 = QIcon()
         icon1.addFile(u"icons/go-previous-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.previousPageButton.setIcon(icon1)
@@ -152,6 +155,7 @@ class Ui_mailWindow(object):
         self.refreshButton = QToolButton(self.inbox)
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.refreshButton.setFocusPolicy(Qt.ClickFocus)
         icon2 = QIcon()
         icon2.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.refreshButton.setIcon(icon2)
@@ -161,6 +165,7 @@ class Ui_mailWindow(object):
         self.nextPageButton = QToolButton(self.inbox)
         self.nextPageButton.setObjectName(u"nextPageButton")
         self.nextPageButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.nextPageButton.setFocusPolicy(Qt.ClickFocus)
         icon3 = QIcon()
         icon3.addFile(u"icons/go-next-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.nextPageButton.setIcon(icon3)
@@ -185,6 +190,7 @@ class Ui_mailWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.inboxList.sizePolicy().hasHeightForWidth())
         self.inboxList.setSizePolicy(sizePolicy)
+        self.inboxList.setFocusPolicy(Qt.NoFocus)
         self.inboxList.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.inboxList.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.inboxList.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
@@ -316,9 +322,6 @@ class Ui_mailWindow(object):
         self.verticalLayout_6.addItem(self.verticalSpacer_8)
 
         self.informationStack.addWidget(self.noInternetConnection)
-        self.empty = QWidget()
-        self.empty.setObjectName(u"empty")
-        self.informationStack.addWidget(self.empty)
         self.emailSent = QWidget()
         self.emailSent.setObjectName(u"emailSent")
         self.verticalLayout_5 = QVBoxLayout(self.emailSent)
@@ -403,11 +406,13 @@ class Ui_mailWindow(object):
 
         self.discardEmailButton = QToolButton(self.composeEmail)
         self.discardEmailButton.setObjectName(u"discardEmailButton")
+        self.discardEmailButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_3.addWidget(self.discardEmailButton)
 
         self.sendEmailButton = QToolButton(self.composeEmail)
         self.sendEmailButton.setObjectName(u"sendEmailButton")
+        self.sendEmailButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_3.addWidget(self.sendEmailButton)
 
@@ -426,7 +431,7 @@ class Ui_mailWindow(object):
 
     def retranslateUi(self, mailWindow):
         mailWindow.setWindowTitle(QCoreApplication.translate("mailWindow", u"Form", None))
-        self.label.setText(QCoreApplication.translate("mailWindow", u"Please login to your email account", None))
+        self.label.setText(QCoreApplication.translate("mailWindow", u"Please login to your email account to use this service", None))
         self.loginWithGoogleButton.setText(QCoreApplication.translate("mailWindow", u"Login with Google", None))
         self.inboxAddress.setText(QCoreApplication.translate("mailWindow", u"Inbox <21323142@student.vgu.edu.vn>", None))
         self.composeEmailButton.setText(QCoreApplication.translate("mailWindow", u"Compose Email", None))

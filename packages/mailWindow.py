@@ -22,6 +22,7 @@ class MailWindow(QWidget):
         self.ui.previousPageButton.clicked.connect(self.onPreviousPageButtonClicked)
         self.ui.nextPageButton.clicked.connect(self.onNextPageButtonClicked)
         self.ui.refreshButton.clicked.connect(self.onRefreshButtonClicked)
+        self.ui.inboxList.cellClicked.connect(self.onReceivedEmailClicked)
         
         self.ui.addressField.returnPressed.connect(self.onSendEmailButtonClicked)
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
@@ -43,8 +44,8 @@ class MailWindow(QWidget):
         self.ui.contentField.clear()
         self.ui.mailStack.setCurrentIndex(1)
 
-    @Slot()
-    def onReceivedEmailClicked(self):
+    @Slot(int, int)
+    def onReceivedEmailClicked(self, row, column):
         self.ui.actionStack.show()
         self.ui.actionStack.setCurrentIndex(0)
     ######

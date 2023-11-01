@@ -105,6 +105,7 @@ class Ui_passwordWindow(object):
         self.passwordLoginButton = QToolButton(self.faceIDLogin)
         self.passwordLoginButton.setObjectName(u"passwordLoginButton")
         self.passwordLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.passwordLoginButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_4.addWidget(self.passwordLoginButton)
 
@@ -217,6 +218,7 @@ class Ui_passwordWindow(object):
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setMinimumSize(QSize(60, 0))
         self.loginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.loginButton.setFocusPolicy(Qt.ClickFocus)
         self.loginButton.setToolButtonStyle(Qt.ToolButtonTextOnly)
 
         self.horizontalLayout_3.addWidget(self.loginButton)
@@ -228,6 +230,7 @@ class Ui_passwordWindow(object):
         self.registerButton = QToolButton(self.credentalLogin)
         self.registerButton.setObjectName(u"registerButton")
         self.registerButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.registerButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_3.addWidget(self.registerButton)
 
@@ -338,6 +341,7 @@ class Ui_passwordWindow(object):
         self.backToLoginButton = QToolButton(self.createCredential)
         self.backToLoginButton.setObjectName(u"backToLoginButton")
         self.backToLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.backToLoginButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_7.addWidget(self.backToLoginButton)
 
@@ -348,6 +352,7 @@ class Ui_passwordWindow(object):
         self.createAccountButton = QToolButton(self.createCredential)
         self.createAccountButton.setObjectName(u"createAccountButton")
         self.createAccountButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.createAccountButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_7.addWidget(self.createAccountButton)
 
@@ -376,7 +381,7 @@ class Ui_passwordWindow(object):
 
         self.retranslateUi(passwordWindow)
 
-        self.loginStack.setCurrentIndex(2)
+        self.loginStack.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(passwordWindow)
