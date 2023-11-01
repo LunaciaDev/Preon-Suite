@@ -65,8 +65,14 @@ QLineEdit:focus {
 	border-radius: 150px;
 }
 
-#wrongCredentialLabel, #createAccountErrorLabel {
+#wrongCredentialLabel, #createAccountErrorLabel, #errorPopup{
     background-color: $extra-error;
+    border-radius: 6px;
+}
+
+#successPopup {
+    background-color: $extra-success;
+    color: $textInverted;
     border-radius: 6px;
 }
 
