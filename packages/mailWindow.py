@@ -69,11 +69,6 @@ class MailWindow(QWidget):
     def hideAllPopup(self):
         self.ui.errorPopup.hide()
         self.ui.successPopup.hide()
-
-    @Slot()
-    def onGoogleLoginButtonClicked(self):
-        #binding to google login ig
-        self.ui.mailStack.setCurrentIndex(1)
     ######
 
     ###### Forward to Backend Controller
@@ -97,6 +92,12 @@ class MailWindow(QWidget):
     def onRefreshButtonClicked(self):
         print("Refresh button clicked")
         self.setEmailList()
+    
+    @Slot()
+    def onGoogleLoginButtonClicked(self):
+        #binding to google login ig
+        self.ui.mailStack.setCurrentIndex(1)
+
     ######
 
     ###### Receive data from backend controller
@@ -131,4 +132,8 @@ class MailWindow(QWidget):
     @Slot()
     def setEmailData(self):
         pass
+
+    @Slot()
+    def onLoggedInToGoogle(self):
+        self.ui.mailStack.setCurrentIndex(1)
     ######
