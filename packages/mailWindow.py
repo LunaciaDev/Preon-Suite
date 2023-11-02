@@ -11,7 +11,7 @@ class MailWindow(QWidget):
         self.ui = Ui_mailWindow();
         self.ui.setupUi(self)
 
-        self.ui.mailStack.setCurrentIndex(1)
+        self.ui.mailStack.setCurrentIndex(0)
         self.ui.errorPopup.hide()
         self.ui.successPopup.hide()
 
@@ -28,16 +28,15 @@ class MailWindow(QWidget):
         self.ui.nextPageButton.clicked.connect(self.onNextPageButtonClicked)
         self.ui.refreshButton.clicked.connect(self.onRefreshButtonClicked)
         self.ui.inboxList.cellClicked.connect(self.onReceivedEmailClicked)
-        self.ui.returnButton.clicked.connect(self.onMenuButtonClicked)
+        self.ui.returnButton.clicked.connect(self.onReturnButtonClicked)
+        self.ui.loginWithGoogleButton.clicked.connect(self.onGoogleLoginButtonClicked)
         
         self.ui.addressField.returnPressed.connect(self.onSendEmailButtonClicked)
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
 
-        self.onRefreshButtonClicked()
-
     ###### Ui Controller
     @Slot()
-    def onMenuButtonClicked(self):
+    def onReturnButtonClicked(self):
         self.ui.mailStack.setCurrentIndex(1)
         self.ui.inboxList.setCurrentCell(-1, -1)
 
@@ -70,6 +69,11 @@ class MailWindow(QWidget):
     def hideAllPopup(self):
         self.ui.errorPopup.hide()
         self.ui.successPopup.hide()
+
+    @Slot()
+    def onGoogleLoginButtonClicked(self):
+        #binding to google login ig
+        self.ui.mailStack.setCurrentIndex(1)
     ######
 
     ###### Forward to Backend Controller

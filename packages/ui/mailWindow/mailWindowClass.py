@@ -40,6 +40,9 @@ class Ui_mailWindow(object):
         self.permissionWindow.setObjectName(u"permissionWindow")
         self.gridLayout = QGridLayout(self.permissionWindow)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setHorizontalSpacing(9)
+        self.gridLayout.setVerticalSpacing(0)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalSpacer = QSpacerItem(20, 303, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer, 0, 1, 1, 1)

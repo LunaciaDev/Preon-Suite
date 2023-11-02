@@ -42,7 +42,7 @@ class Ui_homeWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.leftPanel.sizePolicy().hasHeightForWidth())
         self.leftPanel.setSizePolicy(sizePolicy1)
-        self.leftPanel.setMinimumSize(QSize(180, 0))
+        self.leftPanel.setMinimumSize(QSize(200, 0))
         self.leftPanel.setMaximumSize(QSize(200, 16777215))
         self.leftPanel.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout_2 = QVBoxLayout(self.leftPanel)
