@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem
 from PySide6.QtCore import Signal, Slot, QTimer
-from packages.ui.mailWindow.mailWindowClass import Ui_mailWindow
+from packages.ui.mailWindowClass import Ui_mailWindow
 import re
 
 class MailWindow(QWidget):
@@ -79,6 +79,7 @@ class MailWindow(QWidget):
     @Slot()
     def onSendEmailButtonClicked(self):
         if (self.emailRegex.match(self.ui.addressField.text()) is None):
+            # TODO: MEMORY LEAK HERE
             QMessageBox.critical(self, "Preon Suite", "The recipient's address is invalid. Please make sure that the address is proper.", QMessageBox.Ok)
             return
 

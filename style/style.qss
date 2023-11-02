@@ -121,20 +121,20 @@ QLineEdit:focus, QTextEdit:focus {
     font-size: 14px;
 }
 
-QTableView {
+QTableWidget {
     background-color: $backgroundLight;
     border: 1px solid $secondaryFaint;
     selection-background-color: none;
     font-size: 16px;
 }
 
-QTableView::item {
+QTableWidget::item {
     padding-left: 6px;
     border-top: 1px solid $secondaryFaint;
     border-bottom: 1px solid $secondaryFaint;
 }
 
-QTableView::item:selected {
+QTableWidget::item:selected {
     background-color: $accent;
     color: $textInverted;
 }
