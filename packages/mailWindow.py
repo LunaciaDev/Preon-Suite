@@ -5,6 +5,9 @@ import re
 
 class MailWindow(QWidget):
     sendEmail = Signal(str, str, str)
+    navigatePage = Signal(int)
+    openEmail = Signal(int)
+    refreshPage = Signal()
 
     def __init__(self):
         super(MailWindow, self).__init__()
@@ -53,6 +56,7 @@ class MailWindow(QWidget):
 
     @Slot(int, int)
     def onReceivedEmailClicked(self, row, column):
+        self.openEmail.emit(row)
         self.ui.mailStack.setCurrentIndex(3)
 
     def errorPopup(self, errorMsg):
@@ -83,10 +87,12 @@ class MailWindow(QWidget):
     @Slot()
     def onPreviousPageButtonClicked(self):
         print("Previous page clicked")
+        self.navigatePage.emit(-1)
     
     @Slot()
     def onNextPageButtonClicked(self):
         print("Next page clicked")
+        self.navigatePage.emit(1)
 
     @Slot()
     def onRefreshButtonClicked(self):
