@@ -94,8 +94,8 @@ class ReminderManager:
                     timeout = 5
                 )
                 self.reminders.remove(reminder)
-                    
-            #time.sleep(30)
+                
+        time.sleep(10)
 
 
 
