@@ -23,13 +23,15 @@ class ReminderWindow(QWidget):
         self.ui.reminderTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
         # Prepare a title list for dialog lookup
-        self.titleLookup = []
+        # hook up to back end to fetch the list of reminders
+        # probably need another signal
+        self.reminderList = []
 
     # UI Control
     @Slot()
     def onAddReminderButtonClicked(self):
         self.ui.reminderTable.setCurrentCell(-1, -1)
-        dialog = ReminderDialog(self.titleLookup, "")
+        dialog = ReminderDialog(None)
         dialog.dialogAccepted.connect(self.onDialogFinish)
         dialog.exec()
 
@@ -37,10 +39,13 @@ class ReminderWindow(QWidget):
     def onRemoveSelectedReminderButtonClicked(self):
         #remove it from back-end
         self.ui.reminderTable.removeRow(self.ui.reminderTable.currentRow())
+        self.ui.reminderTable.setCurrentCell(-1, -1)
+        self.ui.removeReminderButton.setEnabled(False)
+        self.ui.editReminderButton.setEnabled(False)
 
     @Slot()
     def onEditSelectedReminderButtonClicked(self):
-        dialog = ReminderDialog(self.titleLookup, self.ui.reminderTable.item(self.ui.reminderTable.currentRow(), 2).text())
+        dialog = ReminderDialog(self.reminderList[self.ui.reminderTable.currentRow()])
         dialog.dialogAccepted.connect(self.onDialogFinish)
         dialog.exec()
 
@@ -57,6 +62,7 @@ class ReminderWindow(QWidget):
 
         if table.currentRow() == -1:
             #Add a reminder entry
+            self.reminderList.append({"title": title, "description": description, "time": strTime, "date": strDate})
             endRow = table.rowCount()
             table.insertRow(endRow)
             table.setItem(endRow, 0, QTableWidgetItem(f"{str(date.day()).zfill(2)}/{str(date.month()).zfill(2)}/{date.year()}"))
@@ -66,6 +72,7 @@ class ReminderWindow(QWidget):
             return
 
         #Edit a reminder entry
+        self.reminderList[table.currentRow()] = {"title": title, "description": description, "time": strTime, "date": strDate}
         table.setItem(table.currentRow(), 0, QTableWidgetItem(f"{str(date.day()).zfill(2)}/{str(date.month()).zfill(2)}/{date.year()}"))
         table.setItem(table.currentRow(), 1, QTableWidgetItem(strTime))
         table.setItem(table.currentRow(), 2, QTableWidgetItem(title))

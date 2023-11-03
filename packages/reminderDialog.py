@@ -6,7 +6,7 @@ from packages.ui.reminderDialogClass import Ui_reminderDialog
 class ReminderDialog(QDialog):
     dialogAccepted = Signal(QDate, QTime, str, str)
 
-    def __init__(self, titleLookup, ignoreTitle):
+    def __init__(self, ignoredReminderObject):
         super(ReminderDialog, self).__init__()
         self.ui = Ui_reminderDialog()
         self.ui.setupUi(self)
@@ -15,8 +15,18 @@ class ReminderDialog(QDialog):
         
         self.ui.reminderErrorLabel.hide()
 
-        self.titleLookup = titleLookup
-        self.ignoreTitle = ignoreTitle
+        if ignoredReminderObject is None:
+            self.ui.reminderDate.setDate(QDate.currentDate())
+            self.ui.reminderTime.setTime(QTime.currentTime())
+        else:
+            temp = ignoredReminderObject["date"].strip().split("-")
+            self.ui.reminderDate.setDate(QDate(int(temp[2]), int(temp[1]), int(temp[0])))
+            temp = ignoredReminderObject["time"].strip().split(":")
+            self.ui.reminderTime.setTime(QTime(int(temp[0]), int(temp[1])))
+            self.ui.reminderTitle.setText(ignoredReminderObject["title"])
+            self.ui.reminderDescription.setText(ignoredReminderObject["description"])
+
+        self.ignoredReminderObject = ignoredReminderObject
 
     @Slot()
     def accept(self):
@@ -25,14 +35,14 @@ class ReminderDialog(QDialog):
             self.ui.reminderErrorLabel.show()
             return
         
-        try: 
+        try:
             self.titleLookup.index(self.ui.reminderTitle.text())
         except:
             #Do nothing if it found a match
             pass
         else:
             #Executed if a match is found
-            if (self.ui.reminderTitle.text() != self.ignoreTitle):
+            if (self.ui.reminderTitle.text() != self.ignoredReminderObject["title"]):
                 self.ui.reminderErrorLabel.setText("Title is already used!")
                 self.ui.reminderErrorLabel.show()
                 return
