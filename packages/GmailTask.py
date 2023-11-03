@@ -25,7 +25,7 @@ class GmailTask:
         self.service = build('gmail', 'v1', credentials=creds)
 
     def GmailTask_Run(self):
-        # Get the recipient's email address, subject and email body
+        # Get the recipient's email address, subject and email
         recipient_email = input("Enter the recipient's email address: ")
         subject=input("Your sunject: ")
         body=input("Your email body: \n")
@@ -48,6 +48,7 @@ class GmailTask:
 
      # Iterate over all emails
         for msg in messages:
+            i=1
             txt = self.service.users().messages().get(userId='me', id=msg['id']).execute()
             try:
                 payload = txt['payload']
@@ -57,11 +58,12 @@ class GmailTask:
                         subject = d['value']
                     if d['name'] == 'From':
                         sender = d['value']
-                print('Subject: ', subject)
-                print('From: ', sender)
+                print(f'{i} Subject: {subject}')
+                print('  From: ', sender)
             except Exception as e:
                 print('An error occurred: %s' % e)
-
+            i+=1
+            
 if __name__ == "__main__":
     gmail_task = GmailTask()
     while True:
