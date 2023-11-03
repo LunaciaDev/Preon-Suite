@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
-from PySide6.QtCore import Slot, QDate, QTime
+from PySide6.QtCore import Slot, QDate, QTime, Qt
 
 from packages.ui.reminderWindowClass import Ui_reminderWindow
 
@@ -27,10 +27,15 @@ class ReminderWindow(QWidget):
         # probably need another signal
         self.reminderList = []
 
+    def deselectRow(self):
+        self.ui.reminderTable.setCurrentCell(-1, -1)
+        self.ui.removeReminderButton.setEnabled(False)
+        self.ui.editReminderButton.setEnabled(False)
+
     # UI Control
     @Slot()
     def onAddReminderButtonClicked(self):
-        self.ui.reminderTable.setCurrentCell(-1, -1)
+        self.deselectRow()
         dialog = ReminderDialog(None)
         dialog.dialogAccepted.connect(self.onDialogFinish)
         dialog.exec()
@@ -39,9 +44,7 @@ class ReminderWindow(QWidget):
     def onRemoveSelectedReminderButtonClicked(self):
         #remove it from back-end
         self.ui.reminderTable.removeRow(self.ui.reminderTable.currentRow())
-        self.ui.reminderTable.setCurrentCell(-1, -1)
-        self.ui.removeReminderButton.setEnabled(False)
-        self.ui.editReminderButton.setEnabled(False)
+        self.deselectRow()
 
     @Slot()
     def onEditSelectedReminderButtonClicked(self):
@@ -77,3 +80,4 @@ class ReminderWindow(QWidget):
         table.setItem(table.currentRow(), 1, QTableWidgetItem(strTime))
         table.setItem(table.currentRow(), 2, QTableWidgetItem(title))
         table.setItem(table.currentRow(), 3, QTableWidgetItem(description))
+        self.deselectRow()

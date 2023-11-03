@@ -26,7 +26,12 @@ QToolButton {
     padding: 8px;
 }
 
-#loginButton, #createAccountButton, #sendEmailButton {
+QToolButton:disabled {
+    background-color: $backgroundLight;
+    color: $textFaint;
+}
+
+#loginButton, #createAccountButton, #sendEmailButton, #addReminderButton{
     background-color: $primary;
     color: $textInverted;
 }
@@ -67,7 +72,7 @@ QLineEdit:focus, QTextEdit:focus {
 	border-radius: 150px;
 }
 
-#wrongCredentialLabel, #createAccountErrorLabel, #errorPopup{
+#wrongCredentialLabel, #createAccountErrorLabel, #errorPopup, #reminderErrorLabel{
     background-color: $extra-error;
     border-radius: 6px;
 }
@@ -129,12 +134,14 @@ QTableWidget {
 }
 
 QTableWidget::item {
-    padding-left: 6px;
     border-top: 1px solid $secondaryFaint;
-    border-bottom: 1px solid $secondaryFaint;
+    border-bottom: 2px solid $secondaryFaint;
+    padding: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 QTableWidget::item:selected {
-    background-color: $accent;
+    background-color: $accentFaint;
     color: $textInverted;
 }

@@ -18,7 +18,11 @@ class ReminderDialog(QDialog):
         if ignoredReminderObject is None:
             self.ui.reminderDate.setDate(QDate.currentDate())
             self.ui.reminderTime.setTime(QTime.currentTime())
+            self.ui.label_5.setText("Creating reminder")
+            self.setWindowTitle("Creating reminder")
         else:
+            self.ui.label_5.setText("Editing reminder")
+            self.setWindowTitle("Editing reminder")
             temp = ignoredReminderObject["date"].strip().split("-")
             self.ui.reminderDate.setDate(QDate(int(temp[2]), int(temp[1]), int(temp[0])))
             temp = ignoredReminderObject["time"].strip().split(":")

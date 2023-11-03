@@ -31,7 +31,7 @@ class Ui_reminderWindow(object):
 
         self.verticalLayout.addWidget(self.label)
 
-        self.verticalSpacer = QSpacerItem(20, 60, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
@@ -39,16 +39,19 @@ class Ui_reminderWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.addReminderButton = QToolButton(reminderWindow)
         self.addReminderButton.setObjectName(u"addReminderButton")
+        self.addReminderButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.addReminderButton)
 
         self.editReminderButton = QToolButton(reminderWindow)
         self.editReminderButton.setObjectName(u"editReminderButton")
+        self.editReminderButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.editReminderButton)
 
         self.removeReminderButton = QToolButton(reminderWindow)
         self.removeReminderButton.setObjectName(u"removeReminderButton")
+        self.removeReminderButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.removeReminderButton)
 
@@ -58,6 +61,10 @@ class Ui_reminderWindow(object):
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Preferred)
+
+        self.verticalLayout.addItem(self.verticalSpacer_2)
 
         self.reminderTable = QTableWidget(reminderWindow)
         if (self.reminderTable.columnCount() < 4):
@@ -82,7 +89,7 @@ class Ui_reminderWindow(object):
         self.reminderTable.setDragDropOverwriteMode(False)
         self.reminderTable.setSelectionMode(QAbstractItemView.SingleSelection)
         self.reminderTable.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.reminderTable.setShowGrid(True)
+        self.reminderTable.setShowGrid(False)
         self.reminderTable.setGridStyle(Qt.SolidLine)
         self.reminderTable.setSortingEnabled(False)
         self.reminderTable.setCornerButtonEnabled(False)
@@ -92,6 +99,8 @@ class Ui_reminderWindow(object):
         self.reminderTable.horizontalHeader().setHighlightSections(False)
         self.reminderTable.horizontalHeader().setStretchLastSection(True)
         self.reminderTable.verticalHeader().setVisible(False)
+        self.reminderTable.verticalHeader().setMinimumSectionSize(30)
+        self.reminderTable.verticalHeader().setDefaultSectionSize(40)
         self.reminderTable.verticalHeader().setHighlightSections(False)
 
         self.verticalLayout.addWidget(self.reminderTable)

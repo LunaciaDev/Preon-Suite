@@ -96,6 +96,7 @@ class Ui_reminderDialog(object):
         self.reminderDescription = QLineEdit(reminderDialog)
         self.reminderDescription.setObjectName(u"reminderDescription")
         self.reminderDescription.setMinimumSize(QSize(0, 210))
+        self.reminderDescription.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.reminderDescription)
 

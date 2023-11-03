@@ -27,7 +27,7 @@ class ApplicationController(QMainWindow):
         self.passwordWindow.createCredential.connect(self.passwordTask.register)
         self.passwordWindow.loggedIn.connect(self.onLoggedIn)
 
-        self.ui.applicationStack.setCurrentIndex(0)
+        self.ui.applicationStack.setCurrentIndex(1)
     
     @Slot()
     def onLoggedIn(self):
