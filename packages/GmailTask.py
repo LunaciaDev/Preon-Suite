@@ -24,11 +24,7 @@ class GmailTask:
                 token.write(creds.to_json())
         self.service = build('gmail', 'v1', credentials=creds)
 
-    def GmailTask_Run(self):
-        # Get the recipient's email address, subject and email
-        recipient_email = input("Enter the recipient's email address: ")
-        subject=input("Your sunject: ")
-        body=input("Your email body: \n")
+    def sendEmail(self, recipient_email, subject, body):
         # Create a simple email message
         msg = MIMEText(body)
         msg['Subject'] = subject
@@ -41,14 +37,16 @@ class GmailTask:
 
         print(f"Message sent. Id: {message['id']}")
 
-    def GmailTask_CheckInbox(self):
+    def CheckInbox(self):
         # Request a list of the 10 most recent messages
         result = self.service.users().messages().list(userId='me', maxResults=10).execute()
         messages = result.get('messages')
 
-     # Iterate over all emails
+        # Initialize the index variable
+        i = 1
+
+        # Iterate over all emails
         for msg in messages:
-            i=1
             txt = self.service.users().messages().get(userId='me', id=msg['id']).execute()
             try:
                 payload = txt['payload']
@@ -62,7 +60,7 @@ class GmailTask:
                 print('  From: ', sender)
             except Exception as e:
                 print('An error occurred: %s' % e)
-            i+=1
+            i += 1
             
 if __name__ == "__main__":
     gmail_task = GmailTask()
@@ -74,10 +72,13 @@ if __name__ == "__main__":
 
         if choice == '1':
             # Refresh Inbox
-            gmail_task.GmailTask_CheckInbox()# assuming the CheckInbox task is at index 0
+            gmail_task.CheckInbox()# assuming the CheckInbox task is at index 0
         elif choice == '2':
             # Compose Email
-            gmail_task.GmailTask_Run() # assuming the Run task is at index 1
+            recipient_email = input("Enter the recipient's email address: ")
+            subject=input("Your sunject: ")
+            body=input("Your email body: \n")
+            gmail_task.sendEmail(recipient_email, subject, body) # assuming the Run task is at index 1
         elif choice == '3':
             break
         else:
