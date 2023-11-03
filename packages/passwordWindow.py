@@ -50,9 +50,9 @@ class PasswordWindow(QWidget):
 
     @Slot(bool)
     def onAccountRegistrated(self, success):
-        self.ui.createUsernameInput.setText("")
-        self.ui.createPasswordInput.setText("")
-        self.ui.confirmPasswordInput.setText("")
+        self.ui.createUsernameInput.clear()
+        self.ui.createPasswordInput.clear()
+        self.ui.confirmPasswordInput.clear()
         self.ui.createAccountErrorLabel.hide()
 
         self.loggedIn.emit()
@@ -76,11 +76,10 @@ class PasswordWindow(QWidget):
     @Slot(bool)
     def onValidationCompleted(self, success):
         if (success):
-            self.ui.usernameInput.setText("")
-            self.ui.passwordInput.setText("")
+            self.ui.usernameInput.clear()
+            self.ui.passwordInput.clear()
             self.ui.wrongCredentialLabel.hide()
             self.loggedIn.emit()
-
             return
         
         self.ui.wrongCredentialLabel.show()
