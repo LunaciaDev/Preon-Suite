@@ -4,25 +4,46 @@ from email.mime.text import MIMEText
 import base64
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-import os.path
+import os
 import time
+import email
 
 class GmailTask:
     def __init__(self):
-        # Load credentials from the 'token.json' file
-        creds = None
+        # Ask the user if they wish to sign in
+        print("Do you wish to sign-in with Google?")
+        print("1. Yes")
+        print("2. No")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            # Load credentials from the 'token.json' file
+            creds = self.load_credentials()
+            if not creds or not creds.valid:
+                creds = self.sign_in()
+            self.service = build('gmail', 'v1', credentials=creds)
+        elif choice == '2':
+            # The user chose not to sign in, so stop the program
+            raise SystemExit("User chose not to sign in.")
+        else:
+            print("Invalid choice. Please try again.")
+
+    def load_credentials(self):
         if os.path.exists('token.json'):
-            creds = Credentials.from_authorized_user_file('token.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    'packages\Credentials.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
-                creds = flow.run_local_server(port=0)
-            with open('token.json', 'w') as token:
-                token.write(creds.to_json())
-        self.service = build('gmail', 'v1', credentials=creds)
+            return Credentials.from_authorized_user_file('token.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
+        return None
+
+    def sign_in(self):
+        creds = None
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'packages\Credentials.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
+            creds = flow.run_local_server(port=0)
+        with open('packages\\token.json', 'w') as token:
+            token.write(creds.to_json())
+        return creds
 
     def sendEmail(self, recipient_email, subject, body):
         # Create a simple email message
