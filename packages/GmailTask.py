@@ -23,6 +23,7 @@ class GmailTask(QObject):
     def __init__(self):
         super(GmailTask, self).__init__()
 
+    @Slot()
     def signIn(self):
         self.load_credentials()
 
@@ -83,8 +84,7 @@ class GmailTask(QObject):
     def CheckInbox(self):
         if not self.signedIn:
             return
-        
-        #TODO: move this to a thread because this thing freeze the entire app
+
         # Request a list of the 10 most recent messages
         result = self.service.users().messages().list(userId='me', maxResults=10).execute()
         messages = result.get('messages')

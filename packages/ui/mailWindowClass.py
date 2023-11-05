@@ -318,7 +318,7 @@ class Ui_mailWindow(object):
         mailWindow.setWindowTitle(QCoreApplication.translate("mailWindow", u"Form", None))
         self.label.setText(QCoreApplication.translate("mailWindow", u"Please login to your email account to use this service", None))
         self.loginWithGoogleButton.setText(QCoreApplication.translate("mailWindow", u"Login with Google", None))
-        self.inboxAddress.setText(QCoreApplication.translate("mailWindow", u"Inbox <21323142@student.vgu.edu.vn>", None))
+        self.inboxAddress.setText(QCoreApplication.translate("mailWindow", u"Recent Emails", None))
         self.successPopup.setText(QCoreApplication.translate("mailWindow", u"Email Sent!", None))
         self.errorPopup.setText(QCoreApplication.translate("mailWindow", u"Cannot connect to the email service.", None))
         self.composeEmailButton.setText(QCoreApplication.translate("mailWindow", u"Compose Email", None))

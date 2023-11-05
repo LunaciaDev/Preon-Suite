@@ -1,8 +1,7 @@
-from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Signal, Slot, QTimer
 from packages.ui.mailWindowClass import Ui_mailWindow
 import re
-import base64
 
 class MailWindow(QWidget):
     sendEmail = Signal(str, str, str)
@@ -35,6 +34,8 @@ class MailWindow(QWidget):
         
         self.ui.addressField.returnPressed.connect(self.onSendEmailButtonClicked)
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
+
+        self.ui.inboxList.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
         self.ui.errorPopup.hide()
         self.ui.successPopup.hide()
@@ -110,7 +111,7 @@ class MailWindow(QWidget):
     def setEmailList(self, mailPayload):
         for i in range(len(mailPayload)):
             self.cachedMail = mailPayload[i]
-            self.ui.inboxList.setItem(i, 0, QTableWidgetItem(self.cachedMail["sender"]))
+            self.ui.inboxList.setItem(i, 0, QTableWidgetItem(self.cachedMail["sender"].split("<")[0].strip()))
             self.ui.inboxList.setItem(i, 1, QTableWidgetItem(self.cachedMail["subject"]))
 
     @Slot()
@@ -119,4 +120,5 @@ class MailWindow(QWidget):
         self.ui.addressField.clear()
         self.ui.contentField.clear()
         self.ui.mailStack.setCurrentIndex(1)
+        self.successPopup("Email Sent!")
     ######
