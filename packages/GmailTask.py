@@ -39,9 +39,9 @@ class GmailTask:
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'packages\Credentials.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
+                r'Credentials.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
             creds = flow.run_local_server(port=0)
-        with open('packages\\token.json', 'w') as token:
+        with open(r'token.json', 'w') as token:
             token.write(creds.to_json())
         return creds
 
