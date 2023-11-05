@@ -1,5 +1,7 @@
 import time
-from task1 import Task1
+from PySide6.QtCore import QObject, Slot, QTimer, Signal
+
+from packages.GmailTask import GmailTask
 
 class Task():
     def __init__(self, _pTask, _Delay, _Period):
@@ -14,7 +16,7 @@ class Task():
     TaskID = -1
 
 class Scheduler():
-    TICK = 100
+    TICK = 5000
     SCH_MAX_TASKS = 40
     SCH_tasks_G = []
     current_index_task = 0
@@ -54,3 +56,27 @@ class Scheduler():
     def SCH_GenerateID(self):
         return -1
 
+class SchedulerController(QObject):
+    def __init__(self):
+        super(SchedulerController, self).__init__()
+        self.mailTask = GmailTask()
+        self.scheduler = Scheduler()
+        self.stopTimer = False
+
+        self.scheduler.SCH_Init()
+
+        self.scheduler.SCH_Add_Task(self.mailTask.CheckInbox, 0, 60) # 5 mins
+
+    def run(self):
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.triggerScheduler)
+        self.timer.start(5000)
+    
+    @Slot()
+    def triggerScheduler(self):
+        self.scheduler.SCH_Update()
+        self.scheduler.SCH_Dispatch_Tasks()
+
+    @Slot()
+    def terminateThread(self):
+        self.timer.stop()
