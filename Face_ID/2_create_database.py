@@ -5,12 +5,12 @@ import sqlite3
 import numpy as np
 import time
 
-connection = sqlite3.connect("Face_ID\\face_encodings.db")
+connection = sqlite3.connect("Face_ID/face_encodings.db")
 cursor = connection.cursor()
 
 cursor.execute("CREATE TABLE IF NOT EXISTS face_encodings (id INTEGER PRIMARY KEY, encoding BLOB, name TEXT)")
 
-root_folder = "Face_ID\\faces"
+root_folder = "Face_ID/faces"
 
 def extract_name_from_filename(filename):
     parts = filename.split("_")

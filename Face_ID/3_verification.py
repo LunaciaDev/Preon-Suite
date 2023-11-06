@@ -4,7 +4,7 @@ import sqlite3
 import numpy as np
 import time
 
-database_file = "Face_ID\\face_encodings.db"
+database_file = "Face_ID/face_encodings.db"
 connection = sqlite3.connect(database_file)
 cursor = connection.cursor()
 

@@ -21,7 +21,7 @@ while (time.time() - start_time) < 10:
         print("Unable to capture frame")
         continue
 
-    filename = f"Face_ID\\faces\\{name}_{int(time.time())}.jpg"
+    filename = f"Face_ID/faces/{name}_{int(time.time())}.jpg"
     cv2.imwrite(filename, frame)
     time.sleep(interval)
 
