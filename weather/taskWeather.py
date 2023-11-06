@@ -7,7 +7,7 @@ class taskWeather:
     #CURRENTLY LEAVING PRINT(TEXT) FOR CHECKING, REMOVE B4 FINAL
     
     def __init__(self):
-        self.API_KEY = open("SCHOOL\\IntroToCS\\project\\api_key.txt").read()
+        self.API_KEY = open("SCHOOLIntroToCS\\project\\api_key.txt").read()
         self.CITY = "Binh Duong"
         self.URL = f"https://api.openweathermap.org/data/2.5/weather?q={self.CITY}&appid={self.API_KEY}"
 
