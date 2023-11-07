@@ -3,6 +3,7 @@ import face_recognition
 import sqlite3
 import numpy as np
 import time
+import sys
 
 database_file = "Face_ID/face_encodings.db"
 connection = sqlite3.connect(database_file)
@@ -45,6 +46,7 @@ while True:
     face_locations = face_recognition.face_locations(rgb_small_frame)
     face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
+
     face_names = []
     for face_encoding in face_encodings:
         matches = face_recognition.compare_faces(known_encodings, face_encoding)
@@ -58,6 +60,10 @@ while True:
         face_names.append(name)
         access_control(matches)
 
+        if matches == True:
+            time.sleep(1.5)
+            sys.exit()
+
     for (top, right, bottom, left), name in zip(face_locations, face_names):
         top *= 4
         right *= 4
@@ -68,11 +74,6 @@ while True:
         cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 1)
 
     cv2.imshow("Video", frame)
-
-    if access_control(matches):
-        break
-    else:
-        break    
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
