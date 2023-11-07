@@ -40,11 +40,11 @@ class ApplicationController(QMainWindow):
         self.initMailTask.emit()
     
     def initScheduler(self):
-        self.thread = QThread()
-        self.schedulerWorker = Scheduler(self.thread)
-        self.schedulerWorker.moveToThread(self.thread)
+        self.workerThread = QThread()
+        self.schedulerWorker = Scheduler(self.workerThread)
+        self.schedulerWorker.moveToThread(self.workerThread)
 
-        self.thread.started.connect(self.schedulerWorker.run)
+        self.workerThread.started.connect(self.schedulerWorker.run)
 
         self.terminateThread.connect(self.schedulerWorker.terminateThread)
 
@@ -62,10 +62,9 @@ class ApplicationController(QMainWindow):
         SCHMail.sentEmail.connect(mailWindow.onSentEmail)
         self.initMailTask.connect(SCHMail.signIn)
         
-        self.thread.start()
+        self.workerThread.start()
 
     @Slot()
     def quit(self):
         self.terminateThread.emit()
-        self.thread.quit()
-        self.thread.wait()
+        self.workerThread.wait()

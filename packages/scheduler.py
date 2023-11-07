@@ -6,6 +6,7 @@ from packages.GmailTask import GmailTask
 class Scheduler(QObject):
     def __init__(self, thread):
         super(Scheduler, self).__init__()
+        self.myThread = thread
 
         self.mailTask = GmailTask()
         self.mailTask.moveToThread(thread)
@@ -16,6 +17,7 @@ class Scheduler(QObject):
         self.clockList = []
 
     def run(self):
+        print(self.thread)
         for task in self.taskList:
             temp = QTimer(self)
             temp.timeout.connect(task[0])
@@ -26,3 +28,4 @@ class Scheduler(QObject):
     def terminateThread(self):
         for clock in self.clockList:
             clock.stop()
+        self.myThread.quit()
