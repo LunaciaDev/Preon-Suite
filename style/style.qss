@@ -1,10 +1,11 @@
 $text: rgb(236, 239, 244);
-$background: rgb(46, 52, 64);
 $primary: rgb(155, 231, 234);
+$background: rgb(54, 60, 75);
 $secondary: rgb(26, 29, 35);
 $accent: rgb(104, 126, 172);
 
-$backgroundLight: rgb(56, 62, 74);
+$backgroundLight: rgb(64, 73, 90);
+$backgroundDark: rgb(46, 52, 64);
 $accentLight: rgb(142, 158, 193);
 
 $secondaryFaint: rgba(26, 29, 35, 0.6);
@@ -17,7 +18,7 @@ $extra-error: rgb(191, 97, 106);
 $extra-warning: rgb(235, 203, 139);
 $extra-success: rgb(163, 190, 140);
 
-QToolButton {
+QToolButton, QPushButton {
     color: $text;
     font-family: Lato;
     font-size: 15px;
@@ -26,17 +27,17 @@ QToolButton {
     padding: 8px;
 }
 
-QToolButton:disabled {
+QToolButton:disabled, QPushButton:disabled {
     background-color: $backgroundLight;
     color: $textFaint;
 }
 
-#loginButton, #createAccountButton, #sendEmailButton, #addReminderButton{
+#loginButton, #createAccountButton, #sendEmailButton, #addReminderButton, QDialogButtonBox > QPushButton[text="&OK"] {
     background-color: $primary;
     color: $textInverted;
 }
 
-#applicationStack {
+#applicationStack, QDialog{
     background-color: $background;
 }
 
@@ -47,21 +48,23 @@ QLabel {
     padding: 5px;
 }
 
-QLineEdit, QTextEdit{
+QLineEdit, QTextEdit, QTimeEdit, QDateEdit {
     color: $text;
     padding: 4px;
     selection-background-color: $accentLight;
     selection-color: $textInverted;
-    background-color: $secondary;
-    border: 2px solid $background;
+    background-color: $backgroundDark;
+    border: 2px solid $backgroundDark;
     border-radius: 6px;
     font-family: Lato;
-    border: 2px solid $background;
-    border-radius: 6px;
     font-size: 16px;
 }
 
-QLineEdit:focus, QTextEdit:focus {
+QTimeEdit::up-button, QTimeEdit::down-button, QDateEdit::up-button, QDateEdit::down-button {
+    border: none
+}
+
+QLineEdit:focus, QTextEdit:focus, QTimeEdit:focus, QDateEdit:focus {
     border: 2px solid $accent;
     border-radius: 6px;
 }
@@ -144,4 +147,12 @@ QTableWidget::item {
 QTableWidget::item:selected {
     background-color: $accentFaint;
     color: $textInverted;
+}
+
+QHeaderView::section {
+    background-color: $background;
+    color: $text;
+    font-family: Lato;
+    font-size: 16px;
+    padding: 3px;
 }
