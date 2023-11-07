@@ -25,7 +25,7 @@ class HomeWindow(QWidget):
         self.ui.rightPanel.addWidget(self.mailWindow)
         self.ui.rightPanel.addWidget(QWidget())
         self.ui.rightPanel.addWidget(self.reminderWindow)
-        self.ui.rightPanel.setCurrentIndex(3)
+        self.ui.rightPanel.setCurrentIndex(0)
 
         for button in self.ui.buttonGroup.buttons():
             button.clicked.connect(self.onPanelButtonClicked)
