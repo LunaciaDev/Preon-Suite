@@ -152,7 +152,7 @@ QTableWidget::item:selected {
 
 QHeaderView::section {
     background-color: $background;
-    border: 1px solid $backgroundDark;
+    border: 1px solid $background;
     color: $text;
     font-family: Lato;
     font-size: 16px;
