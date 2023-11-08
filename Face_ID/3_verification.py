@@ -3,7 +3,6 @@ import face_recognition
 import sqlite3
 import numpy as np
 import time
-import sys
 
 database_file = "Face_ID/face_encodings.db"
 connection = sqlite3.connect(database_file)
@@ -28,24 +27,26 @@ sent_names = set()
 
 video_capture = cv2.VideoCapture(0)
 
-def access_control(matches):
+def access_control(matches, name):
     if True in matches:
         print("Access Granted")
+        print(f"Welcome {name}")
         time.sleep(1)
-        return True
+        return "Access Granted"
     else:
-        print("Access Denied")
+        print("Access Denied") 
         time.sleep(1)
-        return False
+        return "Access Denied"
+    
+match_found = True
 
-while True:
+while match_found:
     ret, frame = video_capture.read()
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
     rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
 
     face_locations = face_recognition.face_locations(rgb_small_frame)
     face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
-
 
     face_names = []
     for face_encoding in face_encodings:
@@ -56,13 +57,10 @@ while True:
             matched_indices = [i for i, match in enumerate(matches) if match]
             first_match_index = matched_indices[0]
             name = known_names[first_match_index]
+            match_found = False
 
         face_names.append(name)
-        access_control(matches)
-
-        if matches == True:
-            time.sleep(1.5)
-            sys.exit()
+        access_control(matches, name)
 
     for (top, right, bottom, left), name in zip(face_locations, face_names):
         top *= 4
