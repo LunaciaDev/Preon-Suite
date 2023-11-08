@@ -1,6 +1,7 @@
 import sys
 import sass
 from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import Slot
 from packages.applicationController import ApplicationController
 
 if __name__ == '__main__':
@@ -14,6 +15,10 @@ if __name__ == '__main__':
         app.setStyleSheet(_style)
 
     mainWindow = ApplicationController()
+
+    app.aboutToQuit.connect(mainWindow.quit)
+
+    mainWindow.initScheduler()
     mainWindow.show()
 
     sys.exit(app.exec())

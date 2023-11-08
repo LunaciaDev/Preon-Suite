@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Signal, Slot
-from packages.ui.passwordWindow.passwordWindowClass import Ui_passwordWindow
+from packages.ui.passwordWindowClass import Ui_passwordWindow
 
 class PasswordWindow(QWidget):
     validateCredential = Signal(str, str)
