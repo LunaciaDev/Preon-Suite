@@ -17,7 +17,6 @@ class Scheduler(QObject):
         self.clockList = []
 
     def run(self):
-        print(self.thread)
         for task in self.taskList:
             temp = QTimer(self)
             temp.timeout.connect(task[0])

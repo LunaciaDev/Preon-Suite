@@ -162,4 +162,4 @@ cython_debug/
 resources/
 Credentials.json
 token.json
-
+api_key.txt
