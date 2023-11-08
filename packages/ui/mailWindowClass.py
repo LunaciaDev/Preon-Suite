@@ -132,8 +132,7 @@ class Ui_mailWindow(object):
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
-
-        self.verticalSpacer_6 = QSpacerItem(20, 12, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer_6 = QSpacerItem(20, 16, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_6)
 
@@ -150,41 +149,20 @@ class Ui_mailWindow(object):
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
-
-        self.previousPageButton = QToolButton(self.mainWindow)
-        self.previousPageButton.setObjectName(u"previousPageButton")
-        self.previousPageButton.setCursor(QCursor(Qt.PointingHandCursor))
-        self.previousPageButton.setFocusPolicy(Qt.ClickFocus)
-        icon1 = QIcon()
-        icon1.addFile(u"icons/go-previous-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.previousPageButton.setIcon(icon1)
-
-        self.horizontalLayout_5.addWidget(self.previousPageButton)
-
         self.refreshButton = QToolButton(self.mainWindow)
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.refreshButton.setFocusPolicy(Qt.ClickFocus)
-        icon2 = QIcon()
-        icon2.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.refreshButton.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.refreshButton.setIcon(icon1)
 
         self.horizontalLayout_5.addWidget(self.refreshButton)
-
-        self.nextPageButton = QToolButton(self.mainWindow)
-        self.nextPageButton.setObjectName(u"nextPageButton")
-        self.nextPageButton.setCursor(QCursor(Qt.PointingHandCursor))
-        self.nextPageButton.setFocusPolicy(Qt.ClickFocus)
-        icon3 = QIcon()
-        icon3.addFile(u"icons/go-next-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.nextPageButton.setIcon(icon3)
-
-        self.horizontalLayout_5.addWidget(self.nextPageButton)
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 12, QSizePolicy.Minimum, QSizePolicy.Preferred)
+        self.verticalSpacer_5 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_5)
 
@@ -226,7 +204,7 @@ class Ui_mailWindow(object):
         self.inboxList.horizontalHeader().setStretchLastSection(True)
         self.inboxList.verticalHeader().setVisible(False)
         self.inboxList.verticalHeader().setCascadingSectionResizes(False)
-        self.inboxList.verticalHeader().setDefaultSectionSize(58)
+        self.inboxList.verticalHeader().setDefaultSectionSize(60)
         self.inboxList.verticalHeader().setHighlightSections(False)
         self.inboxList.verticalHeader().setStretchLastSection(False)
 
@@ -234,16 +212,6 @@ class Ui_mailWindow(object):
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.pageCount = QLabel(self.mainWindow)
-        self.pageCount.setObjectName(u"pageCount")
-        self.pageCount.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.horizontalLayout_6.addWidget(self.pageCount)
-
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_7)
-
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_6)
 
@@ -348,14 +316,11 @@ class Ui_mailWindow(object):
         mailWindow.setWindowTitle(QCoreApplication.translate("mailWindow", u"Form", None))
         self.label.setText(QCoreApplication.translate("mailWindow", u"Please login to your email account to use this service", None))
         self.loginWithGoogleButton.setText(QCoreApplication.translate("mailWindow", u"Login with Google", None))
-        self.inboxAddress.setText(QCoreApplication.translate("mailWindow", u"Inbox <21323142@student.vgu.edu.vn>", None))
+        self.inboxAddress.setText(QCoreApplication.translate("mailWindow", u"Recent Emails", None))
         self.successPopup.setText(QCoreApplication.translate("mailWindow", u"Email Sent!", None))
         self.errorPopup.setText(QCoreApplication.translate("mailWindow", u"Cannot connect to the email service.", None))
         self.composeEmailButton.setText(QCoreApplication.translate("mailWindow", u"Compose Email", None))
-        self.previousPageButton.setText(QCoreApplication.translate("mailWindow", u"Previous", None))
         self.refreshButton.setText(QCoreApplication.translate("mailWindow", u"Refresh", None))
-        self.nextPageButton.setText(QCoreApplication.translate("mailWindow", u"Next", None))
-        self.pageCount.setText(QCoreApplication.translate("mailWindow", u"1-10 of 325", None))
         self.addressField.setPlaceholderText(QCoreApplication.translate("mailWindow", u"To", None))
         self.titleField.setText("")
         self.titleField.setPlaceholderText(QCoreApplication.translate("mailWindow", u"Title", None))

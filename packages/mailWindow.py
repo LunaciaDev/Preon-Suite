@@ -1,43 +1,54 @@
-from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Signal, Slot, QTimer
 from packages.ui.mailWindowClass import Ui_mailWindow
 import re
 
 class MailWindow(QWidget):
     sendEmail = Signal(str, str, str)
-    navigatePage = Signal(int)
-    openEmail = Signal(int)
     refreshPage = Signal()
+    googleRegistration = Signal()
 
     def __init__(self):
         super(MailWindow, self).__init__()
         self.ui = Ui_mailWindow();
         self.ui.setupUi(self)
 
-        self.ui.mailStack.setCurrentIndex(0)
-        self.ui.errorPopup.hide()
-        self.ui.successPopup.hide()
+        self.refreshAllowed = True
 
         self.popupTimer = QTimer(self)
         self.popupTimer.setSingleShot(True)
         self.popupTimer.timeout.connect(self.hideAllPopup)
+
+        self.refreshTimer = QTimer(self)
+        self.refreshTimer.setSingleShot(True)
+        self.refreshTimer.timeout.connect(self.enableRefresh)
 
         self.emailRegex = re.compile(r".*@.*\..*")
 
         self.ui.composeEmailButton.clicked.connect(self.onComposeEmailButtonClicked)
         self.ui.discardEmailButton.clicked.connect(self.onDiscardEmailButtonClicked)
         self.ui.sendEmailButton.clicked.connect(self.onSendEmailButtonClicked)
-        self.ui.previousPageButton.clicked.connect(self.onPreviousPageButtonClicked)
-        self.ui.nextPageButton.clicked.connect(self.onNextPageButtonClicked)
         self.ui.refreshButton.clicked.connect(self.onRefreshButtonClicked)
-        self.ui.inboxList.cellClicked.connect(self.onReceivedEmailClicked)
         self.ui.returnButton.clicked.connect(self.onReturnButtonClicked)
         self.ui.loginWithGoogleButton.clicked.connect(self.onGoogleLoginButtonClicked)
         
         self.ui.addressField.returnPressed.connect(self.onSendEmailButtonClicked)
         self.ui.titleField.returnPressed.connect(self.onSendEmailButtonClicked)
 
+        self.ui.inboxList.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+
+        self.ui.errorPopup.hide()
+        self.ui.successPopup.hide()
+
+    def enableRefresh(self):
+        self.refreshAllowed = True
+
     ###### Ui Controller
+    @Slot(bool)
+    def onGotLoginStatus(self, loggedIn):
+        if loggedIn:
+            self.ui.mailStack.setCurrentIndex(1)
+
     @Slot()
     def onReturnButtonClicked(self):
         self.ui.mailStack.setCurrentIndex(1)
@@ -53,11 +64,6 @@ class MailWindow(QWidget):
         self.ui.titleField.clear()
         self.ui.contentField.clear()
         self.ui.mailStack.setCurrentIndex(1)
-
-    @Slot(int, int)
-    def onReceivedEmailClicked(self, row, column):
-        self.openEmail.emit(row)
-        self.ui.mailStack.setCurrentIndex(3)
 
     def errorPopup(self, errorMsg):
         self.ui.errorPopup.setText(errorMsg)
@@ -84,63 +90,36 @@ class MailWindow(QWidget):
             return
 
         self.sendEmail.emit(self.ui.addressField.text(), self.ui.titleField.text(), self.ui.contentField.toPlainText())
-    
-    @Slot()
-    def onPreviousPageButtonClicked(self):
-        print("Previous page clicked")
-        self.navigatePage.emit(-1)
-    
-    @Slot()
-    def onNextPageButtonClicked(self):
-        print("Next page clicked")
-        self.navigatePage.emit(1)
 
     @Slot()
     def onRefreshButtonClicked(self):
-        print("Refresh button clicked")
-        self.setEmailList()
+        if self.refreshAllowed:
+            self.refreshPage.emit()
+            self.refreshAllowed = False
+            self.refreshTimer.start(60)
+            return
+
+        self.errorPopup("You are refreshing too fast!")
     
     @Slot()
     def onGoogleLoginButtonClicked(self):
-        #binding to google login ig
-        self.ui.mailStack.setCurrentIndex(1)
+        self.googleRegistration.emit()
 
     ######
 
     ###### Receive data from backend controller
-    @Slot()
-    def setEmailList(self):
-        randomMailData = [
-            {
-                "Title": "Lorem ipsum",
-                "Author": "Somebody"
-            },
-            {
-                "Title": "Hello!",
-                "Author": "Someone"
-            },
-            {
-                "Title": "Calling for volunteers!",
-                "Author": "John Doe"
-            }
-        ]
-
-        for i in range(len(randomMailData)):
-            mail = randomMailData[i]
-            self.ui.inboxList.setItem(i, 0, QTableWidgetItem(mail["Author"]))
-            self.ui.inboxList.setItem(i, 1, QTableWidgetItem(mail["Title"]))
+    @Slot(list)
+    def setEmailList(self, mailPayload):
+        for i in range(len(mailPayload)):
+            self.cachedMail = mailPayload[i]
+            self.ui.inboxList.setItem(i, 0, QTableWidgetItem(self.cachedMail["sender"].split("<")[0].strip()))
+            self.ui.inboxList.setItem(i, 1, QTableWidgetItem(self.cachedMail["subject"]))
 
     @Slot()
     def onSentEmail(self):
         self.ui.titleField.clear()
         self.ui.addressField.clear()
         self.ui.contentField.clear()
-
-    @Slot()
-    def setEmailData(self):
-        pass
-
-    @Slot()
-    def onLoggedInToGoogle(self):
         self.ui.mailStack.setCurrentIndex(1)
+        self.successPopup("Email Sent!")
     ######
