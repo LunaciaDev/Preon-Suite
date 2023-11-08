@@ -30,6 +30,9 @@ class ReminderDialog(QDialog):
             self.ui.reminderTitle.setText(ignoredReminderObject["title"])
             self.ui.reminderDescription.setText(ignoredReminderObject["description"])
 
+
+        self.ui.reminderTitle.returnPressed.connect(self.accept)
+        self.ui.reminderDescription.returnPressed.connect(self.accept)        
         self.ignoredReminderObject = ignoredReminderObject
 
     @Slot()

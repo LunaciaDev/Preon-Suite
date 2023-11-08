@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QDateEdit, QDialog,
-    QDialogButtonBox, QFormLayout, QHBoxLayout, QLabel,
-    QLayout, QLineEdit, QSizePolicy, QSpacerItem,
-    QTimeEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDateEdit, QDialog, QFormLayout,
+    QHBoxLayout, QLabel, QLayout, QLineEdit,
+    QSizePolicy, QSpacerItem, QTimeEdit, QToolButton,
+    QVBoxLayout, QWidget)
 
 class Ui_reminderDialog(object):
     def setupUi(self, reminderDialog):
@@ -53,7 +53,7 @@ class Ui_reminderDialog(object):
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setSizeConstraint(QLayout.SetNoConstraint)
         self.formLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
-        self.formLayout.setLabelAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.formLayout.setLabelAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.formLayout.setFormAlignment(Qt.AlignCenter)
         self.formLayout.setHorizontalSpacing(15)
         self.formLayout.setContentsMargins(12, -1, 12, -1)
@@ -103,12 +103,26 @@ class Ui_reminderDialog(object):
 
         self.verticalLayout.addLayout(self.formLayout)
 
-        self.buttonBox = QDialogButtonBox(reminderDialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout.addWidget(self.buttonBox)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.rejectButton = QToolButton(reminderDialog)
+        self.rejectButton.setObjectName(u"rejectButton")
+        self.rejectButton.setMinimumSize(QSize(75, 0))
+
+        self.horizontalLayout_2.addWidget(self.rejectButton)
+
+        self.acceptButton = QToolButton(reminderDialog)
+        self.acceptButton.setObjectName(u"acceptButton")
+        self.acceptButton.setMinimumSize(QSize(75, 0))
+
+        self.horizontalLayout_2.addWidget(self.acceptButton)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
 #if QT_CONFIG(shortcut)
         self.label.setBuddy(self.reminderDate)
@@ -121,8 +135,8 @@ class Ui_reminderDialog(object):
         QWidget.setTabOrder(self.reminderTitle, self.reminderDescription)
 
         self.retranslateUi(reminderDialog)
-        self.buttonBox.rejected.connect(reminderDialog.reject)
-        self.buttonBox.accepted.connect(reminderDialog.accept)
+        self.acceptButton.clicked.connect(reminderDialog.accept)
+        self.rejectButton.clicked.connect(reminderDialog.reject)
 
         QMetaObject.connectSlotsByName(reminderDialog)
     # setupUi
@@ -137,5 +151,7 @@ class Ui_reminderDialog(object):
         self.reminderTime.setDisplayFormat(QCoreApplication.translate("reminderDialog", u"hh:mm", None))
         self.label_3.setText(QCoreApplication.translate("reminderDialog", u"Title", None))
         self.label_4.setText(QCoreApplication.translate("reminderDialog", u"Description", None))
+        self.rejectButton.setText(QCoreApplication.translate("reminderDialog", u"Cancel", None))
+        self.acceptButton.setText(QCoreApplication.translate("reminderDialog", u"OK", None))
     # retranslateUi
 
