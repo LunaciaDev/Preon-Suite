@@ -85,6 +85,7 @@ class MailWindow(QWidget):
     @Slot()
     def onSendEmailButtonClicked(self):
         if (self.emailRegex.match(self.ui.addressField.text()) is None):
+            # TODO: MEMORY LEAK HERE
             QMessageBox.critical(self, "Preon Suite", "The recipient's address is invalid. Please make sure that the address is proper.", QMessageBox.Ok)
             return
 

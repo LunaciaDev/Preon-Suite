@@ -129,21 +129,21 @@ class Ui_homeWindow(object):
 
         self.verticalLayout.addWidget(self.weatherButton)
 
-        self.toolButton_7 = QToolButton(self.leftPanel)
-        self.buttonGroup.addButton(self.toolButton_7)
-        self.toolButton_7.setObjectName(u"toolButton_7")
-        sizePolicy3.setHeightForWidth(self.toolButton_7.sizePolicy().hasHeightForWidth())
-        self.toolButton_7.setSizePolicy(sizePolicy3)
-        self.toolButton_7.setMinimumSize(QSize(170, 50))
-        self.toolButton_7.setMaximumSize(QSize(175, 50))
-        self.toolButton_7.setCursor(QCursor(Qt.PointingHandCursor))
-        self.toolButton_7.setFocusPolicy(Qt.ClickFocus)
-        self.toolButton_7.setLayoutDirection(Qt.LeftToRight)
-        self.toolButton_7.setIcon(icon)
-        self.toolButton_7.setCheckable(True)
-        self.toolButton_7.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.reminderButton = QToolButton(self.leftPanel)
+        self.buttonGroup.addButton(self.reminderButton)
+        self.reminderButton.setObjectName(u"reminderButton")
+        sizePolicy3.setHeightForWidth(self.reminderButton.sizePolicy().hasHeightForWidth())
+        self.reminderButton.setSizePolicy(sizePolicy3)
+        self.reminderButton.setMinimumSize(QSize(170, 50))
+        self.reminderButton.setMaximumSize(QSize(175, 50))
+        self.reminderButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.reminderButton.setFocusPolicy(Qt.ClickFocus)
+        self.reminderButton.setLayoutDirection(Qt.LeftToRight)
+        self.reminderButton.setIcon(icon)
+        self.reminderButton.setCheckable(True)
+        self.reminderButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
-        self.verticalLayout.addWidget(self.toolButton_7)
+        self.verticalLayout.addWidget(self.reminderButton)
 
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
@@ -182,6 +182,6 @@ class Ui_homeWindow(object):
         self.homeButton.setText(QCoreApplication.translate("homeWindow", u"Home", None))
         self.mailButton.setText(QCoreApplication.translate("homeWindow", u"Mail", None))
         self.weatherButton.setText(QCoreApplication.translate("homeWindow", u"Weather", None))
-        self.toolButton_7.setText(QCoreApplication.translate("homeWindow", u"TBA", None))
+        self.reminderButton.setText(QCoreApplication.translate("homeWindow", u"Reminders", None))
     # retranslateUi
 

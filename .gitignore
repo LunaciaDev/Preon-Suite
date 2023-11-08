@@ -160,5 +160,6 @@ cython_debug/
 #.idea/
 
 resources/
-token.json
 Credentials.json
+token.json
+
