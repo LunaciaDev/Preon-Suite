@@ -1,116 +1,60 @@
-import pyttsx3 # text to speech lib
-import speech_recognition as sr 
 import requests #url request lib
-import datetime as dt 
 
 class taskWeather:
-    #CURRENTLY LEAVING PRINT(TEXT) FOR CHECKING, REMOVE B4 FINAL
     
     def __init__(self):
         self.API_KEY = open("SCHOOL\\IntroToCS\\project\\api_key.txt").read()
-        self.CITY = "Binh Duong"
-        self.URL = f"https://api.openweathermap.org/data/2.5/weather?q={self.CITY}&appid={self.API_KEY}"
+        #lat and lon for Binh Duong
+        self.lat = "11.11039993747999"
+        self.lon = "106.61480419825017"
+        self.current_URL = f"https://api.openweathermap.org/data/2.5/weather?lat={self.lat}&lon={self.lon}&units=metric&appid={self.API_KEY}"
+        self.forecast_URL = f"https://api.openweathermap.org/data/2.5/forecast?lat={self.lat}&lon={self.lon}&units=metric&appid={self.API_KEY}&cnt=40"
 
-        #initialize text to speech 
-        self.txts_instance = pyttsx3.init()
-        # setting up volume level between 0 and 1                     
-        self.txts_instance.setProperty('volume',1.0) 
-        #Default 200 word per minute, to slow down speech rate
-        self.txts_instance.setProperty('rate', 130)
-
-        #get weather data
-        self.displayText = self.formatText()
-        #get user's speech command
-        self.command = self.listenCommand()
-         
-    def __contains__(self, key):
-         return key in self.command
-    
-    def listenCommand(self):
-        #listen to user speech command
-        
-        #initialize sr
-        self.sr_instance = sr.Recognizer()
-        #to listen for smaller voice (the higher the number the louder the speaker has to be)
-        self.sr_instance.energy_threshold = 200
-        #auto adjust energy threshold if neccessary
-        self.sr_instance.dynamic_energy_threshold = True
-        #max pause time between each word in spoken sentence in second
-        self.sr_instance.pause_threshold = 0.8
-        try:
-            #initialize microphone
-            with sr.Microphone() as mic:
-                #adjust to background noise
-                self.sr_instance.adjust_for_ambient_noise(mic)
-                print("listening")
-                #take input from mic
-                audio = self.sr_instance.listen(mic)
-                #set google sr to english with Singapore accent
-                #works best durring testing, saying 'please' at start of sentence
-                #helps it recognize better, prefer short over long sentence
-
-                text = self.sr_instance.recognize_google(audio, language ="en-SG",show_all= False)
-                print(text)
-                return text.lower()
-        except sr.UnknownValueError:
-                    # if receive error just restart process
-                    print("error occur")
-                    self.sr_instance = sr.Recognizer()
-                    self.listenCommand()
-        except text is None:
-                    # if nothing is recorded, restart process
-                    print("error occur")
-                    self.sr_instance = sr.Recognizer()
-                    self.listenCommand()
-
-    def processCommand(self,command,text):
-    # if the user command contain the word 'weather'
-    # dont contain 'not'
-    # show to current weather via speech
-    
-        if ("weather" in command and "not" not in command):
-            self.txts_instance.say(text)
-            self.txts_instance.runAndWait()
-            self.txts_instance.stop()
-    
-    def kelvinToCelsius (self,kelvin):
-    #convert K to C degree
-        return kelvin - 273.15
-
+        #dict of values for current weather
+        self.current = {}
+        #list of dict of forecast values for the next 5 days
+        self.forecast = []
+       
     def getData(self):
-        #get weather data from open weather
 
-        respond = requests.get(self.URL).json()
-
-        #format current datetime to MM/DD/YYYY HH:MM
-        dt_string = dt.datetime.now().strftime("%m/%d/%Y %H:%M")
+        #get current weather data from open weather
+        respond = requests.get(self.current_URL).json()
         # read description (eg, cloud, sunny, snow...)
-        sky_description = respond['weather'][0]['description']
-        #read temp in K then convert to C
-        temp_in_C = int(self.kelvinToCelsius(respond['main']['temp']))
+        self.current["description"] = respond['weather'][0]['description']
+        self.current["icon"] = respond['weather'][0]['icon']
+        #read temp in C
+        self.current["temp"] = respond['main']['temp']
+        #read how temp feels like (?) in c
+        self.current["feels_like"] = respond['main']['feels_like']
+        self.current["temp_min"] = respond['main']['temp_min']
+        self.current["temp_max"] = respond['main']['temp_max']
         #read humidity in %
-        humidity = respond['main']['humidity']
+        self.current["humidity"] = respond['main']['humidity']
         #read wind speed in m/s
-        wind_speed = respond['wind']['speed'] 
-        #volumn of rain in the last 1hr in mm
-        #if no rain then para 'rain' does not exist
-        try:
-            rain_last_1 = respond['rain']['1h']
-        except:
-            rain_last_1 = 0
-        
-        return dt_string, sky_description, temp_in_C, humidity, wind_speed, rain_last_1
-        
-    def formatText (self):
-        #return a paragraph with all neccessary info
+        self.current["wind_speed"] = respond['wind']['speed']
+        self.current["windDeg"] = respond['wind']['deg'] 
 
-        dtS, skyDes, tempC, hum, windS, rain1 = self.getData()
-        text = f"Hello, this is the report from {self.CITY}, it is currently {dtS} and the sky seems to be {skyDes} outside. The average temperature outside is {tempC} degree C and the humidity level is {hum} percent. Wind speed blows at a rate of {windS} meter per second. During the last 1 hour, there were {rain1} milimeters of rain. Have a nice day!"
-        print(text)
-        return text
+        #forecast next 5 days
+        respond = requests.get(self.forecast_URL).json()
+        for i in range(5,45,8):
+            # forecast always starts at 18h, interval = 3h,
+            # so 9h of next day starts at pos 5
+            # plus 8 to the next day at 9h
 
-    def runTask (self):
-         self.processCommand(self.command,self.displayText)
+            temp ={}
+            temp["temp"] = respond["list"][i]["main"]["temp"]
+            temp["feels_like"] = respond["list"][i]["main"]["feels_like"]
+            temp["temp_min"] = respond["list"][i]["main"]["temp_min"]
+            temp["temp_max"] = respond["list"][i]["main"]["temp_max"]
+            temp["humidity"] = respond["list"][i]["main"]["humidity"]
+            temp["description"] = respond["list"][i]["weather"][0]["description"]
+            temp["icon"] = respond["list"][i]["weather"][0]["icon"]
+            temp["dt_txt"] = respond["list"][i]["dt_txt"]
+            self.forecast.append(temp)
+    
+    def runTask(self):
+        self.getData()
+
 
 task = taskWeather()
 task.runTask()
