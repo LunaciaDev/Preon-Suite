@@ -159,6 +159,29 @@ QHeaderView::section {
     padding: 3px;
 }
 
-#label_5 {
+#label_5, #forecastDateLabel_1, #forecastDateLabel_2, #forecastDateLabel_3, #forecastDateLabel_4, #forecastDateLabel_5 {
     font-weight: bold;
+}
+
+#cityLabel {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#temperatureLabel {
+    font-size: 90px;
+    color: $primary;
+}
+
+#forecast_1, #forecast_2, #forecast_3, #forecast_4, #forecast_5 {
+    background-color: $backgroundLight;
+    border-radius: 18px;
+}
+
+#openWeatherIcon {
+    background-color: none;
+}
+
+#creditLabel {
+    font-size: 14px;
 }
