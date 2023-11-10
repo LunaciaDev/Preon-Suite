@@ -1,16 +1,16 @@
 import os
+import time
 from reminderClass import Reminder, ReminderManager
-from threading import Thread
+import threading
 
 # Start up
 os.system("clear")
 reminder_list = ReminderManager()
 reminder_list.load_reminders('reminders')
-
+flag = threading.Event()
 def TUI():
     # TUI
-    while True:
-        signal = 1
+    while not flag.is_set():
         print("\nCURRENT REMINDERS: ")
         print("---------------\n")
         if reminder_list.is_empty():
@@ -33,6 +33,7 @@ def TUI():
 
 
         MainRequest=input("Input: ")
+
         os.system("clear")
         match MainRequest:
             # Add reminders
@@ -72,27 +73,24 @@ def TUI():
             # Exit
             case "0":
                 os.system("clear")
-                signal = 0
+                print("Exiting...")
+                flag.set()
                 break
-     
+
+
+
 def Notify():
-    while signal == 1: 
+    while not flag.is_set():
         reminder_list.system_notify()
 
 
-if __name__ == "__main__":
-    thread1 = Thread(target = TUI)
-    thread2 = Thread(target = reminder_list.save_reminders)
-    thread0.setDaemon(True)
-    thread2.setDeamon(True)
-    thread1.start()
-    thread2.start()
-    while True:
-        pass
 
-
-
-#TUI()
+thread1 = threading.Thread(target = TUI)
+thread2 = threading.Thread(target = Notify)
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
 
 reminder_list.save_reminders('reminders')
 
