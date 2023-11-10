@@ -1,4 +1,5 @@
 import requests #url request lib
+from PySide6.QtCore import QTime
 
 class taskWeather:
     
@@ -33,25 +34,40 @@ class taskWeather:
         #read wind speed in m/s
         self.current["wind_speed"] = respond['wind']['speed']
         self.current["windDeg"] = respond['wind']['deg'] 
-
         #forecast next 5 days
         respond = requests.get(self.forecast_URL).json()
-        for i in range(5,45,8):
-            # forecast always starts at 18h, interval = 3h,
-            # so 9h of next day starts at pos 5
-            # plus 8 to the next day at 9h
+        
+        root = 0
+        currentTime = QTime.currentTime().hour()
+        currentTime -= currentTime % 3
+
+        for item in respond["list"]:
+
+            if int(item["dt_txt"][11:13]) == currentTime:
+                break
+
+            root += 1
+        
+        root += 4
+
+        for i in range(6):
+            # root should be 00:00 the next day in term of the main clock since the data is saved up to 6h behind the main clock
+            # so 9h of next day starts at pos root + 3
+            # plus 4 to the next 12h
 
             temp ={}
-            temp["temp"] = respond["list"][i]["main"]["temp"]
-            temp["feels_like"] = respond["list"][i]["main"]["feels_like"]
-            temp["temp_min"] = respond["list"][i]["main"]["temp_min"]
-            temp["temp_max"] = respond["list"][i]["main"]["temp_max"]
-            temp["humidity"] = respond["list"][i]["main"]["humidity"]
-            temp["description"] = respond["list"][i]["weather"][0]["description"]
-            temp["icon"] = respond["list"][i]["weather"][0]["icon"]
-            temp["dt_txt"] = respond["list"][i]["dt_txt"]
+            temp["temp"] = respond["list"][root]["main"]["temp"]
+            temp["feels_like"] = respond["list"][root]["main"]["feels_like"]
+            temp["temp_min"] = respond["list"][root]["main"]["temp_min"]
+            temp["temp_max"] = respond["list"][root]["main"]["temp_max"]
+            temp["humidity"] = respond["list"][root]["main"]["humidity"]
+            temp["description"] = respond["list"][root]["weather"][0]["description"]
+            temp["icon"] = respond["list"][root]["weather"][0]["icon"]
+            temp["dt_txt"] = respond["list"][root]["dt_txt"]
             self.forecast.append(temp)
-    
+
+            root += 4
+
     def runTask(self):
         self.getData()
 

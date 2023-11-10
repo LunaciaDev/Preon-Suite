@@ -24,9 +24,10 @@ class Ui_weatherWindow(object):
         if not weatherWindow.objectName():
             weatherWindow.setObjectName(u"weatherWindow")
         weatherWindow.resize(1080, 720)
+        weatherWindow.setStyleSheet(u"")
         self.verticalLayout_2 = QVBoxLayout(weatherWindow)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalSpacer_2 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
@@ -37,6 +38,7 @@ class Ui_weatherWindow(object):
         self.horizontalLayout.addItem(self.horizontalSpacer_4)
 
         self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.cityLabel = QLabel(weatherWindow)
         self.cityLabel.setObjectName(u"cityLabel")
@@ -64,6 +66,7 @@ class Ui_weatherWindow(object):
         self.verticalLayout.addWidget(self.perceivedTempLabel)
 
         self.gridLayout = QGridLayout()
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.weatherTypeLabel = QLabel(weatherWindow)
         self.weatherTypeLabel.setObjectName(u"weatherTypeLabel")
@@ -72,13 +75,6 @@ class Ui_weatherWindow(object):
 
         self.gridLayout.addWidget(self.weatherTypeLabel, 0, 0, 1, 1)
 
-        self.minMaxTempLabel = QLabel(weatherWindow)
-        self.minMaxTempLabel.setObjectName(u"minMaxTempLabel")
-        self.minMaxTempLabel.setMaximumSize(QSize(16777215, 30))
-        self.minMaxTempLabel.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.minMaxTempLabel, 1, 0, 1, 1)
-
         self.humidityLabel = QLabel(weatherWindow)
         self.humidityLabel.setObjectName(u"humidityLabel")
         self.humidityLabel.setMaximumSize(QSize(16777215, 30))
@@ -86,10 +82,15 @@ class Ui_weatherWindow(object):
 
         self.gridLayout.addWidget(self.humidityLabel, 0, 1, 1, 1)
 
+        self.minMaxTempLabel = QLabel(weatherWindow)
+        self.minMaxTempLabel.setObjectName(u"minMaxTempLabel")
+        self.minMaxTempLabel.setMaximumSize(QSize(16777215, 30))
+        self.minMaxTempLabel.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.minMaxTempLabel, 1, 0, 1, 1)
+
         self.windSpeedLabel = QLabel(weatherWindow)
         self.windSpeedLabel.setObjectName(u"windSpeedLabel")
-        self.windSpeedLabel.setMaximumSize(QSize(16777215, 30))
-        self.windSpeedLabel.setAlignment(Qt.AlignCenter)
 
         self.gridLayout.addWidget(self.windSpeedLabel, 1, 1, 1, 1)
 
@@ -105,7 +106,7 @@ class Ui_weatherWindow(object):
 
         self.weatherIcon = QLabel(weatherWindow)
         self.weatherIcon.setObjectName(u"weatherIcon")
-        self.weatherIcon.setMinimumSize(QSize(120, 120))
+        self.weatherIcon.setMinimumSize(QSize(100, 100))
         self.weatherIcon.setScaledContents(False)
 
         self.horizontalLayout.addWidget(self.weatherIcon)
@@ -117,25 +118,34 @@ class Ui_weatherWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
-        self.verticalSpacer = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Maximum)
+        self.verticalSpacer = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setSpacing(15)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(15, -1, 15, -1)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(12)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.forecast_1 = QWidget(weatherWindow)
         self.forecast_1.setObjectName(u"forecast_1")
         self.verticalLayout_6 = QVBoxLayout(self.forecast_1)
+        self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 6, 0, 6)
+        self.verticalLayout_6.setContentsMargins(0, 6, 0, 0)
         self.forecastDateLabel_1 = QLabel(self.forecast_1)
         self.forecastDateLabel_1.setObjectName(u"forecastDateLabel_1")
+        self.forecastDateLabel_1.setMinimumSize(QSize(0, 30))
         self.forecastDateLabel_1.setMaximumSize(QSize(16777215, 30))
         self.forecastDateLabel_1.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_6.addWidget(self.forecastDateLabel_1)
+
+        self.forecastTimeLabel_1 = QLabel(self.forecast_1)
+        self.forecastTimeLabel_1.setObjectName(u"forecastTimeLabel_1")
+        self.forecastTimeLabel_1.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_1.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_1.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_6.addWidget(self.forecastTimeLabel_1)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
@@ -161,6 +171,7 @@ class Ui_weatherWindow(object):
 
         self.forecastTempLabel_1 = QLabel(self.forecast_1)
         self.forecastTempLabel_1.setObjectName(u"forecastTempLabel_1")
+        self.forecastTempLabel_1.setMinimumSize(QSize(0, 30))
         self.forecastTempLabel_1.setMaximumSize(QSize(16777215, 30))
         self.forecastTempLabel_1.setAlignment(Qt.AlignCenter)
 
@@ -168,6 +179,7 @@ class Ui_weatherWindow(object):
 
         self.forecastPerceivedLabel_1 = QLabel(self.forecast_1)
         self.forecastPerceivedLabel_1.setObjectName(u"forecastPerceivedLabel_1")
+        self.forecastPerceivedLabel_1.setMinimumSize(QSize(0, 30))
         self.forecastPerceivedLabel_1.setMaximumSize(QSize(16777215, 30))
         self.forecastPerceivedLabel_1.setAlignment(Qt.AlignCenter)
         self.forecastPerceivedLabel_1.setWordWrap(True)
@@ -176,25 +188,36 @@ class Ui_weatherWindow(object):
 
         self.forecastHighLowTempLabel_1 = QLabel(self.forecast_1)
         self.forecastHighLowTempLabel_1.setObjectName(u"forecastHighLowTempLabel_1")
+        self.forecastHighLowTempLabel_1.setMinimumSize(QSize(0, 30))
         self.forecastHighLowTempLabel_1.setMaximumSize(QSize(16777215, 30))
         self.forecastHighLowTempLabel_1.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_6.addWidget(self.forecastHighLowTempLabel_1)
 
 
-        self.horizontalLayout_3.addWidget(self.forecast_1)
+        self.horizontalLayout_2.addWidget(self.forecast_1)
 
         self.forecast_2 = QWidget(weatherWindow)
         self.forecast_2.setObjectName(u"forecast_2")
         self.verticalLayout_8 = QVBoxLayout(self.forecast_2)
+        self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.verticalLayout_8.setContentsMargins(0, 6, 0, 6)
+        self.verticalLayout_8.setContentsMargins(0, 6, 0, 0)
         self.forecastDateLabel_2 = QLabel(self.forecast_2)
         self.forecastDateLabel_2.setObjectName(u"forecastDateLabel_2")
+        self.forecastDateLabel_2.setMinimumSize(QSize(0, 30))
         self.forecastDateLabel_2.setMaximumSize(QSize(16777215, 30))
         self.forecastDateLabel_2.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.forecastDateLabel_2)
+
+        self.forecastTimeLabel_2 = QLabel(self.forecast_2)
+        self.forecastTimeLabel_2.setObjectName(u"forecastTimeLabel_2")
+        self.forecastTimeLabel_2.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_2.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_2.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_8.addWidget(self.forecastTimeLabel_2)
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
@@ -220,6 +243,7 @@ class Ui_weatherWindow(object):
 
         self.forecastTempLabel_2 = QLabel(self.forecast_2)
         self.forecastTempLabel_2.setObjectName(u"forecastTempLabel_2")
+        self.forecastTempLabel_2.setMinimumSize(QSize(0, 30))
         self.forecastTempLabel_2.setMaximumSize(QSize(16777215, 30))
         self.forecastTempLabel_2.setAlignment(Qt.AlignCenter)
 
@@ -227,6 +251,7 @@ class Ui_weatherWindow(object):
 
         self.forecastPerceivedLabel_2 = QLabel(self.forecast_2)
         self.forecastPerceivedLabel_2.setObjectName(u"forecastPerceivedLabel_2")
+        self.forecastPerceivedLabel_2.setMinimumSize(QSize(0, 30))
         self.forecastPerceivedLabel_2.setMaximumSize(QSize(16777215, 30))
         self.forecastPerceivedLabel_2.setAlignment(Qt.AlignCenter)
         self.forecastPerceivedLabel_2.setWordWrap(True)
@@ -235,25 +260,36 @@ class Ui_weatherWindow(object):
 
         self.forecastHighLowTempLabel_2 = QLabel(self.forecast_2)
         self.forecastHighLowTempLabel_2.setObjectName(u"forecastHighLowTempLabel_2")
+        self.forecastHighLowTempLabel_2.setMinimumSize(QSize(0, 30))
         self.forecastHighLowTempLabel_2.setMaximumSize(QSize(16777215, 30))
         self.forecastHighLowTempLabel_2.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.forecastHighLowTempLabel_2)
 
 
-        self.horizontalLayout_3.addWidget(self.forecast_2)
+        self.horizontalLayout_2.addWidget(self.forecast_2)
 
         self.forecast_3 = QWidget(weatherWindow)
         self.forecast_3.setObjectName(u"forecast_3")
         self.verticalLayout_9 = QVBoxLayout(self.forecast_3)
+        self.verticalLayout_9.setSpacing(0)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.verticalLayout_9.setContentsMargins(0, 6, 0, 6)
+        self.verticalLayout_9.setContentsMargins(0, 6, 0, 0)
         self.forecastDateLabel_3 = QLabel(self.forecast_3)
         self.forecastDateLabel_3.setObjectName(u"forecastDateLabel_3")
+        self.forecastDateLabel_3.setMinimumSize(QSize(0, 30))
         self.forecastDateLabel_3.setMaximumSize(QSize(16777215, 30))
         self.forecastDateLabel_3.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.forecastDateLabel_3)
+
+        self.forecastTimeLabel_3 = QLabel(self.forecast_3)
+        self.forecastTimeLabel_3.setObjectName(u"forecastTimeLabel_3")
+        self.forecastTimeLabel_3.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_3.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_3.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_9.addWidget(self.forecastTimeLabel_3)
 
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
@@ -279,6 +315,7 @@ class Ui_weatherWindow(object):
 
         self.forecastTempLabel_3 = QLabel(self.forecast_3)
         self.forecastTempLabel_3.setObjectName(u"forecastTempLabel_3")
+        self.forecastTempLabel_3.setMinimumSize(QSize(0, 30))
         self.forecastTempLabel_3.setMaximumSize(QSize(16777215, 30))
         self.forecastTempLabel_3.setAlignment(Qt.AlignCenter)
 
@@ -286,6 +323,7 @@ class Ui_weatherWindow(object):
 
         self.forecastPerceivedLabel_3 = QLabel(self.forecast_3)
         self.forecastPerceivedLabel_3.setObjectName(u"forecastPerceivedLabel_3")
+        self.forecastPerceivedLabel_3.setMinimumSize(QSize(0, 30))
         self.forecastPerceivedLabel_3.setMaximumSize(QSize(16777215, 30))
         self.forecastPerceivedLabel_3.setAlignment(Qt.AlignCenter)
         self.forecastPerceivedLabel_3.setWordWrap(True)
@@ -294,25 +332,36 @@ class Ui_weatherWindow(object):
 
         self.forecastHighLowTempLabel_3 = QLabel(self.forecast_3)
         self.forecastHighLowTempLabel_3.setObjectName(u"forecastHighLowTempLabel_3")
+        self.forecastHighLowTempLabel_3.setMinimumSize(QSize(0, 30))
         self.forecastHighLowTempLabel_3.setMaximumSize(QSize(16777215, 30))
         self.forecastHighLowTempLabel_3.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.forecastHighLowTempLabel_3)
 
 
-        self.horizontalLayout_3.addWidget(self.forecast_3)
+        self.horizontalLayout_2.addWidget(self.forecast_3)
 
         self.forecast_4 = QWidget(weatherWindow)
         self.forecast_4.setObjectName(u"forecast_4")
         self.verticalLayout_10 = QVBoxLayout(self.forecast_4)
+        self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(0, 6, 0, 6)
+        self.verticalLayout_10.setContentsMargins(0, 6, 0, 0)
         self.forecastDateLabel_4 = QLabel(self.forecast_4)
         self.forecastDateLabel_4.setObjectName(u"forecastDateLabel_4")
+        self.forecastDateLabel_4.setMinimumSize(QSize(0, 30))
         self.forecastDateLabel_4.setMaximumSize(QSize(16777215, 30))
         self.forecastDateLabel_4.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.forecastDateLabel_4)
+
+        self.forecastTimeLabel_4 = QLabel(self.forecast_4)
+        self.forecastTimeLabel_4.setObjectName(u"forecastTimeLabel_4")
+        self.forecastTimeLabel_4.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_4.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_4.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_10.addWidget(self.forecastTimeLabel_4)
 
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
@@ -338,6 +387,7 @@ class Ui_weatherWindow(object):
 
         self.forecastTempLabel_4 = QLabel(self.forecast_4)
         self.forecastTempLabel_4.setObjectName(u"forecastTempLabel_4")
+        self.forecastTempLabel_4.setMinimumSize(QSize(0, 30))
         self.forecastTempLabel_4.setMaximumSize(QSize(16777215, 30))
         self.forecastTempLabel_4.setAlignment(Qt.AlignCenter)
 
@@ -345,6 +395,7 @@ class Ui_weatherWindow(object):
 
         self.forecastPerceivedLabel_4 = QLabel(self.forecast_4)
         self.forecastPerceivedLabel_4.setObjectName(u"forecastPerceivedLabel_4")
+        self.forecastPerceivedLabel_4.setMinimumSize(QSize(0, 30))
         self.forecastPerceivedLabel_4.setMaximumSize(QSize(16777215, 30))
         self.forecastPerceivedLabel_4.setAlignment(Qt.AlignCenter)
         self.forecastPerceivedLabel_4.setWordWrap(True)
@@ -353,25 +404,36 @@ class Ui_weatherWindow(object):
 
         self.forecastHighLowTempLabel_4 = QLabel(self.forecast_4)
         self.forecastHighLowTempLabel_4.setObjectName(u"forecastHighLowTempLabel_4")
+        self.forecastHighLowTempLabel_4.setMinimumSize(QSize(0, 30))
         self.forecastHighLowTempLabel_4.setMaximumSize(QSize(16777215, 30))
         self.forecastHighLowTempLabel_4.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.forecastHighLowTempLabel_4)
 
 
-        self.horizontalLayout_3.addWidget(self.forecast_4)
+        self.horizontalLayout_2.addWidget(self.forecast_4)
 
         self.forecast_5 = QWidget(weatherWindow)
         self.forecast_5.setObjectName(u"forecast_5")
         self.verticalLayout_11 = QVBoxLayout(self.forecast_5)
+        self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.verticalLayout_11.setContentsMargins(0, 6, 0, 6)
+        self.verticalLayout_11.setContentsMargins(0, 6, 0, 0)
         self.forecastDateLabel_5 = QLabel(self.forecast_5)
         self.forecastDateLabel_5.setObjectName(u"forecastDateLabel_5")
+        self.forecastDateLabel_5.setMinimumSize(QSize(0, 30))
         self.forecastDateLabel_5.setMaximumSize(QSize(16777215, 30))
         self.forecastDateLabel_5.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_11.addWidget(self.forecastDateLabel_5)
+
+        self.forecastTimeLabel_5 = QLabel(self.forecast_5)
+        self.forecastTimeLabel_5.setObjectName(u"forecastTimeLabel_5")
+        self.forecastTimeLabel_5.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_5.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_5.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_11.addWidget(self.forecastTimeLabel_5)
 
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
@@ -397,6 +459,7 @@ class Ui_weatherWindow(object):
 
         self.forecastTempLabel_5 = QLabel(self.forecast_5)
         self.forecastTempLabel_5.setObjectName(u"forecastTempLabel_5")
+        self.forecastTempLabel_5.setMinimumSize(QSize(0, 30))
         self.forecastTempLabel_5.setMaximumSize(QSize(16777215, 30))
         self.forecastTempLabel_5.setAlignment(Qt.AlignCenter)
 
@@ -404,6 +467,7 @@ class Ui_weatherWindow(object):
 
         self.forecastPerceivedLabel_5 = QLabel(self.forecast_5)
         self.forecastPerceivedLabel_5.setObjectName(u"forecastPerceivedLabel_5")
+        self.forecastPerceivedLabel_5.setMinimumSize(QSize(0, 30))
         self.forecastPerceivedLabel_5.setMaximumSize(QSize(16777215, 30))
         self.forecastPerceivedLabel_5.setAlignment(Qt.AlignCenter)
         self.forecastPerceivedLabel_5.setWordWrap(True)
@@ -412,16 +476,89 @@ class Ui_weatherWindow(object):
 
         self.forecastHighLowTempLabel_5 = QLabel(self.forecast_5)
         self.forecastHighLowTempLabel_5.setObjectName(u"forecastHighLowTempLabel_5")
+        self.forecastHighLowTempLabel_5.setMinimumSize(QSize(0, 30))
         self.forecastHighLowTempLabel_5.setMaximumSize(QSize(16777215, 30))
         self.forecastHighLowTempLabel_5.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_11.addWidget(self.forecastHighLowTempLabel_5)
 
 
-        self.horizontalLayout_3.addWidget(self.forecast_5)
+        self.horizontalLayout_2.addWidget(self.forecast_5)
+
+        self.forecast_6 = QWidget(weatherWindow)
+        self.forecast_6.setObjectName(u"forecast_6")
+        self.verticalLayout_12 = QVBoxLayout(self.forecast_6)
+        self.verticalLayout_12.setSpacing(0)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.verticalLayout_12.setContentsMargins(0, 6, 0, 0)
+        self.forecastDateLabel_6 = QLabel(self.forecast_6)
+        self.forecastDateLabel_6.setObjectName(u"forecastDateLabel_6")
+        self.forecastDateLabel_6.setMinimumSize(QSize(0, 30))
+        self.forecastDateLabel_6.setMaximumSize(QSize(16777215, 30))
+        self.forecastDateLabel_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.forecastDateLabel_6)
+
+        self.forecastTimeLabel_6 = QLabel(self.forecast_6)
+        self.forecastTimeLabel_6.setObjectName(u"forecastTimeLabel_6")
+        self.forecastTimeLabel_6.setMinimumSize(QSize(0, 30))
+        self.forecastTimeLabel_6.setMaximumSize(QSize(16777215, 30))
+        self.forecastTimeLabel_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.forecastTimeLabel_6)
+
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Preferred, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_18)
+
+        self.forecastWeatherIcon_6 = QLabel(self.forecast_6)
+        self.forecastWeatherIcon_6.setObjectName(u"forecastWeatherIcon_6")
+        self.forecastWeatherIcon_6.setMinimumSize(QSize(90, 90))
+        self.forecastWeatherIcon_6.setMaximumSize(QSize(120, 120))
+        self.forecastWeatherIcon_6.setScaledContents(False)
+        self.forecastWeatherIcon_6.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_10.addWidget(self.forecastWeatherIcon_6)
+
+        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Preferred, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_19)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_12.addLayout(self.horizontalLayout_10)
+
+        self.forecastTempLabel_6 = QLabel(self.forecast_6)
+        self.forecastTempLabel_6.setObjectName(u"forecastTempLabel_6")
+        self.forecastTempLabel_6.setMinimumSize(QSize(0, 30))
+        self.forecastTempLabel_6.setMaximumSize(QSize(16777215, 30))
+        self.forecastTempLabel_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.forecastTempLabel_6)
+
+        self.forecastPerceivedLabel_6 = QLabel(self.forecast_6)
+        self.forecastPerceivedLabel_6.setObjectName(u"forecastPerceivedLabel_6")
+        self.forecastPerceivedLabel_6.setMinimumSize(QSize(0, 30))
+        self.forecastPerceivedLabel_6.setMaximumSize(QSize(16777215, 30))
+        self.forecastPerceivedLabel_6.setAlignment(Qt.AlignCenter)
+        self.forecastPerceivedLabel_6.setWordWrap(True)
+
+        self.verticalLayout_12.addWidget(self.forecastPerceivedLabel_6)
+
+        self.forecastHighLowTempLabel_6 = QLabel(self.forecast_6)
+        self.forecastHighLowTempLabel_6.setObjectName(u"forecastHighLowTempLabel_6")
+        self.forecastHighLowTempLabel_6.setMinimumSize(QSize(0, 30))
+        self.forecastHighLowTempLabel_6.setMaximumSize(QSize(16777215, 30))
+        self.forecastHighLowTempLabel_6.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.forecastHighLowTempLabel_6)
+
+
+        self.horizontalLayout_2.addWidget(self.forecast_6)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
         self.widget_6 = QWidget(weatherWindow)
         self.widget_6.setObjectName(u"widget_6")
@@ -431,22 +568,22 @@ class Ui_weatherWindow(object):
         sizePolicy1.setHeightForWidth(self.widget_6.sizePolicy().hasHeightForWidth())
         self.widget_6.setSizePolicy(sizePolicy1)
         self.widget_6.setMaximumSize(QSize(16777215, 50))
-        self.horizontalLayout_2 = QHBoxLayout(self.widget_6)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer = QSpacerItem(1, 17, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
+        self.horizontalLayout_5 = QHBoxLayout(self.widget_6)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer = QSpacerItem(414, 14, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+        self.horizontalLayout_5.addItem(self.horizontalSpacer)
 
         self.assistantButton = QToolButton(self.widget_6)
         self.assistantButton.setObjectName(u"assistantButton")
 
-        self.horizontalLayout_2.addWidget(self.assistantButton)
+        self.horizontalLayout_5.addWidget(self.assistantButton)
 
-        self.horizontalSpacer_2 = QSpacerItem(1, 20, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(413, 17, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_2)
 
         self.creditLabel = QLabel(self.widget_6)
         self.creditLabel.setObjectName(u"creditLabel")
@@ -454,12 +591,12 @@ class Ui_weatherWindow(object):
         self.creditLabel.setOpenExternalLinks(True)
         self.creditLabel.setTextInteractionFlags(Qt.NoTextInteraction)
 
-        self.horizontalLayout_2.addWidget(self.creditLabel)
+        self.horizontalLayout_5.addWidget(self.creditLabel)
 
         self.openWeatherIcon = QToolButton(self.widget_6)
         self.openWeatherIcon.setObjectName(u"openWeatherIcon")
 
-        self.horizontalLayout_2.addWidget(self.openWeatherIcon)
+        self.horizontalLayout_5.addWidget(self.openWeatherIcon)
 
 
         self.verticalLayout_2.addWidget(self.widget_6)
@@ -476,35 +613,46 @@ class Ui_weatherWindow(object):
         self.temperatureLabel.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.perceivedTempLabel.setText(QCoreApplication.translate("weatherWindow", u"Feel like 31C", None))
         self.weatherTypeLabel.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
-        self.minMaxTempLabel.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.humidityLabel.setText(QCoreApplication.translate("weatherWindow", u"Hum: 62%", None))
-        self.windSpeedLabel.setText(QCoreApplication.translate("weatherWindow", u"NW 12 knts", None))
+        self.minMaxTempLabel.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
+        self.windSpeedLabel.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.weatherIcon.setText("")
         self.forecastDateLabel_1.setText(QCoreApplication.translate("weatherWindow", u"09/11", None))
+        self.forecastTimeLabel_1.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.forecastWeatherIcon_1.setText("")
         self.forecastTempLabel_1.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.forecastPerceivedLabel_1.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
         self.forecastHighLowTempLabel_1.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.forecastDateLabel_2.setText(QCoreApplication.translate("weatherWindow", u"10/11", None))
+        self.forecastTimeLabel_2.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.forecastWeatherIcon_2.setText("")
         self.forecastTempLabel_2.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.forecastPerceivedLabel_2.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
         self.forecastHighLowTempLabel_2.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.forecastDateLabel_3.setText(QCoreApplication.translate("weatherWindow", u"11/11", None))
+        self.forecastTimeLabel_3.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.forecastWeatherIcon_3.setText("")
         self.forecastTempLabel_3.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.forecastPerceivedLabel_3.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
         self.forecastHighLowTempLabel_3.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.forecastDateLabel_4.setText(QCoreApplication.translate("weatherWindow", u"12/11", None))
+        self.forecastTimeLabel_4.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.forecastWeatherIcon_4.setText("")
         self.forecastTempLabel_4.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.forecastPerceivedLabel_4.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
         self.forecastHighLowTempLabel_4.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.forecastDateLabel_5.setText(QCoreApplication.translate("weatherWindow", u"13/11", None))
+        self.forecastTimeLabel_5.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
         self.forecastWeatherIcon_5.setText("")
         self.forecastTempLabel_5.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
         self.forecastPerceivedLabel_5.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
         self.forecastHighLowTempLabel_5.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
+        self.forecastDateLabel_6.setText(QCoreApplication.translate("weatherWindow", u"13/11", None))
+        self.forecastTimeLabel_6.setText(QCoreApplication.translate("weatherWindow", u"TextLabel", None))
+        self.forecastWeatherIcon_6.setText("")
+        self.forecastTempLabel_6.setText(QCoreApplication.translate("weatherWindow", u"28C", None))
+        self.forecastPerceivedLabel_6.setText(QCoreApplication.translate("weatherWindow", u"Mostly Cloudy", None))
+        self.forecastHighLowTempLabel_6.setText(QCoreApplication.translate("weatherWindow", u"H: 32C L:26C", None))
         self.assistantButton.setText(QCoreApplication.translate("weatherWindow", u"Assistant", None))
         self.creditLabel.setText(QCoreApplication.translate("weatherWindow", u"Data provided by ", None))
         self.openWeatherIcon.setText("")

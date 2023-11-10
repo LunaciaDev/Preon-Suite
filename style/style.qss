@@ -18,6 +18,8 @@ $extra-error: rgb(191, 97, 106);
 $extra-warning: rgb(235, 203, 139);
 $extra-success: rgb(163, 190, 140);
 
+$headerFont: Poppin;
+
 QToolButton, QPushButton {
     color: $text;
     font-family: Lato;
@@ -159,8 +161,14 @@ QHeaderView::section {
     padding: 3px;
 }
 
-#label_5, #forecastDateLabel_1, #forecastDateLabel_2, #forecastDateLabel_3, #forecastDateLabel_4, #forecastDateLabel_5 {
+#label_5, #forecastDateLabel_1, #forecastDateLabel_2, #forecastDateLabel_3, #forecastDateLabel_4, #forecastDateLabel_5, #forecastDateLabel_6 {
     font-weight: bold;
+    font-size: 18px;
+    color: $accentLight;
+}
+
+#forecastTimeLabel_1, #forecastTimeLabel_2, #forecastTimeLabel_3, #forecastTimeLabel_4, #forecastTimeLabel_5, #forecastTimeLabel_6 {
+    font-size: 18px;
 }
 
 #cityLabel {
@@ -173,8 +181,8 @@ QHeaderView::section {
     color: $primary;
 }
 
-#forecast_1, #forecast_2, #forecast_3, #forecast_4, #forecast_5 {
-    background-color: $backgroundLight;
+#forecast_1, #forecast_2, #forecast_3, #forecast_4, #forecast_5, #forecast_6 {
+    background-color: $backgroundDark;
     border-radius: 18px;
 }
 

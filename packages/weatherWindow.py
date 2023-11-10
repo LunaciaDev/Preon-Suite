@@ -1,6 +1,6 @@
 from PySide6.QtGui import QIcon, QDesktopServices
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Signal, Slot, QSize, QDate
+from PySide6.QtCore import Signal, Slot, QSize, QDateTime
 
 from packages.ui.weatherWindowClass import Ui_weatherWindow
 
@@ -25,58 +25,7 @@ class WeatherWindow(QWidget):
             "windSpeed": 1.48,
             "windDeg": 312
         }
-        self.dummyPredictedWeather = [
-        {
-            "temp": 27.61,
-            "feels_like": 31.41,
-            "temp_min": 27.61,
-            "temp_max": 27.61,
-            "humidity": 82,
-            "description": "broken clouds",
-            "icon": "04d",
-            "dt_txt": "2023-11-09 09:00:00"
-        },
-        {
-            "temp": 27.2,
-            "feels_like": 30.73,
-            "temp_min": 27.2,
-            "temp_max": 27.2,
-            "humidity": 85,
-            "description": "light rain",
-            "icon": "10d",
-            "dt_txt": "2023-11-10 09:00:00"
-        },
-        {
-            "temp": 27.74,
-            "feels_like": 31.6,
-            "temp_min": 27.74,
-            "temp_max": 27.74,
-            "humidity": 81,
-            "description": "broken clouds",
-            "icon": "04d",
-            "dt_txt": "2023-11-11 09:00:00"
-        },
-        {
-            "temp": 26.99,
-            "feels_like": 30.3,
-            "temp_min": 26.99,
-            "temp_max": 26.99,
-            "humidity": 86,
-            "description": "light rain",
-            "icon": "10d",
-            "dt_txt": "2023-11-12 09:00:00"
-        },
-        {
-            "temp": 23.93,
-            "feels_like": 24.91,
-            "temp_min": 23.93,
-            "temp_max": 23.93,
-            "humidity": 97,
-            "description": "heavy intensity rain",
-            "icon": "10d",
-            "dt_txt": "2023-11-13 09:00:00"
-        }
-    ]
+        self.dummyPredictedWeather = [{'temp': 297.18, 'feels_like': 298.04, 'temp_min': 297.18, 'temp_max': 297.18, 'humidity': 92, 'description': 'overcast clouds', 'icon': '04n', 'dt_txt': '2023-11-10 21:00:00'}, {'temp': 300.52, 'feels_like': 304.33, 'temp_min': 300.52, 'temp_max': 300.52, 'humidity': 85, 'description': 'light rain', 'icon': '10d', 'dt_txt': '2023-11-11 09:00:00'}, {'temp': 296.42, 'feels_like': 297.23, 'temp_min': 296.42, 'temp_max': 296.42, 'humidity': 93, 'description': 'scattered clouds', 'icon': '03n', 'dt_txt': '2023-11-11 21:00:00'}, {'temp': 299.25, 'feels_like': 299.25, 'temp_min': 299.25, 'temp_max': 299.25, 'humidity': 89, 'description': 'light rain', 'icon': '10d', 'dt_txt': '2023-11-12 09:00:00'}, {'temp': 297.32, 'feels_like': 298.27, 'temp_min': 297.32, 'temp_max': 297.32, 'humidity': 95, 'description': 'moderate rain', 'icon': '10n', 'dt_txt': '2023-11-12 21:00:00'}, {'temp': 297.75, 'feels_like': 298.72, 'temp_min': 297.75, 'temp_max': 297.75, 'humidity': 94, 'description': 'moderate rain', 'icon': '10d', 'dt_txt': '2023-11-13 09:00:00'}]
 
         self.ui.openWeatherIcon.setIcon(QIcon("./icons/openWeather.svg").pixmap(QSize(69, 34)))
         self.ui.openWeatherIcon.setIconSize(QSize(69, 34))
@@ -106,45 +55,48 @@ class WeatherWindow(QWidget):
         self.ui.humidityLabel.setText(f"Humidity: {currentWeather['humidity']}%")
         self.ui.weatherIcon.setPixmap(QIcon(self.getWeatherIconName(currentWeather['icon'])).pixmap(QSize(300, 300)))
 
-        timekeeper = QDate.currentDate().addDays(1)
-
         self.ui.forecastTempLabel_1.setText(f"{int(forecastedWeather[0]['temp'])}°C")
         self.ui.forecastPerceivedLabel_1.setText(forecastedWeather[0]['description'].title())
         self.ui.forecastHighLowTempLabel_1.setText(f"H: {int(forecastedWeather[0]['temp_max'])}°C L: {int(forecastedWeather[0]['temp_min'])}°C")
-        self.ui.forecastDateLabel_1.setText(f"{str(timekeeper.day()).zfill(2)}/{str(timekeeper.month()).zfill(2)}")
+        self.ui.forecastDateLabel_1.setText(f"{forecastedWeather[0]['dt_txt'][8:10]}/{forecastedWeather[0]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_1.setText(f"{forecastedWeather[0]['dt_txt'][11:16]}")
         self.ui.forecastWeatherIcon_1.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[0]['icon'])).pixmap(QSize(100, 100)))
-
-        timekeeper = timekeeper.addDays(1)
 
         self.ui.forecastTempLabel_2.setText(f"{int(forecastedWeather[1]['temp'])}°C")
         self.ui.forecastPerceivedLabel_2.setText(forecastedWeather[1]['description'].title())
         self.ui.forecastHighLowTempLabel_2.setText(f"H: {int(forecastedWeather[1]['temp_max'])}°C L: {int(forecastedWeather[1]['temp_min'])}°C")
-        self.ui.forecastDateLabel_2.setText(f"{str(timekeeper.day()).zfill(2)}/{str(timekeeper.month()).zfill(2)}")
+        self.ui.forecastDateLabel_2.setText(f"{forecastedWeather[1]['dt_txt'][8:10]}/{forecastedWeather[1]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_2.setText(f"{forecastedWeather[1]['dt_txt'][11:16]}")
         self.ui.forecastWeatherIcon_2.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[1]['icon'])).pixmap(QSize(100, 100)))
-
-        timekeeper = timekeeper.addDays(1)
 
         self.ui.forecastTempLabel_3.setText(f"{int(forecastedWeather[2]['temp'])}°C")
         self.ui.forecastPerceivedLabel_3.setText(forecastedWeather[2]['description'].title())
         self.ui.forecastHighLowTempLabel_3.setText(f"H: {int(forecastedWeather[2]['temp_max'])}°C L: {int(forecastedWeather[2]['temp_min'])}°C")
-        self.ui.forecastDateLabel_3.setText(f"{str(timekeeper.day()).zfill(2)}/{str(timekeeper.month()).zfill(2)}")
+        self.ui.forecastDateLabel_3.setText(f"{forecastedWeather[2]['dt_txt'][8:10]}/{forecastedWeather[2]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_3.setText(f"{forecastedWeather[2]['dt_txt'][11:16]}")
         self.ui.forecastWeatherIcon_3.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[2]['icon'])).pixmap(QSize(100, 100)))
-
-        timekeeper = timekeeper.addDays(1)
 
         self.ui.forecastTempLabel_4.setText(f"{int(forecastedWeather[3]['temp'])}°C")
         self.ui.forecastPerceivedLabel_4.setText(forecastedWeather[3]['description'].title())
         self.ui.forecastHighLowTempLabel_4.setText(f"H: {int(forecastedWeather[3]['temp_max'])}°C L: {int(forecastedWeather[3]['temp_min'])}°C")
-        self.ui.forecastDateLabel_4.setText(f"{str(timekeeper.day()).zfill(2)}/{str(timekeeper.month()).zfill(2)}")
+        self.ui.forecastDateLabel_4.setText(f"{forecastedWeather[3]['dt_txt'][8:10]}/{forecastedWeather[3]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_4.setText(f"{forecastedWeather[3]['dt_txt'][11:16]}")
         self.ui.forecastWeatherIcon_4.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[3]['icon'])).pixmap(QSize(100, 100)))
-
-        timekeeper = timekeeper.addDays(1)
 
         self.ui.forecastTempLabel_5.setText(f"{int(forecastedWeather[4]['temp'])}°C")
         self.ui.forecastPerceivedLabel_5.setText(forecastedWeather[4]['description'].title())
         self.ui.forecastHighLowTempLabel_5.setText(f"H: {int(forecastedWeather[4]['temp_max'])}°C L: {int(forecastedWeather[4]['temp_min'])}°C")
-        self.ui.forecastDateLabel_5.setText(f"{str(timekeeper.day()).zfill(2)}/{str(timekeeper.month()).zfill(2)}")
+        self.ui.forecastDateLabel_5.setText(f"{forecastedWeather[4]['dt_txt'][8:10]}/{forecastedWeather[4]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_5.setText(f"{forecastedWeather[4]['dt_txt'][11:16]}")
         self.ui.forecastWeatherIcon_5.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[4]['icon'])).pixmap(QSize(100, 100)))
+
+        self.ui.forecastTempLabel_6.setText(f"{int(forecastedWeather[5]['temp'])}°C")
+        self.ui.forecastPerceivedLabel_6.setText(forecastedWeather[5]['description'].title())
+        self.ui.forecastHighLowTempLabel_6.setText(f"H: {int(forecastedWeather[5]['temp_max'])}°C L: {int(forecastedWeather[5]['temp_min'])}°C")
+        self.ui.forecastDateLabel_6.setText(f"{forecastedWeather[5]['dt_txt'][8:10]}/{forecastedWeather[5]['dt_txt'][5:7]}")
+        self.ui.forecastTimeLabel_6.setText(f"{forecastedWeather[5]['dt_txt'][11:16]}")
+        self.ui.forecastWeatherIcon_6.setPixmap(QIcon(self.getWeatherIconName(forecastedWeather[5]['icon'])).pixmap(QSize(100, 100)))
+
 
     def getWeatherIconName(self, iconName):
         if (iconName[1] == '3' or iconName[1] == '4'):
