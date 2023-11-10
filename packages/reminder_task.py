@@ -74,6 +74,7 @@ def TUI():
             case "0":
                 os.system("clear")
                 print("Exiting...")
+                print("Might take a few seconds...")
                 flag.set()
                 break
 
