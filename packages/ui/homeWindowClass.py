@@ -167,6 +167,7 @@ class Ui_homeWindow(object):
 
         self.registerFaceIDButton = QToolButton(self.leftPanel)
         self.registerFaceIDButton.setObjectName(u"registerFaceIDButton")
+        self.registerFaceIDButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_3.addWidget(self.registerFaceIDButton)
 

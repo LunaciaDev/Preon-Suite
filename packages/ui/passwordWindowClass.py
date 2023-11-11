@@ -142,11 +142,11 @@ class Ui_passwordWindow(object):
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label_4 = QLabel(self.credentalLogin)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setAlignment(Qt.AlignCenter)
+        self.signInLabel = QLabel(self.credentalLogin)
+        self.signInLabel.setObjectName(u"signInLabel")
+        self.signInLabel.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout.addWidget(self.label_4)
+        self.verticalLayout.addWidget(self.signInLabel)
 
         self.verticalSpacer_6 = QSpacerItem(20, 5, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
@@ -283,11 +283,11 @@ class Ui_passwordWindow(object):
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.label_6 = QLabel(self.createCredential)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.createAccountLabel = QLabel(self.createCredential)
+        self.createAccountLabel.setObjectName(u"createAccountLabel")
+        self.createAccountLabel.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.label_6)
+        self.verticalLayout_3.addWidget(self.createAccountLabel)
 
         self.verticalSpacer_11 = QSpacerItem(20, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
@@ -405,7 +405,7 @@ class Ui_passwordWindow(object):
 
         self.retranslateUi(passwordWindow)
 
-        self.loginStack.setCurrentIndex(1)
+        self.loginStack.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(passwordWindow)
@@ -417,7 +417,7 @@ class Ui_passwordWindow(object):
         self.label_5.setText(QCoreApplication.translate("passwordWindow", u"Please keep your face in the camera's view", None))
         self.instructionLabel.setText(QCoreApplication.translate("passwordWindow", u"smth", None))
         self.passwordLoginButton.setText(QCoreApplication.translate("passwordWindow", u"Sign in with password", None))
-        self.label_4.setText(QCoreApplication.translate("passwordWindow", u"Sign in to your Account", None))
+        self.signInLabel.setText(QCoreApplication.translate("passwordWindow", u"Sign in to your Account", None))
         self.wrongCredentialLabel.setText(QCoreApplication.translate("passwordWindow", u"Incorrect username or password.", None))
         self.label_3.setText(QCoreApplication.translate("passwordWindow", u"Username", None))
         self.label_2.setText(QCoreApplication.translate("passwordWindow", u"Password", None))
@@ -425,7 +425,7 @@ class Ui_passwordWindow(object):
         self.loginButton.setText(QCoreApplication.translate("passwordWindow", u"Login", None))
         self.registerButton.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
         self.faceIDLoginButton.setText(QCoreApplication.translate("passwordWindow", u"Sign in with Face ID", None))
-        self.label_6.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
+        self.createAccountLabel.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
         self.createAccountErrorLabel.setText(QCoreApplication.translate("passwordWindow", u"Password does not match.", None))
         self.label_7.setText(QCoreApplication.translate("passwordWindow", u"Username", None))
         self.label_8.setText(QCoreApplication.translate("passwordWindow", u"Password", None))

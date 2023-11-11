@@ -26,10 +26,30 @@ class Ui_reminderWindow(object):
         reminderWindow.resize(1080, 720)
         self.verticalLayout = QVBoxLayout(reminderWindow)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label = QLabel(reminderWindow)
-        self.label.setObjectName(u"label")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.header = QLabel(reminderWindow)
+        self.header.setObjectName(u"header")
 
-        self.verticalLayout.addWidget(self.label)
+        self.horizontalLayout_2.addWidget(self.header)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.successPopup = QLabel(reminderWindow)
+        self.successPopup.setObjectName(u"successPopup")
+
+        self.horizontalLayout_2.addWidget(self.successPopup)
+
+        self.errorPopup = QLabel(reminderWindow)
+        self.errorPopup.setObjectName(u"errorPopup")
+        self.errorPopup.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_2.addWidget(self.errorPopup)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         self.verticalSpacer = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
@@ -118,7 +138,9 @@ class Ui_reminderWindow(object):
 
     def retranslateUi(self, reminderWindow):
         reminderWindow.setWindowTitle(QCoreApplication.translate("reminderWindow", u"Form", None))
-        self.label.setText(QCoreApplication.translate("reminderWindow", u"Here are your reminders:", None))
+        self.header.setText(QCoreApplication.translate("reminderWindow", u"Here are your reminders:", None))
+        self.successPopup.setText(QCoreApplication.translate("reminderWindow", u"TextLabel", None))
+        self.errorPopup.setText(QCoreApplication.translate("reminderWindow", u"TextLabel", None))
         self.addReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Add New Reminder", None))
         self.editReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Edit Selected Reminder", None))
         self.removeReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Remove Selected Reminder", None))

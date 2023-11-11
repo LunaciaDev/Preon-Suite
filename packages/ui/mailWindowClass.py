@@ -132,6 +132,7 @@ class Ui_mailWindow(object):
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
+
         self.verticalSpacer_6 = QSpacerItem(20, 16, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_6)
@@ -149,6 +150,7 @@ class Ui_mailWindow(object):
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
+
         self.refreshButton = QToolButton(self.mainWindow)
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))

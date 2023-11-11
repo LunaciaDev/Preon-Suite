@@ -28,6 +28,7 @@ class ReminderWindow(QWidget):
 
         self.ui.removeReminderButton.setEnabled(False)
         self.ui.editReminderButton.setEnabled(False)
+        self.hideAllPopup()
 
         # Doing nasty hacks to the table since I can't do it in QDesigner
         self.ui.reminderTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)

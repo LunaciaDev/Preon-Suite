@@ -29,12 +29,12 @@ class Ui_reminderDialog(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label_5 = QLabel(reminderDialog)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMaximumSize(QSize(16777215, 16777215))
-        self.label_5.setScaledContents(False)
+        self.header = QLabel(reminderDialog)
+        self.header.setObjectName(u"header")
+        self.header.setMaximumSize(QSize(16777215, 16777215))
+        self.header.setScaledContents(False)
 
-        self.horizontalLayout.addWidget(self.label_5)
+        self.horizontalLayout.addWidget(self.header)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -143,7 +143,7 @@ class Ui_reminderDialog(object):
 
     def retranslateUi(self, reminderDialog):
         reminderDialog.setWindowTitle(QCoreApplication.translate("reminderDialog", u"Dialog", None))
-        self.label_5.setText(QCoreApplication.translate("reminderDialog", u"Editing Reminder", None))
+        self.header.setText(QCoreApplication.translate("reminderDialog", u"Editing Reminder", None))
         self.reminderErrorLabel.setText(QCoreApplication.translate("reminderDialog", u"Title must not be empty", None))
         self.label.setText(QCoreApplication.translate("reminderDialog", u"Date", None))
         self.reminderDate.setDisplayFormat(QCoreApplication.translate("reminderDialog", u"dd/MM/yyyy", None))
