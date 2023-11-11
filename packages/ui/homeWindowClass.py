@@ -60,7 +60,7 @@ class Ui_homeWindow(object):
         self.appLabel.setMaximumSize(QSize(16777215, 300))
         self.appLabel.setTextFormat(Qt.AutoText)
         self.appLabel.setScaledContents(False)
-        self.appLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.appLabel.setAlignment(Qt.AlignCenter)
         self.appLabel.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.appLabel)
@@ -201,7 +201,7 @@ class Ui_homeWindow(object):
 
     def retranslateUi(self, homeWindow):
         homeWindow.setWindowTitle("")
-        self.appLabel.setText(QCoreApplication.translate("homeWindow", u"Preon Suite\\n\"A suite of small things that make life better\"", None))
+        self.appLabel.setText(QCoreApplication.translate("homeWindow", u"Preon Suite", None))
         self.homeButton.setText(QCoreApplication.translate("homeWindow", u"Home", None))
         self.mailButton.setText(QCoreApplication.translate("homeWindow", u"Mail", None))
         self.weatherButton.setText(QCoreApplication.translate("homeWindow", u"Weather", None))
