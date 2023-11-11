@@ -59,6 +59,11 @@ class Ui_reminderWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
+        self.exportMarkdownButton = QToolButton(reminderWindow)
+        self.exportMarkdownButton.setObjectName(u"exportMarkdownButton")
+
+        self.horizontalLayout.addWidget(self.exportMarkdownButton)
+
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
@@ -117,6 +122,7 @@ class Ui_reminderWindow(object):
         self.addReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Add New Reminder", None))
         self.editReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Edit Selected Reminder", None))
         self.removeReminderButton.setText(QCoreApplication.translate("reminderWindow", u"Remove Selected Reminder", None))
+        self.exportMarkdownButton.setText(QCoreApplication.translate("reminderWindow", u"Export all Reminders to Markdown", None))
         ___qtablewidgetitem = self.reminderTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("reminderWindow", u"Date", None));
         ___qtablewidgetitem1 = self.reminderTable.horizontalHeaderItem(1)

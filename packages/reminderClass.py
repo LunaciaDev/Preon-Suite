@@ -1,7 +1,8 @@
-import time
 import json
 from datetime import datetime
 from plyer import notification
+
+from PySide6.QtCore import Signal, Slot, QObject
 
 class Reminder:
     def __init__(self, title, description, date, time):
@@ -9,7 +10,6 @@ class Reminder:
         self.date = date
         self.time = time
         self.description = description
-
     
     def get_title(self):
         return self.title
@@ -31,62 +31,64 @@ class Reminder:
     def set_date(self, date):
         self.date = date
 
+class ReminderManager(QObject):
+    sendReminderList = Signal(list)
+    exportedReminder = Signal(bool)
 
-
-class ReminderManager:
     def __init__(self):
+        super(ReminderManager, self).__init__()
         self.reminders = []
     
+    @Slot(str, str, str, str)
     def add_reminder(self, title, description, date, time):
         reminder = Reminder(title, description, date, time)
         self.reminders.append(reminder)
+        self.sort_reminders()
+        self.sendReminderList.emit(self.reminders)
     
-    def remove_reminder(self, title):
-        self.reminders = [reminder for reminder in self.reminders if reminder.get_title() != title]
-
-    def display_reminders(self):
-        for reminder in self.reminders:
-            print(f"{reminder.get_title()}\nDescription: {reminder.get_description()}\nOn {reminder.get_date()}\nAt {reminder.get_time()}\n")
-        
+    @Slot(int, str, str, str, str)
+    def edit_reminder(self, index, title, description, date, time):
+        self.reminders[index] = Reminder(title, description, date, time)
+        self.sort_reminders()
+        self.sendReminderList.emit(self.reminders)
+    
+    @Slot(int)
+    def remove_reminder(self, index):
+        self.reminders.pop(index)
+        self.sendReminderList.emit(self.reminders)
+    
     def sort_reminders(self):
         self.reminders.sort(key=lambda x: x.date)  
         self.reminders.sort(key=lambda d: d.time, reverse = True)
 
-    def is_empty(self):
-        if len(self.reminders) == 0:
-            return 1
-        else:
-            return 0
-    def is_same_name(self,title):
-        for reminder in self.reminders:
-            if reminder.get_title() == title: return 1
-            else: return 0
-
-    def save_reminders(self, filename):
-        with open(filename, 'w') as file:
+    def save_reminders(self):
+        with open('./packages/reminders.json', 'w') as file:
             json.dump([vars(reminder) for reminder in self.reminders], file)
-            print("Reminders saved.")
 
-    def load_reminders(self, filename):
-        with open(filename, 'r') as file:
+    @Slot()
+    def load_reminders(self):
+        with open('./packages/reminders.json', 'r') as file:
             data = json.load(file)
             self.reminders = [Reminder(**reminder_data) for reminder_data in data]
+        
+        self.sendReminderList.emit(self.reminders)
 
+    @Slot()
+    def save_to_markdown(self):
+        with open('./reminder.md', 'w') as file:
+            file.write("# Reminders\n\n")
+            for reminder in self.reminders:
+                file.write(f"## {reminder.title}\n")
+                file.write(f"{reminder.date}\n")
+                file.write(f"{reminder.time}\n")
+                file.write(f"{reminder.description}\n\n")
 
-    def save_to_markdown(self, filename):
-            with open(filename, 'w') as file:
-                file.write("# Reminders\n\n")
-                for reminder in self.reminders:
-                    file.write(f"## {reminder.title}\n")
-                    file.write(f"{reminder.date}\n")
-                    file.write(f"{reminder.time}\n")
-                    file.write(f"{reminder.description}\n\n")
+        self.exportedReminder.emit(True)
 
     def system_notify(self):
-        #reminder = Reminder(title, description, date, time)
         now = datetime.now()
         for reminder in self.reminders:
-            reminder_datetime = datetime.strptime(f"{reminder.date} {reminder.time}", "%Y-%m-%d %H:%M")               
+            reminder_datetime = datetime.strptime(f"{reminder.date} {reminder.time}", "%d/%m/%Y %H:%M")               
             if now >= reminder_datetime:
                 notification.notify(
                     title = reminder.title,
@@ -94,8 +96,5 @@ class ReminderManager:
                     timeout = 5
                 )
                 self.reminders.remove(reminder)
-                
-        time.sleep(10)
-
-
-
+        
+        self.sendReminderList.emit(self.reminders)

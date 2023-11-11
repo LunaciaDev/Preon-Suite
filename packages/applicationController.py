@@ -50,7 +50,9 @@ class ApplicationController(QMainWindow):
 
         #temporary var for quick access
         mailWindow = self.homeWindow.mailWindow
+        reminderWindow = self.homeWindow.reminderWindow
         SCHMail = self.schedulerWorker.mailTask
+        reminderTask = self.schedulerWorker.reminderTask
 
         #Wiring for Mail Module
         mailWindow.googleRegistration.connect(SCHMail.generateToken)
@@ -63,7 +65,18 @@ class ApplicationController(QMainWindow):
         SCHMail.credentialsValidity.connect(mailWindow.onGotLoginStatus)
         SCHMail.inboxPayload.connect(mailWindow.setEmailList)
         SCHMail.sentEmail.connect(mailWindow.onSentEmail)
-        self.initTask.connect(self.schedulerWorker.initTasks)
+
+        #Wiring for Reminder Module
+        reminderWindow.removeReminder.connect(reminderTask.remove_reminder)
+        reminderWindow.addReminder.connect(reminderTask.add_reminder)
+        reminderWindow.editReminder.connect(reminderTask.edit_reminder)
+        reminderWindow.saveToMarkdown.connect(reminderTask.save_to_markdown)
+        reminderTask.sendReminderList.connect(reminderWindow.refreshReminders)
+
+        #Wiring for task initialization
+        self.initTask.connect(self.schedulerWorker.mailTask.signIn)
+        self.initTask.connect(self.schedulerWorker.weatherTask.getData)
+        self.initTask.connect(self.schedulerWorker.reminderTask.load_reminders)
         
         self.workerThread.start()
 

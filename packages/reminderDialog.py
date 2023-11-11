@@ -20,15 +20,17 @@ class ReminderDialog(QDialog):
             self.ui.reminderTime.setTime(QTime.currentTime())
             self.ui.label_5.setText("Creating reminder")
             self.setWindowTitle("Creating reminder")
+
         else:
             self.ui.label_5.setText("Editing reminder")
             self.setWindowTitle("Editing reminder")
-            temp = ignoredReminderObject["date"].strip().split("-")
+
+            temp = ignoredReminderObject.get_date().strip().split("/")
             self.ui.reminderDate.setDate(QDate(int(temp[2]), int(temp[1]), int(temp[0])))
-            temp = ignoredReminderObject["time"].strip().split(":")
+            temp = ignoredReminderObject.get_time().strip().split(":")
             self.ui.reminderTime.setTime(QTime(int(temp[0]), int(temp[1])))
-            self.ui.reminderTitle.setText(ignoredReminderObject["title"])
-            self.ui.reminderDescription.setText(ignoredReminderObject["description"])
+            self.ui.reminderTitle.setText(ignoredReminderObject.get_title())
+            self.ui.reminderDescription.setText(ignoredReminderObject.get_description())
 
 
         self.ui.reminderTitle.returnPressed.connect(self.accept)
@@ -49,7 +51,7 @@ class ReminderDialog(QDialog):
             pass
         else:
             #Executed if a match is found
-            if (self.ui.reminderTitle.text() != self.ignoredReminderObject["title"]):
+            if (self.ui.reminderTitle.text() != self.ignoredReminderObject.get_title()):
                 self.ui.reminderErrorLabel.setText("Title is already used!")
                 self.ui.reminderErrorLabel.show()
                 return
