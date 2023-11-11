@@ -4,13 +4,16 @@ from packages.ui.applicationControllerClass import Ui_MainWindow
 
 from packages.passwordWindow import PasswordWindow
 from packages.homeWindow import HomeWindow
+from packages.faceIDWindow import FaceIDWindow
 
 from packages.password_tasks import password_tasks as PasswordTask
+from packages.faceIDTask import FaceIDTask
 
 from packages.scheduler import Scheduler
 
 class ApplicationController(QMainWindow):
     terminateThread = Signal()
+    startFaceIDRegistration = Signal(str)
     initTask = Signal()
 
     def __init__(self):
@@ -20,23 +23,54 @@ class ApplicationController(QMainWindow):
 
         self.homeWindow = HomeWindow()
         self.passwordWindow = PasswordWindow()
+        self.faceIDRegisterWindow = FaceIDWindow()
 
         self.ui.applicationStack.addWidget(self.passwordWindow)
         self.ui.applicationStack.addWidget(self.homeWindow)
+        self.ui.applicationStack.addWidget(self.faceIDRegisterWindow)
 
         self.passwordTask = PasswordTask()
 
+        self.faceIDThread = QThread()
+        self.faceIDTask = FaceIDTask(self.faceIDThread)
+        self.faceIDTask.moveToThread(self.faceIDThread)
+
+        self.terminateThread.connect(self.faceIDTask.terminateThread)
         self.passwordTask.loginStatus.connect(self.passwordWindow.onValidationCompleted)
         self.passwordTask.registerStatus.connect(self.passwordWindow.onAccountRegistrated)
         self.passwordWindow.validateCredential.connect(self.passwordTask.login)
         self.passwordWindow.createCredential.connect(self.passwordTask.register)
         self.passwordWindow.loggedIn.connect(self.onLoggedIn)
 
+        self.faceIDTask.userVerified.connect(self.onLoggedIn)
+        self.faceIDTask.sendImageSignIn.connect(self.passwordWindow.setLoginCameraFeed)
+        self.passwordWindow.interruptFaceIDLogin.connect(self.faceIDTask.interruptFaceIDSignIn)
+        self.passwordWindow.startFaceIDLogin.connect(self.faceIDTask.verifyUser)
+        self.startFaceIDRegistration.connect(self.faceIDTask.registerUser)
+
+        self.faceIDRegisterWindow.cancelRegistration.connect(self.faceIDTask.interruptFaceIDRegister)
+        self.faceIDRegisterWindow.cancelRegistration.connect(self.cancelRegisterFaceID)
+        self.faceIDTask.sendImageRegister.connect(self.faceIDRegisterWindow.setLoginCameraFeed)
+        self.faceIDTask.finishRegistration.connect(self.faceIDRegisterWindow.onFinishRegistration)
+
+        self.homeWindow.ui.registerFaceIDButton.clicked.connect(self.registerFaceID)
+
         self.ui.applicationStack.setCurrentIndex(0)
+        self.faceIDThread.start()
     
     @Slot()
-    def onLoggedIn(self):
+    def cancelRegisterFaceID(self):
         self.ui.applicationStack.setCurrentIndex(1)
+
+    @Slot()
+    def registerFaceID(self):
+        self.ui.applicationStack.setCurrentIndex(2)
+        self.startFaceIDRegistration.emit(self.username)
+    
+    @Slot(str)
+    def onLoggedIn(self, username):
+        self.ui.applicationStack.setCurrentIndex(1)
+        self.username = username
         self.initTask.emit()
     
     def initScheduler(self):
@@ -83,4 +117,5 @@ class ApplicationController(QMainWindow):
     @Slot()
     def quit(self):
         self.terminateThread.emit()
+        self.faceIDThread.wait()
         self.workerThread.wait()

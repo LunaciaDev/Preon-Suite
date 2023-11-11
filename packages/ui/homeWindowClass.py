@@ -159,6 +159,28 @@ class Ui_homeWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_2)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
+
+        self.registerFaceIDButton = QToolButton(self.leftPanel)
+        self.registerFaceIDButton.setObjectName(u"registerFaceIDButton")
+
+        self.horizontalLayout_3.addWidget(self.registerFaceIDButton)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Preferred)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
 
         self.horizontalLayout.addWidget(self.leftPanel)
 
@@ -183,5 +205,6 @@ class Ui_homeWindow(object):
         self.mailButton.setText(QCoreApplication.translate("homeWindow", u"Mail", None))
         self.weatherButton.setText(QCoreApplication.translate("homeWindow", u"Weather", None))
         self.reminderButton.setText(QCoreApplication.translate("homeWindow", u"Reminders", None))
+        self.registerFaceIDButton.setText(QCoreApplication.translate("homeWindow", u"Create Face ID", None))
     # retranslateUi
 
