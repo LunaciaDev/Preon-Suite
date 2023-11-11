@@ -171,6 +171,12 @@ QHeaderView::section {
     font-size: 18px;
 }
 
+#forecastTempLabel_1, #forecastTempLabel_2, #forecastTempLabel_3, #forecastTempLabel_4, #forecastTempLabel_5, #forecastTempLabel_6 {
+    font-size: 18px;
+    color: $primary;
+    font-weight: bold;
+}
+
 #cityLabel {
     font-weight: bold;
     font-size: 22px;
@@ -179,6 +185,7 @@ QHeaderView::section {
 #temperatureLabel {
     font-size: 90px;
     color: $primary;
+    font-weight: bold;
 }
 
 #forecast_1, #forecast_2, #forecast_3, #forecast_4, #forecast_5, #forecast_6 {

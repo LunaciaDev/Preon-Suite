@@ -11,7 +11,7 @@ from packages.scheduler import Scheduler
 
 class ApplicationController(QMainWindow):
     terminateThread = Signal()
-    initMailTask = Signal()
+    initTask = Signal()
 
     def __init__(self):
         super(ApplicationController, self).__init__()
@@ -37,7 +37,7 @@ class ApplicationController(QMainWindow):
     @Slot()
     def onLoggedIn(self):
         self.ui.applicationStack.setCurrentIndex(1)
-        self.initMailTask.emit()
+        self.initTask.emit()
     
     def initScheduler(self):
         self.workerThread = QThread()
@@ -57,10 +57,13 @@ class ApplicationController(QMainWindow):
         mailWindow.sendEmail.connect(SCHMail.sendEmail)
         mailWindow.refreshPage.connect(SCHMail.CheckInbox)
 
+        #Wiring for Weather Module
+        self.schedulerWorker.weatherTask.sendWeatherData.connect(self.homeWindow.weatherWindow.onReceiveWeatherData)
+
         SCHMail.credentialsValidity.connect(mailWindow.onGotLoginStatus)
         SCHMail.inboxPayload.connect(mailWindow.setEmailList)
         SCHMail.sentEmail.connect(mailWindow.onSentEmail)
-        self.initMailTask.connect(SCHMail.signIn)
+        self.initTask.connect(self.schedulerWorker.initTasks)
         
         self.workerThread.start()
 

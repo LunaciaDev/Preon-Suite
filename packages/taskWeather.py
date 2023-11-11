@@ -1,10 +1,12 @@
 import requests #url request lib
-from PySide6.QtCore import QTime
+from PySide6.QtCore import QTime, Signal, QObject
 
-class taskWeather:
-    
+class taskWeather(QObject):
+    sendWeatherData = Signal(dict, list)
+
     def __init__(self):
-        self.API_KEY = open("SCHOOL\\IntroToCS\\project\\api_key.txt").read()
+        super(taskWeather, self).__init__()
+        self.API_KEY = open("./packages/api_key.txt").read()
         #lat and lon for Binh Duong
         self.lat = "11.11039993747999"
         self.lon = "106.61480419825017"
@@ -51,9 +53,8 @@ class taskWeather:
         root += 4
 
         for i in range(6):
-            # root should be 00:00 the next day in term of the main clock since the data is saved up to 6h behind the main clock
-            # so 9h of next day starts at pos root + 3
-            # plus 4 to the next 12h
+            # root should be the nearest report behind the time the user is in.
+            # plus 4 to advance it by 12 hours
 
             temp ={}
             temp["temp"] = respond["list"][root]["main"]["temp"]
@@ -68,9 +69,4 @@ class taskWeather:
 
             root += 4
 
-    def runTask(self):
-        self.getData()
-
-
-task = taskWeather()
-task.runTask()
+        self.sendWeatherData.emit(self.current, self.forecast)

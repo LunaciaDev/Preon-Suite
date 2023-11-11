@@ -14,24 +14,9 @@ class WeatherWindow(QWidget):
 
         self.directionLookup = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
         
-        self.dummyCurrentWeather = {
-            "description": "overcast clouds",
-            "icon": "04n",
-            "temp": 24.89,
-            "feels_like": 25.86,
-            "temp_min": 24.89,
-            "temp_max": 24.89,
-            "humidity": 93,
-            "windSpeed": 1.48,
-            "windDeg": 312
-        }
-        self.dummyPredictedWeather = [{'temp': 297.18, 'feels_like': 298.04, 'temp_min': 297.18, 'temp_max': 297.18, 'humidity': 92, 'description': 'overcast clouds', 'icon': '04n', 'dt_txt': '2023-11-10 21:00:00'}, {'temp': 300.52, 'feels_like': 304.33, 'temp_min': 300.52, 'temp_max': 300.52, 'humidity': 85, 'description': 'light rain', 'icon': '10d', 'dt_txt': '2023-11-11 09:00:00'}, {'temp': 296.42, 'feels_like': 297.23, 'temp_min': 296.42, 'temp_max': 296.42, 'humidity': 93, 'description': 'scattered clouds', 'icon': '03n', 'dt_txt': '2023-11-11 21:00:00'}, {'temp': 299.25, 'feels_like': 299.25, 'temp_min': 299.25, 'temp_max': 299.25, 'humidity': 89, 'description': 'light rain', 'icon': '10d', 'dt_txt': '2023-11-12 09:00:00'}, {'temp': 297.32, 'feels_like': 298.27, 'temp_min': 297.32, 'temp_max': 297.32, 'humidity': 95, 'description': 'moderate rain', 'icon': '10n', 'dt_txt': '2023-11-12 21:00:00'}, {'temp': 297.75, 'feels_like': 298.72, 'temp_min': 297.75, 'temp_max': 297.75, 'humidity': 94, 'description': 'moderate rain', 'icon': '10d', 'dt_txt': '2023-11-13 09:00:00'}]
-
         self.ui.openWeatherIcon.setIcon(QIcon("./icons/openWeather.svg").pixmap(QSize(69, 34)))
         self.ui.openWeatherIcon.setIconSize(QSize(69, 34))
         self.ui.openWeatherIcon.clicked.connect(self.onOpenWeatherLinkClicked)
-
-        self.onReceiveWeatherData(self.dummyCurrentWeather, self.dummyPredictedWeather)
 
     @Slot()
     def onVoiceAssistantClicked(self):
@@ -50,7 +35,7 @@ class WeatherWindow(QWidget):
         self.ui.temperatureLabel.setText(f"{int(currentWeather['temp'])}°C")
         self.ui.perceivedTempLabel.setText(f"Feels like {int(currentWeather['feels_like'])}°C")
         self.ui.weatherTypeLabel.setText(currentWeather['description'].title())
-        self.ui.windSpeedLabel.setText(f"{self.directionLookup[int(round(currentWeather['windDeg'] / 45))]} {currentWeather['windSpeed']} m/s")
+        self.ui.windSpeedLabel.setText(f"Wind: {self.directionLookup[int(round(currentWeather['windDeg'] / 45))]} {currentWeather['wind_speed']} m/s")
         self.ui.minMaxTempLabel.setText(f"H: {int(currentWeather['temp_max'])}°C L: {int(currentWeather['temp_min'])}°C")
         self.ui.humidityLabel.setText(f"Humidity: {currentWeather['humidity']}%")
         self.ui.weatherIcon.setPixmap(QIcon(self.getWeatherIconName(currentWeather['icon'])).pixmap(QSize(300, 300)))
