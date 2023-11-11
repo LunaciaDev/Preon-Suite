@@ -15,33 +15,40 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QSizePolicy, QStackedWidget,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QSizePolicy,
+    QStackedWidget, QWidget)
 
-class Ui_applicationController(object):
-    def setupUi(self, applicationController):
-        if not applicationController.objectName():
-            applicationController.setObjectName(u"applicationController")
-        applicationController.resize(1280, 720)
-        self.horizontalLayout = QHBoxLayout(applicationController)
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(1280, 720)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
+        MainWindow.setMinimumSize(QSize(1280, 720))
+        MainWindow.setMaximumSize(QSize(1280, 720))
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.applicationStack = QStackedWidget(applicationController)
+        self.applicationStack = QStackedWidget(self.centralwidget)
         self.applicationStack.setObjectName(u"applicationStack")
 
         self.horizontalLayout.addWidget(self.applicationStack)
 
+        MainWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(applicationController)
+        self.retranslateUi(MainWindow)
 
-        self.applicationStack.setCurrentIndex(-1)
-
-
-        QMetaObject.connectSlotsByName(applicationController)
+        QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
-    def retranslateUi(self, applicationController):
-        applicationController.setWindowTitle(QCoreApplication.translate("applicationController", u"Form", None))
+    def retranslateUi(self, MainWindow):
+        pass
     # retranslateUi
 

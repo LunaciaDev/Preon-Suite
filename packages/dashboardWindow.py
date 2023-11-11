@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from packages.ui.dashboardWindow.dashboardBaseWindowClass import Ui_dashboardBaseWindow
+from packages.ui.dashboardWindowClass import Ui_dashboardBaseWindow
 
 class DashboardWindow(QWidget):
     def __init__(self):

@@ -1,2 +1,7 @@
+#pip install -r requirement.txt
+
 PySide6
 libsass
+keyring
+google-api-python-client
+google-auth-oauthlib

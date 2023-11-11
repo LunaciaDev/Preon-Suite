@@ -1,56 +1,31 @@
 import time
-from task1 import Task1
+from PySide6.QtCore import QObject, Slot, QTimer, Signal
 
-class Task():
-    def __init__(self, _pTask, _Delay, _Period):
-        self.pTask = _pTask
-        self.Delay = _Delay
-        self.Period = _Period
+from packages.GmailTask import GmailTask
 
-    pTask = None
-    Delay = 0
-    Period = 0
-    RunMe = 0
-    TaskID = -1
+class Scheduler(QObject):
+    def __init__(self, thread):
+        super(Scheduler, self).__init__()
+        self.myThread = thread
 
-class Scheduler():
-    TICK = 100
-    SCH_MAX_TASKS = 40
-    SCH_tasks_G = []
-    current_index_task = 0
+        self.mailTask = GmailTask()
+        self.mailTask.moveToThread(thread)
 
-    def __init__(self):
-        return
+        self.taskList = [
+            (self.mailTask.CheckInbox, 300000)
+        ]
+        self.clockList = []
 
-    def SCH_Init(self):
-        self.current_index_task = 0
-
-    def SCH_Add_Task(self, pFunction, DELAY, PERIOD):
-        if self.current_index_task < self.SCH_MAX_TASKS:
-            aTask = Task(pFunction, DELAY / self.TICK, PERIOD / self.TICK)
-            aTask.TaskID = self.current_index_task
-            self.SCH_tasks_G.append(aTask)
-            self.current_index_task += 1
-        else:
-            print("PrivateTasks are full!!!")
-
-    def SCH_Update(self):
-        for i in range(0, len(self.SCH_tasks_G)):
-            if self.SCH_tasks_G[i].Delay > 0:
-                self.SCH_tasks_G[i].Delay -= 1
-            else:
-                self.SCH_tasks_G[i].Delay = self.SCH_tasks_G[i].Period
-                self.SCH_tasks_G[i].RunMe += 1
-
-    def SCH_Dispatch_Tasks(self):
-        for i in range(0, len(self.SCH_tasks_G)):
-            if self.SCH_tasks_G[i].RunMe > 0:
-                self.SCH_tasks_G[i].RunMe -= 1
-                self.SCH_tasks_G[i].pTask()
-
-    def SCH_Delete(self, aTask):
-        return
-
-    def SCH_GenerateID(self):
-        return -1
-
+    def run(self):
+        print(self.thread)
+        for task in self.taskList:
+            temp = QTimer(self)
+            temp.timeout.connect(task[0])
+            temp.start(task[1])
+            self.clockList.append(temp)
+    
+    @Slot()
+    def terminateThread(self):
+        for clock in self.clockList:
+            clock.stop()
+        self.myThread.quit()

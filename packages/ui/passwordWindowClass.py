@@ -29,6 +29,7 @@ class Ui_passwordWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(passwordWindow.sizePolicy().hasHeightForWidth())
         passwordWindow.setSizePolicy(sizePolicy)
+        passwordWindow.setMinimumSize(QSize(1280, 720))
         passwordWindow.setMaximumSize(QSize(1280, 720))
         self.horizontalLayout_2 = QHBoxLayout(passwordWindow)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -104,6 +105,7 @@ class Ui_passwordWindow(object):
         self.passwordLoginButton = QToolButton(self.faceIDLogin)
         self.passwordLoginButton.setObjectName(u"passwordLoginButton")
         self.passwordLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.passwordLoginButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_4.addWidget(self.passwordLoginButton)
 
@@ -216,6 +218,7 @@ class Ui_passwordWindow(object):
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setMinimumSize(QSize(60, 0))
         self.loginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.loginButton.setFocusPolicy(Qt.ClickFocus)
         self.loginButton.setToolButtonStyle(Qt.ToolButtonTextOnly)
 
         self.horizontalLayout_3.addWidget(self.loginButton)
@@ -227,6 +230,7 @@ class Ui_passwordWindow(object):
         self.registerButton = QToolButton(self.credentalLogin)
         self.registerButton.setObjectName(u"registerButton")
         self.registerButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.registerButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_3.addWidget(self.registerButton)
 
@@ -265,12 +269,12 @@ class Ui_passwordWindow(object):
 
         self.verticalLayout_3.addItem(self.verticalSpacer_11)
 
-        self.notMatchingPasswordLabel = QLabel(self.createCredential)
-        self.notMatchingPasswordLabel.setObjectName(u"notMatchingPasswordLabel")
-        self.notMatchingPasswordLabel.setFrameShape(QFrame.Box)
-        self.notMatchingPasswordLabel.setAlignment(Qt.AlignCenter)
+        self.createAccountErrorLabel = QLabel(self.createCredential)
+        self.createAccountErrorLabel.setObjectName(u"createAccountErrorLabel")
+        self.createAccountErrorLabel.setFrameShape(QFrame.Box)
+        self.createAccountErrorLabel.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_3.addWidget(self.notMatchingPasswordLabel)
+        self.verticalLayout_3.addWidget(self.createAccountErrorLabel)
 
         self.verticalSpacer_12 = QSpacerItem(10, 8, QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
@@ -334,9 +338,21 @@ class Ui_passwordWindow(object):
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer_12)
 
+        self.backToLoginButton = QToolButton(self.createCredential)
+        self.backToLoginButton.setObjectName(u"backToLoginButton")
+        self.backToLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.backToLoginButton.setFocusPolicy(Qt.ClickFocus)
+
+        self.horizontalLayout_7.addWidget(self.backToLoginButton)
+
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_16)
+
         self.createAccountButton = QToolButton(self.createCredential)
         self.createAccountButton.setObjectName(u"createAccountButton")
         self.createAccountButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.createAccountButton.setFocusPolicy(Qt.ClickFocus)
 
         self.horizontalLayout_7.addWidget(self.createAccountButton)
 
@@ -365,7 +381,7 @@ class Ui_passwordWindow(object):
 
         self.retranslateUi(passwordWindow)
 
-        self.loginStack.setCurrentIndex(1)
+        self.loginStack.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(passwordWindow)
@@ -385,12 +401,13 @@ class Ui_passwordWindow(object):
         self.loginButton.setText(QCoreApplication.translate("passwordWindow", u"Login", None))
         self.registerButton.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
         self.label_6.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
-        self.notMatchingPasswordLabel.setText(QCoreApplication.translate("passwordWindow", u"Password does not match.", None))
+        self.createAccountErrorLabel.setText(QCoreApplication.translate("passwordWindow", u"Password does not match.", None))
         self.label_7.setText(QCoreApplication.translate("passwordWindow", u"Username", None))
         self.label_8.setText(QCoreApplication.translate("passwordWindow", u"Password", None))
         self.createPasswordInput.setText("")
         self.label_9.setText(QCoreApplication.translate("passwordWindow", u"Re-enter your password", None))
         self.confirmPasswordInput.setText("")
+        self.backToLoginButton.setText(QCoreApplication.translate("passwordWindow", u"Back to Login", None))
         self.createAccountButton.setText(QCoreApplication.translate("passwordWindow", u"Create an Account", None))
     # retranslateUi
 
