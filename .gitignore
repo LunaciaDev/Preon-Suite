@@ -160,6 +160,8 @@ cython_debug/
 #.idea/
 
 resources/
+Face_ID/faces/
+api_key.txt
 Credentials.json
 token.json
 
