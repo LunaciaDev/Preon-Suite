@@ -51,11 +51,6 @@ class ReminderWindow(QWidget):
         self.ui.successPopup.show()
         self.popupTimer.start(3000)
 
-    @Slot()
-    def hideAllPopup(self):
-        self.ui.errorPopup.hide()
-        self.ui.successPopup.hide()
-
     # UI Control
     @Slot(bool)
     def onMarkdownExported(self, success):
@@ -63,6 +58,11 @@ class ReminderWindow(QWidget):
             self.successPopup("Exported reminders to markdown")
         else:
             self.errorPopup("Failed to export to markdown")
+
+    @Slot()
+    def hideAllPopup(self):
+        self.ui.errorPopup.hide()
+        self.ui.successPopup.hide()
 
     @Slot()
     def onExportMarkdownButtonClicked(self):

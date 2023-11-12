@@ -35,7 +35,7 @@ class WeatherWindow(QWidget):
         self.ui.temperatureLabel.setText(f"{int(currentWeather['temp'])}°C")
         self.ui.perceivedTempLabel.setText(f"Feels like {int(currentWeather['feels_like'])}°C")
         self.ui.weatherTypeLabel.setText(currentWeather['description'].title())
-        self.ui.windSpeedLabel.setText(f"Wind: {self.directionLookup[int(round(currentWeather['windDeg'] / 45))]} {currentWeather['wind_speed']} m/s")
+        self.ui.windSpeedLabel.setText(f"Wind: {self.directionLookup[int(currentWeather['windDeg'] / 45)]} {currentWeather['wind_speed']} m/s")
         self.ui.minMaxTempLabel.setText(f"H: {int(currentWeather['temp_max'])}°C L: {int(currentWeather['temp_min'])}°C")
         self.ui.humidityLabel.setText(f"Humidity: {currentWeather['humidity']}%")
         self.ui.weatherIcon.setPixmap(QIcon(self.getWeatherIconName(currentWeather['icon'])).pixmap(QSize(300, 300)))

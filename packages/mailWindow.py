@@ -42,6 +42,16 @@ class MailWindow(QWidget):
 
     def enableRefresh(self):
         self.refreshAllowed = True
+    
+    def errorPopup(self, errorMsg):
+        self.ui.errorPopup.setText(errorMsg)
+        self.ui.errorPopup.show()
+        self.popupTimer.start(3000)
+
+    def successPopup(self, successMsg):
+        self.ui.successPopup.setText(successMsg)
+        self.ui.successPopup.show()
+        self.popupTimer.start(3000)
 
     ###### Ui Controller
     @Slot(bool)
@@ -64,16 +74,6 @@ class MailWindow(QWidget):
         self.ui.titleField.clear()
         self.ui.contentField.clear()
         self.ui.mailStack.setCurrentIndex(1)
-
-    def errorPopup(self, errorMsg):
-        self.ui.errorPopup.setText(errorMsg)
-        self.ui.errorPopup.show()
-        self.popupTimer.start(3000)
-
-    def successPopup(self, successMsg):
-        self.ui.successPopup.setText(successMsg)
-        self.ui.successPopup.show()
-        self.popupTimer.start(3000)
     
     @Slot()
     def hideAllPopup(self):

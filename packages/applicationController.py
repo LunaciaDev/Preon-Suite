@@ -21,6 +21,7 @@ class ApplicationController(QMainWindow):
         self.ui = Ui_MainWindow();
         self.ui.setupUi(self)
 
+        # initialize underlying UIs
         self.homeWindow = HomeWindow()
         self.passwordWindow = PasswordWindow()
         self.faceIDRegisterWindow = FaceIDWindow()
@@ -29,12 +30,15 @@ class ApplicationController(QMainWindow):
         self.ui.applicationStack.addWidget(self.homeWindow)
         self.ui.applicationStack.addWidget(self.faceIDRegisterWindow)
 
+        # initialize password-related tasks
         self.passwordTask = PasswordTask()
 
+        # initialize a thread for FaceID
         self.faceIDThread = QThread()
         self.faceIDTask = FaceIDTask(self.faceIDThread)
         self.faceIDTask.moveToThread(self.faceIDThread)
 
+        # prepare connections for password/FaceID tasks
         self.terminateThread.connect(self.faceIDTask.terminateThread)
         self.passwordTask.loginStatus.connect(self.passwordWindow.onValidationCompleted)
         self.passwordTask.registerStatus.connect(self.passwordWindow.onAccountRegistrated)
