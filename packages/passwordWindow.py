@@ -54,12 +54,12 @@ class PasswordWindow(QWidget):
 
     @Slot(bool)
     def onAccountRegistrated(self, success):
-        self.ui.createUsernameInput.clear()
         self.ui.createPasswordInput.clear()
         self.ui.confirmPasswordInput.clear()
         self.ui.createAccountErrorLabel.hide()
 
-        self.loggedIn.emit()
+        self.loggedIn.emit(self.ui.createUsernameInput.text())
+        self.ui.createUsernameInput.clear()
     ######
 
     # User Interface Control #
