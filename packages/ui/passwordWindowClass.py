@@ -245,6 +245,7 @@ class Ui_passwordWindow(object):
 
         self.faceIDLoginButton = QToolButton(self.credentalLogin)
         self.faceIDLoginButton.setObjectName(u"faceIDLoginButton")
+        self.faceIDLoginButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_8.addWidget(self.faceIDLoginButton)
 
@@ -405,7 +406,7 @@ class Ui_passwordWindow(object):
 
         self.retranslateUi(passwordWindow)
 
-        self.loginStack.setCurrentIndex(2)
+        self.loginStack.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(passwordWindow)

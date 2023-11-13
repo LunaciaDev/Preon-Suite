@@ -81,6 +81,7 @@ class Ui_reminderWindow(object):
 
         self.exportMarkdownButton = QToolButton(reminderWindow)
         self.exportMarkdownButton.setObjectName(u"exportMarkdownButton")
+        self.exportMarkdownButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.exportMarkdownButton)
 

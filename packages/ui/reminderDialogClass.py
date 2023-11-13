@@ -112,12 +112,14 @@ class Ui_reminderDialog(object):
         self.rejectButton = QToolButton(reminderDialog)
         self.rejectButton.setObjectName(u"rejectButton")
         self.rejectButton.setMinimumSize(QSize(75, 0))
+        self.rejectButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_2.addWidget(self.rejectButton)
 
         self.acceptButton = QToolButton(reminderDialog)
         self.acceptButton.setObjectName(u"acceptButton")
         self.acceptButton.setMinimumSize(QSize(75, 0))
+        self.acceptButton.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_2.addWidget(self.acceptButton)
 
