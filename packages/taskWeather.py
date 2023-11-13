@@ -1,5 +1,5 @@
 import requests #url request lib
-from PySide6.QtCore import QTime, Signal, QObject
+from PySide6.QtCore import QTime, Signal, QObject, Slot
 
 class taskWeather(QObject):
     sendWeatherData = Signal(dict, list)
@@ -18,8 +18,8 @@ class taskWeather(QObject):
         #list of dict of forecast values for the next 5 days
         self.forecast = []
        
+    @Slot()
     def getData(self):
-
         #get current weather data from open weather
         respond = requests.get(self.current_URL).json()
         # read description (eg, cloud, sunny, snow...)

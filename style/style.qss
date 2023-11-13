@@ -18,7 +18,7 @@ $extra-error: rgb(191, 97, 106);
 $extra-warning: rgb(235, 203, 139);
 $extra-success: rgb(163, 190, 140);
 
-$headerFont: Poppin;
+$headerFont: Poppins;
 
 QToolButton, QPushButton {
     color: $text;
@@ -27,6 +27,10 @@ QToolButton, QPushButton {
     border-radius: 6px;
     background-color: $secondary;
     padding: 8px;
+}
+
+#registerFaceIDButton {
+    padding-right: 12px;
 }
 
 QToolButton:disabled, QPushButton:disabled {
@@ -43,8 +47,9 @@ QToolButton:disabled, QPushButton:disabled {
     background-color: $background;
 }
 
-QLabel {
+QLabel, #infoLabel {
     color: $text;
+    font-weight: normal;
     font-family: Lato;
     font-size: 18px;
     padding: 5px;
@@ -71,12 +76,6 @@ QLineEdit:focus, QTextEdit:focus, QTimeEdit:focus, QDateEdit:focus {
     border-radius: 6px;
 }
 
-#faceIDCameraFeed {
-	background-color: $secondary;
-	border: 4px;
-	border-radius: 150px;
-}
-
 #wrongCredentialLabel, #createAccountErrorLabel, #errorPopup, #reminderErrorLabel{
     background-color: $extra-error;
     border-radius: 6px;
@@ -90,9 +89,15 @@ QLineEdit:focus, QTextEdit:focus, QTimeEdit:focus, QDateEdit:focus {
 
 #appLabel {
     color: $text;
-    font: Lato;
+    font-family: $headerFont;
     font-size: 17px;
     padding-left: 8px;
+}
+
+#inboxAddress, #signInLabel, #createAccountLabel, #header, #signInLabel {
+    color: $text;
+    font-family: $headerFont;
+    font-size: 18px;
 }
 
 #leftPanel > QToolButton {
@@ -165,6 +170,7 @@ QHeaderView::section {
     font-weight: bold;
     font-size: 18px;
     color: $accentLight;
+    font-family: $headerFont;
 }
 
 #forecastTimeLabel_1, #forecastTimeLabel_2, #forecastTimeLabel_3, #forecastTimeLabel_4, #forecastTimeLabel_5, #forecastTimeLabel_6 {
@@ -178,6 +184,7 @@ QHeaderView::section {
 }
 
 #cityLabel {
+    font-family: $headerFont;
     font-weight: bold;
     font-size: 22px;
 }

@@ -1,11 +1,17 @@
 from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Signal, Slot
+from PySide6.QtGui import QImage, QPixmap
+
 from packages.ui.passwordWindowClass import Ui_passwordWindow
+
+import os.path as path
 
 class PasswordWindow(QWidget):
     validateCredential = Signal(str, str)
     createCredential = Signal(str, str)
-    loggedIn = Signal()
+    interruptFaceIDLogin = Signal()
+    startFaceIDLogin = Signal()
+    loggedIn = Signal(str)
 
     def __init__(self):
         super(PasswordWindow, self).__init__()
@@ -17,16 +23,14 @@ class PasswordWindow(QWidget):
         self.ui.passwordLoginButton.clicked.connect(self.onSwitchToCredentalLoginClicked)
         self.ui.backToLoginButton.clicked.connect(self.onSwitchToCredentalLoginClicked)
         self.ui.createAccountButton.clicked.connect(self.onCreateAccountButtonClicked)
+
         self.ui.usernameInput.returnPressed.connect(self.onLoginButtonClicked)
         self.ui.passwordInput.returnPressed.connect(self.onLoginButtonClicked)
         self.ui.createUsernameInput.returnPressed.connect(self.onCreateAccountButtonClicked)
         self.ui.createPasswordInput.returnPressed.connect(self.onCreateAccountButtonClicked)
         self.ui.confirmPasswordInput.returnPressed.connect(self.onCreateAccountButtonClicked)
+        self.ui.faceIDLoginButton.clicked.connect(self.onSwitchToFaceIDLoginClicked)
 
-        #TODO: Check if user have Face ID
-        #if (have FaceID):
-        #   self.ui.loginStack.setCurrentIndex(0)
-        #else:
         self.ui.loginStack.setCurrentIndex(1)
 
         self.ui.wrongCredentialLabel.hide()
@@ -60,7 +64,17 @@ class PasswordWindow(QWidget):
 
     # User Interface Control #
     @Slot()
+    def onSwitchToFaceIDLoginClicked(self):
+        self.ui.loginStack.setCurrentIndex(0)
+        self.startFaceIDLogin.emit()
+
+    @Slot(QImage)
+    def setLoginCameraFeed(self, image):
+        self.ui.faceIDCameraFeed.setPixmap(QPixmap.fromImage(image))
+
+    @Slot()
     def onSwitchToCredentalLoginClicked(self):
+        self.interruptFaceIDLogin.emit()
         self.ui.loginStack.setCurrentIndex(1)
 
     @Slot()
@@ -76,10 +90,10 @@ class PasswordWindow(QWidget):
     @Slot(bool)
     def onValidationCompleted(self, success):
         if (success):
-            self.ui.usernameInput.clear()
             self.ui.passwordInput.clear()
             self.ui.wrongCredentialLabel.hide()
-            self.loggedIn.emit()
+            self.loggedIn.emit(self.ui.usernameInput.text())
+            self.ui.usernameInput.clear()
             return
         
         self.ui.wrongCredentialLabel.show()

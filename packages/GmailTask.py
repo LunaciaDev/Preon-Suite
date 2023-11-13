@@ -25,31 +25,23 @@ class GmailTask(QObject):
 
     @Slot()
     def signIn(self):
-        self.load_credentials()
+        if os.path.exists('./packages/token.json'):
+            self.creds = Credentials.from_authorized_user_file('./packages/token.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
+        else:
+            self.creds = None
 
         if self.creds and self.creds.expired and self.creds.refresh_token:
             self.creds.refresh(Request())
+
+            with open(r'./packages/token.json', 'w') as token:
+                token.write(self.creds.to_json())
 
         if self.creds and self.creds.valid:
             self.service = build('gmail', 'v1', credentials=self.creds)
             self.signedIn = True
             self.getCredentialsValidity()
             self.CheckInbox()
-
-    def load_credentials(self):
-        if os.path.exists('./packages/token.json'):
-            self.creds = Credentials.from_authorized_user_file('./packages/token.json', ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send'])
-            return
-        
-        self.creds = None
-
-    def refreshToken(self):
-        if self.creds and self.creds.expired and self.creds.refresh_token:
-            self.creds.refresh(Request())   
-
-        with open(r'./packages/token.json', 'w') as token:
-            token.write(self.creds.to_json())
-    
+   
     @Slot()
     def generateToken(self):
         flow = InstalledAppFlow.from_client_secrets_file(

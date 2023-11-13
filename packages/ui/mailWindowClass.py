@@ -69,14 +69,6 @@ class Ui_mailWindow(object):
         self.loginWithGoogleButton.setObjectName(u"loginWithGoogleButton")
         self.loginWithGoogleButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.loginWithGoogleButton.setFocusPolicy(Qt.ClickFocus)
-        icon = QIcon()
-        iconThemeName = u"mail-unread"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
-
-        self.loginWithGoogleButton.setIcon(icon)
         self.loginWithGoogleButton.setIconSize(QSize(24, 24))
         self.loginWithGoogleButton.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 
@@ -132,6 +124,7 @@ class Ui_mailWindow(object):
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
+
         self.verticalSpacer_6 = QSpacerItem(20, 16, QSizePolicy.Minimum, QSizePolicy.Preferred)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_6)
@@ -149,13 +142,14 @@ class Ui_mailWindow(object):
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
+
         self.refreshButton = QToolButton(self.mainWindow)
         self.refreshButton.setObjectName(u"refreshButton")
         self.refreshButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.refreshButton.setFocusPolicy(Qt.ClickFocus)
-        icon1 = QIcon()
-        icon1.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.refreshButton.setIcon(icon1)
+        icon = QIcon()
+        icon.addFile(u"icons/view-refresh-symbolic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.refreshButton.setIcon(icon)
 
         self.horizontalLayout_5.addWidget(self.refreshButton)
 

@@ -1,7 +1,5 @@
 import cv2
 import time
-import face_recognition
-import sqlite3
 
 cap = cv2.VideoCapture(0)
 

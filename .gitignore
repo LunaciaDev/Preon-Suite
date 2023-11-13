@@ -165,3 +165,6 @@ api_key.txt
 Credentials.json
 token.json
 api_key.txt
+reminders.json
+reminder.md
+face_encodings.db

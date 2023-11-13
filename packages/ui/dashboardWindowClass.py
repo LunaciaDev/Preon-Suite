@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dashboardBaseWindow.ui'
+## Form generated from reading UI file 'dashboardWindow.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.3
 ##
@@ -15,8 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_dashboardBaseWindow(object):
     def setupUi(self, dashboardBaseWindow):
@@ -27,11 +26,6 @@ class Ui_dashboardBaseWindow(object):
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.label = QLabel(dashboardBaseWindow)
-        self.label.setObjectName(u"label")
-
-        self.verticalLayout.addWidget(self.label)
-
 
         self.retranslateUi(dashboardBaseWindow)
 
@@ -40,6 +34,5 @@ class Ui_dashboardBaseWindow(object):
 
     def retranslateUi(self, dashboardBaseWindow):
         dashboardBaseWindow.setWindowTitle(QCoreApplication.translate("dashboardBaseWindow", u"Form", None))
-        self.label.setText(QCoreApplication.translate("dashboardBaseWindow", u"This is da dashboard", None))
     # retranslateUi
 
