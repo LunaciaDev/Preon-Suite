@@ -38,6 +38,6 @@ You will also need API keys for Google API and [**OpenWeather**](https://openwea
 
 ## Credit
 
-Weather icons are designed by [Erika Flowers](https://www.helloerikaflowers.com/). The repository of the weather icons can be found [here](https://github.com/erikflowers/weather-icons).
-Refresh icon is from [Papirus Icon Theme (Dark)](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
+Weather icons are designed by [Erika Flowers](https://www.helloerikaflowers.com/). The repository of the weather icons can be found [here](https://github.com/erikflowers/weather-icons).  
+Refresh icon is from [Papirus Icon Theme (Dark)](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).  
 The OpenWeather logo is a trademark owned by [OpenWeather](https://openweathermap.org).
