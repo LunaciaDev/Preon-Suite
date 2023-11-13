@@ -30,7 +30,7 @@ Before you proceed, ensure that you have Python 3.11 installed with these librar
 
 You will also need API keys for Google API and [**OpenWeather**](https://openweathermap.org/) for the mail and weather system.
 
-## Installation
+### Installation
 
 1. Clone the repository.
 2. Install the required dependencies: `pip install -r requirement.txt`.
