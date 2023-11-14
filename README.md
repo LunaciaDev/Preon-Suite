@@ -27,6 +27,7 @@ Before you proceed, ensure that you have Python 3.11 installed with these librar
 - pyttsx3
 - SpeechRecognition
 - plyer
+- face-recognition
 
 You will also need API keys for Google API and [**OpenWeather**](https://openweathermap.org/) for the mail and weather system respectively.
 
