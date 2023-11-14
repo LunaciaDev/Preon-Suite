@@ -8,4 +8,4 @@ google-auth-oauthlib
 pyttsx3
 SpeechRecognition
 plyer
-face_recognition
+face-recognition
