@@ -28,13 +28,16 @@ Before you proceed, ensure that you have Python 3.11 installed with these librar
 - SpeechRecognition
 - plyer
 
-You will also need API keys for Google API and [**OpenWeather**](https://openweathermap.org/) for the mail and weather system.
+You will also need API keys for Google API and [**OpenWeather**](https://openweathermap.org/) for the mail and weather system respectively.
 
 ### Installation
 
 1. Clone the repository.
 2. Install the required dependencies: `pip install -r requirement.txt`.
-3. Run `main.py`.
+3. Prepare the API keys:
+   1. Google API key should be written in the file `Credentials.json` located inside the `packages` folder.
+   2. OpenWeather API key should be written in the file `api_key.txt` located inside the `packages` folder.
+4. Run `main.py`.
 
 ## Credit
 
