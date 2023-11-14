@@ -59,6 +59,9 @@ class ApplicationController(QMainWindow):
 
         self.homeWindow.ui.registerFaceIDButton.clicked.connect(self.registerFaceID)
 
+        self.passwordWindow.loggedIn.connect(self.homeWindow.dashboardWindow.onLoggedIn)
+        self.faceIDTask.userVerified.connect(self.homeWindow.dashboardWindow.onLoggedIn)
+
         self.ui.applicationStack.setCurrentIndex(0)
         self.faceIDThread.start()
     

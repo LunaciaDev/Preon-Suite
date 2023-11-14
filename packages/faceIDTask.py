@@ -10,7 +10,7 @@ class FaceIDTask(QObject):
     sendImageSignIn = Signal(QImage)
     sendImageRegister = Signal(QImage)
     finishRegistration = Signal()
-    userVerified = Signal(bool)
+    userVerified = Signal(str)
 
     def __init__(self, myThread):
         super(FaceIDTask, self).__init__()

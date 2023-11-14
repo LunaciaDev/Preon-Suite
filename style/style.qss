@@ -207,3 +207,8 @@ QHeaderView::section {
 #creditLabel {
     font-size: 14px;
 }
+
+#welcomeMessage {
+    font: $headerFont;
+    font-size: 20px;
+}

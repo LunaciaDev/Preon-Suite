@@ -15,7 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QSizePolicy, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_dashboardBaseWindow(object):
     def setupUi(self, dashboardBaseWindow):
@@ -23,9 +24,13 @@ class Ui_dashboardBaseWindow(object):
             dashboardBaseWindow.setObjectName(u"dashboardBaseWindow")
         dashboardBaseWindow.resize(1080, 720)
         self.verticalLayout = QVBoxLayout(dashboardBaseWindow)
-        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.welcomeMessage = QLabel(dashboardBaseWindow)
+        self.welcomeMessage.setObjectName(u"welcomeMessage")
+        self.welcomeMessage.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.welcomeMessage)
+
 
         self.retranslateUi(dashboardBaseWindow)
 
@@ -34,5 +39,6 @@ class Ui_dashboardBaseWindow(object):
 
     def retranslateUi(self, dashboardBaseWindow):
         dashboardBaseWindow.setWindowTitle(QCoreApplication.translate("dashboardBaseWindow", u"Form", None))
+        self.welcomeMessage.setText(QCoreApplication.translate("dashboardBaseWindow", u"TextLabel", None))
     # retranslateUi
 
