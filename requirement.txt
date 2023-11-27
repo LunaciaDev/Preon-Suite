@@ -9,3 +9,4 @@ pyttsx3
 SpeechRecognition
 plyer
 face-recognition
+opencv-python
