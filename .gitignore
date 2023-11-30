@@ -162,6 +162,7 @@ cython_debug/
 resources/
 Face_ID/faces/
 api_key.txt
+Credentials.json
 token.json
 api_key.txt
 reminders.json
